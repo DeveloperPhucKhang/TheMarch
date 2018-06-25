@@ -51,3 +51,26 @@ def load_banner_image():
         #    banner_saved = banner_info(f, baner_url)             
         #    file_display.append(banner_saved)
     return file_display
+
+def load_event_data(location):
+    list_event = []
+    #Get list event
+    if location == 'home':
+        list_event_db = current_db.Event.find({'is_important': 'true'}).sort("created_on", DESCENDING).limit(2) 
+        if list_event_db.count() == 0:
+            list_event_db = current_db.Event.find().sort("created_on", DESCENDING).limit(2)
+    else:
+        list_event_db = current_db.Event.find().sort("created_on", DESCENDING)
+    for item in list_event_db:                
+        item = {
+                    "event_type": item["event_type"],
+                    "title": item["title"],
+                    "thumbnail": "load_event_thumbnail/%s" % item["thumbnail"],
+                    "short_description": item["short_description"] ,
+                    "description": item["description"] ,
+                    "created_by": item["created_by"] ,
+                    "created_date": item["created_date"] ,
+                    "is_important": item["is_important"] 
+                }                                          
+        list_event.append(item)
+    return list_event

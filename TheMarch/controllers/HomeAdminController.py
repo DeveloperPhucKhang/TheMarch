@@ -32,6 +32,7 @@ app.config['COFFEE_IMAGE_FOLDER'] = 'dataset/coffee/'
 app.config['EVENT_IMAGE_FOLDER'] = 'dataset/event/'
 app.config['BAND_IMAGE_FOLDER'] = 'dataset/band/'
 app.config['GYM_IMAGE_FOLDER'] = 'dataset/gym/'
+app.config['EVENT_THUMBNAIL_FOLDER'] = 'dataset/event/'
 IGNORED_FILES = set(['.gitignore'])
 
 # flask-login
@@ -254,28 +255,20 @@ def add_event():
 #############
 @app.route("/load_event_data", methods=['POST'])
 def load_event_admin():
-    list_event = []
-    #Get list event
-    list_event_db = common.current_db.Event.find().sort("created_on", DESCENDING)
-    for item in list_event_db:                
-        item = {
-                    "event_type": item["event_type"],
-                    "title": item["title"],
-                    "short_description": item["short_description"] ,
-                    "description": item["description"] ,
-                    "created_by": item["created_by"] ,
-                    "created_date": item["created_date"] ,
-                    "is_important": item["is_important"] 
-                }                                          
-        list_event.append(item)
-    return simplejson.dumps({'list_event': list_event})
+    try:
+        list_event = common.load_event_data('admin')    
+        return simplejson.dumps({"result": 'success', 'list_event': list_event})
+    except:
+        return simplejson.dumps({"result": 'error'})
 
 @app.route("/add_event_db", methods=['POST'])
+
 #@login_required
 def add_event_db():  
     try:
         event_type = request.form['event_type']
         title = request.form['title']
+        thumbnail = request.form['thumbnail']
         description = request.form['description']
         short_description = request.form['short_description']
         created_date = datetime.now()
@@ -285,6 +278,7 @@ def add_event_db():
         new_event = {
                         "event_type": event_type,
                         "title": title,
+                        "thumbnail": thumbnail,
                         "short_description": short_description,
                         "description": description,
                         "is_important": is_important,

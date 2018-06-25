@@ -8,20 +8,30 @@
             contentType: false,
             success: function (result) {
                 result = jQuery.parseJSON(result);
-                var data = [];
-                for (var i = 0 ; i < result.list_event.length ; i++) {
-                    data.push([
-                        result.list_event[i].event_type,
-                        result.list_event[i].title,
-                        result.list_event[i].created_by,
-                        result.list_event[i].created_date,
-                        result.list_event[i].is_important,
-                    ]);
+                if (result.result == 'success') {
+                    var data = [];
+                    for (var i = 0 ; i < result.list_event.length ; i++) {
+                        var is_important = 'Không';
+                        if (result.list_event[i].is_important == 'true')
+                        {
+                            is_important = 'Có';
+                        }
+                        data.push([
+                            result.list_event[i].event_type,
+                            result.list_event[i].title,
+                            result.list_event[i].created_by,
+                            result.list_event[i].created_date,
+                            is_important,
+                        ]);
+                    }
+                    init_datatable(data);
                 }
-                init_datatable(data);
+                else {
+                    show_error();
+                }                
             },
             error: function () {
-                console.log("upload error")
+                show_error();
             },
         });
     }
@@ -83,3 +93,15 @@
 
     
 });
+
+function show_error() {
+    swal({
+        title: "Lỗi!",
+        text: "Xảy ra lỗi trong quá trình trao đổi dữ liệu!",
+        type: "warning",
+        showCancelButton: false,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "OK",
+        closeOnConfirm: false
+    });
+}

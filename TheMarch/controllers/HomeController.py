@@ -22,12 +22,16 @@ from operator import itemgetter, attrgetter
 @app.route('/')
 @app.route('/home')
 def home():
+    #Load banner
     list_banner = common.load_banner_image()
+    #Load event
+    list_event = common.load_event_data('home')
     """Renders the home page."""
     return render_template(
         'Home/home.html',
         title='Home Page',
         banner = list_banner,
+        event = list_event,
         year=datetime.now().year,
     )
 
@@ -54,5 +58,9 @@ def about():
 @app.route('/load_banner_image/<string:filename>', methods=['GET'])
 @app.route('/admin/load_banner_image/<string:filename>', methods=['GET'])
 def load_banner_image(filename):
-    return send_from_directory(app.config['BANNER_IMAGE_FOLDER'], filename=filename)
-    #return send_from_directory(os.path.join(app.config['BANNER_IMAGE_FOLDER']), filename=filename)
+    return send_from_directory(app.config['BANNER_IMAGE_FOLDER'], filename=filename)    
+
+@app.route('/load_event_thumbnail/<string:filename>', methods=['GET'])
+@app.route('/admin/load_event_thumbnail/<string:filename>', methods=['GET'])
+def load_event_thumbnail(filename):
+    return send_from_directory(app.config['EVENT_THUMBNAIL_FOLDER'], filename=filename)    

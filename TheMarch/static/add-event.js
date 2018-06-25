@@ -24,6 +24,7 @@
         var data = new FormData();
         data.append('event_type', event_type);
         data.append('title', title);
+        data.append('thumbnail', 'default.jpg');
         data.append('short_description', short_description);
         data.append('description', description);
         data.append('is_important', is_important);

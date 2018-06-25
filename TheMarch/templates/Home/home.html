@@ -167,30 +167,53 @@
     <!--Content start EVENT-->
     <section class="content" id="sc-content">
       <div class="container">
-        <!--Content Image Right start-->
-        <div class="row content-img-right">
-          <div class="col-md-6">
-            <h2>Sự kiện nổi bật</h2>
+        {% for sub in event %}
+        {% if loop.index == 1 %}
+          <!--Content Image Right start-->
+          <div class="row content-img-right">
+              <div class="col-md-6">
+                  <h2>{{sub.event_type}}</h2>
 
-            <h3>Sẽ là một sự kiện vô cùng đặc sắc với sự tham gia của <br/>20 ban nhạc trên khắp mọi miền đất nước.</h3>
+                  <h3>{{sub.title}}</h3>
 
-            <p>Nằm ngay mặt tiền đường Trần Quang Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn, The March Coffee tạo ấn tượng ban đầu không hề giống một quán café. Ngay phía trước cửa, những gam màu nổi bật, bắt mắt đánh vào mắt người đi
-              đường sự chú ý, nhưng bên trong lại là kiểu ánh sáng dịu nhẹ, màu vàng âm áp so với với bên ngoài.</p>
-
-            <p>
-              <a class="scroll-to" href="#sc-reviews">Xem thêm...</a>
-            </p>
+                  <p>{{sub.short_description}}</p>
+                  <p>
+                      <a class="scroll-to" href="#sc-reviews">Xem thêm...</a>
+                  </p>
+              </div>
+              <div class="col-md-6">
+                  <div class="content-img-box">
+                      <img class="img-responsive content-img" src="{{sub.thumbnail}}" alt="Content Img Left" />
+                  </div>
+              </div>
           </div>
-          <div class="col-md-6">
-            <div class="content-img-box">
-              <img class="img-responsive content-img" src="/static/FrontEnd/img/content-img-right.jpg" alt="Content Img Left" />
-            </div>
+          <!--Content Image Right end-->
+        {% else %}
+          <div class="row content-img-left">
+              <div class="col-md-6 pull-right">
+                  <h2>{{sub.event_type}}</h2>
+
+                  <h3>{{sub.title}}</h3>
+
+                  <p>
+                      {{sub.short_description}}
+                  </p>
+                  <p>
+                      <a class="scroll-to" href="#sc-reviews">Xem thêm...</a>
+                  </p>
+              </div>
+              <div class="col-md-6">
+                  <div class="content-img-box">
+                      <img class="img-responsive content-img" src="{{sub.thumbnail}}" alt="Content Image Left" />
+                  </div>
+              </div>
           </div>
-        </div>
-        <!--Content Image Right end-->
+        {% endif %}
+        {% endfor %}    
+        
 
         <!--Content Image Left start-->
-        <div class="row content-img-left">
+        <!--<div class="row content-img-left">
           <div class="col-md-6 pull-right">
             <h2>Tour xuyên Việt</h2>
 
@@ -207,7 +230,7 @@
               <img class="img-responsive content-img" src="/static/FrontEnd/img/content-img-left.jpg" alt="Content Image Left" />
             </div>
           </div>
-        </div>
+        </div>-->
         <!--Content Image Left end-->
         <div id="content-slider" class="carousel slide" data-ride="carousel">
 
