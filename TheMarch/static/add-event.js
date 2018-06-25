@@ -15,6 +15,13 @@
         e.preventDefault();
         var event_type = $('#event_type').val();
         var title = $('#title').val();
+        var thumbnail = $('#thumbnail')[0].files[0];
+        var is_empty_thumbnail = true;
+        var thumbnail_file = '';
+        if(thumbnail != undefined){
+            thumbnail_file = thumbnail;
+            is_empty_thumbnail = false
+        }
         var short_description = $('#short_description').val();
         var description = $('.summernote').code();
         var is_important =$('#is_important').is(":checked");
@@ -24,7 +31,8 @@
         var data = new FormData();
         data.append('event_type', event_type);
         data.append('title', title);
-        data.append('thumbnail', 'default.jpg');
+        data.append('is_empty_thumbnail', is_empty_thumbnail);
+        data.append('thumbnail_file', thumbnail_file);
         data.append('short_description', short_description);
         data.append('description', description);
         data.append('is_important', is_important);

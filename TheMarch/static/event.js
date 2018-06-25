@@ -1,4 +1,7 @@
-﻿$(document).ready(function () {
+﻿var table;
+var current_id = '';
+
+$(document).ready(function () {
     function get_event_data() {
         $.ajax({
             url: "/load_event_data", //the page containing python script
@@ -12,11 +15,11 @@
                     var data = [];
                     for (var i = 0 ; i < result.list_event.length ; i++) {
                         var is_important = 'Không';
-                        if (result.list_event[i].is_important == 'true')
-                        {
+                        if (result.list_event[i].is_important == 'true') {
                             is_important = 'Có';
                         }
                         data.push([
+                            result.list_event[i]._id,
                             result.list_event[i].event_type,
                             result.list_event[i].title,
                             result.list_event[i].created_by,
@@ -27,23 +30,26 @@
                     init_datatable(data);
                 }
                 else {
-                    show_error();
-                }                
+                    show_error('Có lỗi xảy ra trong quá trình lấy thông tin!');
+                }
             },
             error: function () {
-                show_error();
+                show_error('Có lỗi xảy ra trong quá trình lấy thông tin!');
             },
         });
     }
 
     function init_datatable(dataSet) {
-        var manage_button_html = '<button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5 delete-button"><i class="ti-trash"></i></button>' +
-                                 '<button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5 edit-button"><i class="ti-pencil-alt"></i></button>';
+        var manage_button_html = '<button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5 edit-button"><i class="ti-pencil-alt"></i></button>' +
+                                '<button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5 delete-button"><i class="ti-trash"></i></button>'+
+                                '<button type="button" class="btn btn-info btn-outline btn-circle btn-lg m-r-5 preview-button"><i class="ti-search"></i></button>';
+        ;
         //var add_button_html = '<button id="add_event" class="fcbtn btn btn-info btn-outline btn-1c m-b-0" data-toggle="modal" data-target="#add_event">Thêm sự kiện</button>';
         var add_button_html = '<button id="add_event" class="fcbtn btn btn-info btn-outline btn-1c m-b-0">Thêm sự kiện</button>';
-        var table = $('#event_table').DataTable({
+        table = $('#event_table').DataTable({
             data: dataSet,
             columns: [
+                { id: "id" },
                 { title: "Loại sự kiện" },
                 { title: "Tiêu đề" },
                 { title: "Người viết" },
@@ -51,6 +57,7 @@
                 { title: "Hiển thị trang chủ" },
                 { title: "Quản lí" }
             ],
+            "order": [[1, "desc"]],
             "columnDefs": [
                 {
                     "targets": -1,
@@ -59,15 +66,16 @@
                 },
                 {
                     "targets": 0,
-                    "width": 130,
+                    "visible": false,
+                    "searchable": false
                 },
                 {
-                    "targets": 2,
-                    "width": 110,
+                    "targets": 1,
+                    "width": 150,
                 },
                 {
                     "targets": 3,
-                    "width": 100,
+                    "width": 110,
                 },
                 {
                     "targets": 4,
@@ -75,14 +83,71 @@
                 },
                 {
                     "targets": 5,
+                    "width": 100,
+                },
+                {
+                    "targets": 6,
                     "width": 200,
                 },
             ]
         });
+
+        // Delete event
         $('#event_table tbody').on('click', '.delete-button', function () {
             var data = table.row($(this).parents('tr')).data();
-            alert(data[0] + "'s salary is: " + data[4]);
+            var event_id = data[0];
+            current_id = event_id;
+            swal({
+                title: "Anh có chắc chắn muốn xóa sự kiện này?",
+                text: "Xóa rồi sẽ không thể phục hồi được!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                closeOnConfirm: false,
+                confirmButtonText: "Có",
+                cancelButtonText: "Không",
+                showLoaderOnConfirm: true
+            }, function () {
+                var data = new FormData();
+                data.append('event_id', current_id);
+                $.ajax({
+                    url: "/delete_event", //the page containing python script
+                    type: "DELETE", //request type,
+                    data: data,
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    success: function (result) {
+                        result = jQuery.parseJSON(result);
+                        if (result.result == 'success') {                            
+                            swal({
+                                title: "Xóa thành công",
+                                type: "success",
+                                timer: 2000,
+                                showConfirmButton: true,
+                                closeOnConfirm: true
+                            });
+                            // Reload table
+                            table.destroy();
+                            get_event_data();
+                        }
+                        else {
+                            show_error('Có lỗi xảy ra trong khi xóa sự kiện!');
+                        }
+                    },
+                    error: function () {
+                        show_error('Có lỗi xảy ra trong khi xóa sự kiện!');
+                    },
+                });
+            });
         });
+
+        //edit event
+        $('#event_table tbody').on('click', '.edit-button', function () {
+            var data = table.row($(this).parents('tr')).data();
+            var event_id = data[0];
+            window.location.href = '/admin/detail_event/' + event_id;
+        }),
 
         $('#event_table_length').append(add_button_html);
         $('#add_event').on("click", function () {
@@ -91,17 +156,17 @@
     }
     get_event_data();
 
-    
+
 });
 
-function show_error() {
+function show_error(message) {
     swal({
         title: "Lỗi!",
-        text: "Xảy ra lỗi trong quá trình trao đổi dữ liệu!",
-        type: "warning",
+        text: message,
+        type: "warning",        
         showCancelButton: false,
         confirmButtonColor: "#DD6B55",
         confirmButtonText: "OK",
-        closeOnConfirm: false
+        closeOnConfirm: true
     });
 }

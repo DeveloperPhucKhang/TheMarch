@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-12" for="example-email">Tiêu đề</label>
+                        <label class="col-md-12" for="title"></label>
                         <div class="col-md-12">
                             <input type="text" id="title" class="form-control" value="Tiêu đề" required>
                         </div>
@@ -46,6 +46,21 @@
                         <div class="checkbox checkbox-success" style="padding-left:35px;">
                             <input id="is_important" type="checkbox">
                             <label for="is_important"> Đánh dấu là sự kiện nổi bật để hiện thị lên trang chủ</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12">Hình của sự kiện hiển thị lên trang chủ</label>
+                        <div class="col-sm-12">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename"></span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Select file</span> <span class="fileinput-exists">Change</span>
+                                    <input id="thumbnail" type="file" name="...">
+                                </span> <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

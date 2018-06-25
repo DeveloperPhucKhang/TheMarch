@@ -56,13 +56,14 @@ def load_event_data(location):
     list_event = []
     #Get list event
     if location == 'home':
-        list_event_db = current_db.Event.find({'is_important': 'true'}).sort("created_on", DESCENDING).limit(2) 
+        list_event_db = current_db.Event.find({'is_important': 'true'}).sort("created_date", DESCENDING).limit(2) 
         if list_event_db.count() == 0:
-            list_event_db = current_db.Event.find().sort("created_on", DESCENDING).limit(2)
+            list_event_db = current_db.Event.find().sort("created_date", DESCENDING).limit(2)
     else:
-        list_event_db = current_db.Event.find().sort("created_on", DESCENDING)
+        list_event_db = current_db.Event.find().sort("created_date", DESCENDING)
     for item in list_event_db:                
         item = {
+                    "_id": str(item["_id"]),
                     "event_type": item["event_type"],
                     "title": item["title"],
                     "thumbnail": "load_event_thumbnail/%s" % item["thumbnail"],

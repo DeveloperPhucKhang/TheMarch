@@ -198,13 +198,6 @@ def delete_banner():
             os.remove(file_path)            
             #Remove database
         common.current_db.Banner.remove({"file_name": file_name, "index": banner_number})
-        #Get default file
-        #file_default = [f for f in os.listdir('TheMarch/' + app.config['BANNER_IMAGE_FOLDER']) if os.path.isfile(os.path.join('TheMarch/' + app.config['BANNER_IMAGE_FOLDER'],f)) and f == 'default.jpg' ]                    
-        #file_name = file_name.replace(os.path.splitext(file_name)[0], banner_number + '_banner')         
-        #file_name = banner_number + '_banner.jpg'
-        #file_path = os.path.join('TheMarch/' + app.config['BANNER_IMAGE_FOLDER'], file_name)   
-        #file_path_default = os.path.join('TheMarch/' + app.config['BANNER_IMAGE_FOLDER'], 'default.jpg')
-        #copyfile(file_path_default, file_path)
         return simplejson.dumps({'result': 'success'})        
     except:
         return simplejson.dumps({'result': 'error'})
@@ -240,7 +233,7 @@ def event():
     )
 
 #############
-# Event controller
+# Add Event controller
 #############
 @app.route("/admin/add_event", methods=['GET'])
 #@login_required
@@ -249,6 +242,39 @@ def add_event():
         'Admin/add-event.html',        
         year=datetime.now().year,
     )
+
+#############
+# Detail Event controller
+#############
+@app.route("/admin/detail_event/<string:eventid>", methods=['GET'])
+#@login_required
+def detail_event(eventid):        
+    # Load detail data
+    try:
+        event = common.current_db.Event.find_one({"_id": ObjectId(eventid)})
+        item = None;
+        if event != None:
+            item = {
+                    "_id": str(event["_id"]),
+                    "event_type": event["event_type"],
+                    "title": event["title"],
+                    "thumbnail": "load_event_thumbnail/%s" % event["thumbnail"],
+                    "short_description": event["short_description"] ,
+                    "description": event["description"] ,
+                    "created_by": event["created_by"] ,
+                    "created_date": event["created_date"] ,
+                    "is_important": event["is_important"] 
+                }         
+        return render_template(
+            'Admin/detail-event.html', 
+            event_detail = item,       
+            year=datetime.now().year,
+        )
+    except Exception, e:
+        return render_template(
+            'Admin/detail-event.html',        
+            year=datetime.now().year,
+        )
 
 #############
 # Event controller
@@ -262,19 +288,28 @@ def load_event_admin():
         return simplejson.dumps({"result": 'error'})
 
 @app.route("/add_event_db", methods=['POST'])
-
 #@login_required
 def add_event_db():  
     try:
         event_type = request.form['event_type']
         title = request.form['title']
-        thumbnail = request.form['thumbnail']
+        thumbnail = 'default.jpg'
+        is_empty_thumbnail = request.form['is_empty_thumbnail']        
         description = request.form['description']
         short_description = request.form['short_description']
         created_date = datetime.now()
         created_date = '{0}/{1}/{2}'.format(created_date.year, created_date.month, created_date.day)
         created_by = 'admin'
         is_important = request.form['is_important']
+        if is_empty_thumbnail == 'false':
+            #save thumbnail to server
+            files = request.files['thumbnail_file']
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'])
+            file_path = os.path.join('TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            thumbnail = file_name
         new_event = {
                         "event_type": event_type,
                         "title": title,
@@ -287,8 +322,30 @@ def add_event_db():
                     }
         common.current_db.Event.insert(new_event)   
         return simplejson.dumps({"result": 'success'}) 
-    except:
+    except Exception, e:
+        print 'error' + str(e)
         return simplejson.dumps({"result": 'error'}) 
 
-    
+
+#############
+# Delete event
+#############
+@app.route("/delete_event", methods=['DELETE'])
+#@login_required
+def delete_event():   
+    try:
+        event_id = request.form['event_id'] 
+        event = common.current_db.Event.find_one({"_id": ObjectId(event_id)})
+        if event != None:
+            #delete database
+            common.current_db.Event.remove({"_id": ObjectId(event_id)})
+            thumbnail = event.get('thumbnail')
+            if thumbnail != 'default.jpg':
+                #delete file thumbnail
+                file_path = os.path.join(app.config['ROOT_FOLDER'] + app.config['EVENT_THUMBNAIL_FOLDER'], thumbnail)    
+                if os.path.exists(file_path):
+                    os.remove(file_path)                           
+        return simplejson.dumps({'result': 'success'})        
+    except:
+        return simplejson.dumps({'result': 'error'})
        

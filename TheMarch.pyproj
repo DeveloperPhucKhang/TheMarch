@@ -4533,6 +4533,7 @@
     <Content Include="TheMarch\templates\about.html" />
     <Content Include="TheMarch\templates\Admin\add-event.html" />
     <Content Include="TheMarch\templates\Admin\banner.html" />
+    <Content Include="TheMarch\templates\Admin\detail-event.html" />
     <Content Include="TheMarch\templates\Admin\event.html">
       <SubType>Code</SubType>
     </Content>
