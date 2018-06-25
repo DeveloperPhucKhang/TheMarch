@@ -1,0 +1,3758 @@
+@color1: #57BCCA;
+@color1Hover: #219EAF;
+
+//@color1: #a98855;
+//@color1Hover: #9ed0d7;
+//
+//@color1: #50607a;
+//@color1Hover: #9ed0d7;
+
+@color2: #F1F1F1;
+@color3: #EAF5F7;
+
+@color4: #979797;
+@color4Hover: #7D7A7A;
+
+@color5: #3EA2B0;
+
+@default-text-color: #585858;
+@default-title-color: #4a4a4a;
+
+@slider-height: 650px;
+@border-radius: 3px;
+
+/* TABLE OF CONTENTS
+
+    Author: themeinjection
+    Template: Accommodation (Landing Page)
+    Version: 1.0
+    URL: http://themeforest.net/user/themeinjection
+
+	1. Default Configs
+    2. Labels
+    3. Tooltip
+    4. Top Navbar
+    5. Teaser Slider
+    6. Call to Action
+    7. Features
+    8. Room Tabs
+    9. Location
+    10. Attractions
+    11. Newsletter
+    12. Reviews
+    13. About
+    14. Counter
+    15. Rates
+    16. Services
+    17. Content
+    18. Partners
+    19. Contact
+    20. Address
+    21. Footer
+    22. Scroll Up Button
+    23. Inquiry Modal
+    24. Breakpoints / Media Queries
+    25. Helper Classes
+    26. Change default Nav Breakpoint
+*/
+
+ html {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  //background-color: @color2;
+  font-family: 'Open Sans', sans-serif;
+  color: @default-text-color;
+  line-height: 25px;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+/* 1. Default Configs
+-------------------------------------*/
+.content-after-slider {
+  z-index: 10;
+  background-color: #fff;
+  //margin-top: @slider-height + 1;
+  position: relative;
+}
+
+.btn {
+  border-radius: @border-radius;
+  border: none;
+  padding: 13px 23px;
+  transition: all 0.08s ease-in;
+}
+
+.btn-color1 {
+  background-color: @color1;
+  color: #fff;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: @color1Hover;
+    color: #fff;
+  }
+
+  &:focus {
+    background-color: @color1Hover;
+    color: #fff;
+  }
+}
+
+.btn-color2 {
+  background-color: @color2;
+  color: #fff;
+}
+
+.btn-color3 {
+  background-color: @color3;
+  color: #fff;
+}
+
+.btn-color4 {
+  background-color: @color4;
+  color: #fff;
+  transition: all 0.5s ease;
+
+  &:hover {
+    background-color: @color4Hover;
+    color: #fff;
+  }
+}
+
+::selection {
+  background: @color1;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: @color1;
+  color: #ffffff;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: @color1;
+}
+
+.form-control:-moz-placeholder {
+  color: @color1;
+  opacity: 1;
+}
+
+.form-control::-moz-placeholder {
+  color: @color1;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: @color1;
+}
+
+.sc-animate {
+  visibility: hidden;
+}
+
+.img-responsive {
+  width: 100%;
+}
+
+.modal-open {
+  padding-right: 0 !important;
+}
+
+.datepicker table tr td.today {
+  background: @color1;
+  background-image: none;
+}
+
+/* 2. Labels
+--------------------------------------------*/
+.label {
+  font-size: 80%;
+  font-weight: 600;
+  padding-top: 4px;
+}
+
+.label-default {
+  background-color: @color1;
+}
+
+/* 3. Tooltip
+--------------------------------------------*/
+.tooltip .tooltip-inner {
+  background-color: @color1;
+  padding: 5px 10px;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.tooltip.top .tooltip-arrow {
+  border-top-color: @color1 !important;
+}
+
+.tooltip.left .tooltip-arrow {
+  border-left-color: @color1 !important;
+}
+
+.tooltip.right .tooltip-arrow {
+  border-right-color: @color1 !important;
+}
+
+.tooltip.bottom .tooltip-arrow {
+  border-bottom-color: @color1 !important;
+}
+
+.my-tooltip {
+  border-bottom: 1px dotted @color1;
+  color: @color1;
+}
+
+/* 4. Top Navbar
+-------------------------------------*/
+.top-navbar {
+  background-color: #fff;
+  min-height: 100px;
+  padding: 0 10px;
+  border-bottom: 5px solid @color1;
+  z-index: 15;
+
+  .navbar-brand {
+    margin-top: 6px;
+  }
+
+  .navbar-default {
+    border: none;
+    background-color: #ffffff;
+
+    .navbar-nav {
+      margin-top: 25px;
+      margin-right: 0;
+
+      a {
+        color: @default-title-color;
+      }
+
+      .active > a {
+        background-color: #ffffff;
+        font-size: 16px;
+        color: @color1;
+        text-decoration: none;
+
+        &:after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 10px solid @color1;
+          position: absolute;
+          left: 50%;
+          bottom: -22px;
+          margin-left: -5px;
+        }
+      }
+      .active > a:focus {
+      }
+      .active > a:hover {
+      }
+
+      .language-select {
+        margin-top: 13px;
+        margin-left: 10px;
+        position: relative;
+
+        a {
+          border: 1px solid #ebebeb;
+          padding: 5px 15px 5px 8px;
+          color: @default-text-color;
+          text-decoration: none;
+
+          img {
+            margin-top: -3px;
+          }
+          i {
+            color: @color1;
+            margin-left: 10px;
+          }
+        }
+
+        .dropdown-menu-language-select {
+          box-shadow: none;
+          position: absolute;
+          top: 23px;
+          left: 0;
+          right: auto;
+          border-radius: 0;
+
+          a {
+            border: none;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+/* 5. Teaser Slider
+-------------------------------------*/
+.teaser-slider {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  //height: 650px;
+  z-index: 0;
+
+  .item {
+    height: @slider-height;
+    background-color: @color2;
+
+    .carousel-caption {
+      display: none;
+    }
+
+    img {
+      position: absolute;
+      margin: auto;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  .carousel-control {
+    width: 58px;
+    height: 74px;
+    background-image: none;
+    background-color: @color1;
+    background-repeat: no-repeat;
+    text-shadow: none;
+    top: 50%;
+    margin-top: -37px;
+    padding-top: 25px;
+  }
+}
+
+.teaser-slider-ph {
+  height: 645px;
+  pointer-events: none;
+  background: transparent url('../img/transparent.png');
+}
+
+/* 6. Call to Action
+-------------------------------------*/
+.call-to-action {
+  position: absolute;
+  margin-top: -92px;
+  margin-right: auto;
+  margin-left: auto;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  .call-to-action-box {
+    height: 173px;
+    padding-top: 36px;
+    border-bottom: 7px solid @color1;
+    background-color: #ffffff;
+    position: relative;
+    transition: all 0.5s ease;
+
+    &:hover {
+      border-bottom-color: @color1Hover;
+    }
+  }
+
+  .call-to-action-button {
+    border: none;
+    font-size: 19px;
+    padding: 20px 30px 15px;
+    vertical-align: top;
+
+    i {
+      font-size: 30px;
+      margin: -4px 10px 0 0;
+      display: block;
+      float: left;
+    }
+  }
+
+  .call-to-action-phone {
+    display: block;
+    font-size: 17px;
+    color: @default-title-color;
+    font-weight: 400;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+
+  .call-to-action-triangle {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid #ffffff;
+    position: absolute;
+    left: 50%;
+    top: -30px;
+    margin-left: -30px;
+  }
+}
+
+/* 7. Features
+-------------------------------------*/
+.features {
+  padding-top: 160px;
+  padding-bottom: 85px;
+  background-color: @color2;
+
+  h2 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: lighter;
+    margin: 0 0 78px 0;
+    padding: 0;
+    color: @default-title-color;
+  }
+
+  .feature {
+    border-bottom: 7px solid @color1;
+    background-color: #fff;
+    padding-top: 34px;
+    text-align: center;
+    transition: all 0.5s ease;
+
+    .feature-icon {
+      width: 142px;
+      height: 142px;
+      margin: 0 auto;
+      border: 2px solid @color1;
+      border-radius: 71px;
+      text-align: center;
+      font-size: 50px;
+      color: @color1;
+      line-height: 142px;
+      position: relative;
+      transition: all 0.5s ease;
+
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-bottom: 8px solid @color1;
+        position: absolute;
+        left: 50%;
+        bottom: 0px;
+        margin-left: -4px;
+        transition: all 0.5s ease;
+      }
+    }
+
+    h3 {
+      margin: 30px 0;
+      padding: 0;
+      font-size: 22px;
+      font-weight: 400;
+      color: @default-title-color;
+    }
+
+    p {
+      margin: 0 10px 30px 10px;
+      font-size: 14px;
+    }
+
+    &:hover {
+      border-bottom-color: @color1Hover;
+      .feature-icon {
+        border-color: @color1Hover;
+        color: @color1Hover;
+        i {
+          transform: scale(1.05);
+        }
+
+        &:after {
+          border-bottom-color: @color1Hover;
+        }
+      }
+    }
+  }
+}
+
+/* 8. Room Tabs
+-------------------------------------*/
+.room-tabs {
+  background-color: #ffffff;
+  padding: 80px 0 85px 0;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 35px;
+    color: @default-title-color;
+  }
+
+  .room-tabs-info {
+    margin-bottom: 12px;
+    img {
+      float: left;
+    }
+  }
+
+  .nav-tabs {
+    margin-bottom: 47px;
+    font-size: 18px;
+    border-bottom: 7px solid #e3e3e3;
+
+    li {
+      margin-bottom: -7px;
+      border-right: 2px solid #fff;
+
+      a {
+        margin: 0;
+        color: @default-title-color;
+        background-color: #fff;
+        border-radius: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 7px solid #e3e3e3;
+      }
+
+      a:hover {
+        background-color: @color3;
+        border-bottom: 7px solid #e3e3e3;
+      }
+    }
+
+    li.active {
+      a {
+        color: @default-text-color;
+        background-color: #fff;
+        border-radius: 0;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 7px solid @color1;
+      }
+    }
+
+  }
+
+  .room-tabs-gallery {
+    .room-tabs-gallery-thumbnails {
+      width: 75px;
+      float: left;
+
+      a {
+        margin-bottom: 10px;
+        display: block;
+      }
+    }
+
+    .room-tabs-gallery-image {
+      width: 472px;
+      float: right;
+
+      .room-tabs-gallery-preview-container {
+        height: 365px;
+        overflow: hidden;
+        display: block;
+        position: relative;
+      }
+    }
+
+    .room-tabs-gallery-caption {
+      position: relative;
+      background-color: @color1;
+      color: #fff;
+      border-top: 1px solid #fff;
+      padding: 15px 20px 0 20px;
+      height: 55px;
+      font-size: 14px;
+      z-index: 20;
+
+      .btn-room-check {
+        float: right;
+        background-color: @color1;
+        border: 1px solid #fff;
+        font-size: 14px;
+        margin-top: -5px;
+        font-weight: 400;
+        padding: 6px 12px;
+
+        i {
+          margin-right: 5px;
+        }
+
+        &:hover {
+          background-color: @color1Hover;
+          color: #fff;
+        }
+      }
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 16px solid transparent;
+        border-right: 16px solid transparent;
+        border-bottom: 16px solid #fff;
+        position: absolute;
+        left: 50%;
+        top: -16px;
+        margin-left: -16px;
+      }
+
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid @color1;
+        position: absolute;
+        left: 50%;
+        top: -15px;
+        margin-left: -15px;
+      }
+    }
+  }
+
+  .room-tabs-description {
+    h3 {
+      font-size: 22px;
+      color: @color1;
+      margin-bottom: 20px;
+    }
+  }
+
+  .room-tabs-checklist {
+    margin-top: 15px;
+    margin-bottom: 0;
+
+    li {
+      border: none;
+      padding: 0 0 6px 0;
+      font-weight: 600;
+      &:last-of-type {
+        padding-bottom: 0;
+      }
+
+      i {
+        color: @color1;
+        font-size: 18px;
+        float: left;
+        margin-right: 8px;
+        display: block;
+        margin-top: 6px;
+      }
+    }
+  }
+
+}
+
+.modal-backdrop.in {
+  opacity: 0.9;
+  background-color: #213437;
+}
+
+#roomTabsGalleryPreviewModal {
+
+  .modal-dialog {
+    z-index: 100;
+    min-width: 300px;
+    margin-top: 100px;
+
+    .modal-content {
+      //.rounded(@border-radius);
+
+      .modal-nav {
+        position: absolute;
+        top: -42px;
+        width: 100%;
+        color: #fff;
+
+        .title {
+          margin-top: 9px;
+        }
+
+        .close {
+          height: 43px;
+          font-size: 32px;
+          font-weight: 700;
+          line-height: 1;
+          color: #fff;
+          opacity: 1;
+
+        }
+      }
+
+      .modal-body {
+        padding: 0;
+
+        img {
+          border: 1px solid #fff;
+        }
+      }
+    }
+
+  }
+}
+
+/* 9. Location
+-------------------------------------*/
+.location {
+  .location-map-container {
+    height: 500px;
+    //background-color: red;
+  }
+  .location-address {
+    background-color: @color1;
+    color: #fff;
+    font-size: 20px;
+    height: 80px;
+    opacity: 0.9;
+    margin-top: -80px;
+
+    address {
+      padding-top: 20px;
+    }
+
+    i {
+      font-size: 36px;
+    }
+  }
+}
+
+/* 10. Attractions
+-------------------------------------*/
+.attractions {
+  padding: 80px 0 85px 0;
+  background-color: #fff;
+
+  h2 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: lighter;
+    margin: 0 0 70px 0;
+    padding: 0;
+    color: @default-title-color;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 30px;
+    font-weight: 300;
+    margin-bottom: 40px;
+    color: #383838;
+  }
+
+  .attraction-video {
+    margin-bottom: 30px;
+    border-bottom: 7px solid @color1;
+    padding-bottom: 1px;
+
+
+    .video-preview-img {
+      position: relative;
+
+      .video-play-button {
+        width: 112px;
+        height: 112px;
+        background-color: #fff;
+        border-radius: 56px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin: -56px 0 0 -56px;
+        text-align: center;
+        color: @default-text-color;
+        line-height: 112px;
+        font-size: 48px;
+        padding-left: 10px;
+        transition: all 0.5s ease-out;
+      }
+    }
+
+    &:hover {
+      .video-play-button {
+        opacity: 0.5;
+      }
+    }
+
+  }
+
+  .attraction-link {
+    margin-bottom: 30px;
+    //display: inline-block;
+    overflow: hidden;
+
+    a {
+
+      .attraction-img {
+        position: relative;
+
+        img {
+          transition: all 0.5s ease;
+        }
+
+        .attraction-overlay {
+          position: absolute;
+          background-color: fade(@color1, 0%);
+          border: none;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          text-align: center;
+          //display: none;
+          transition: all 0.5s ease;
+
+          i {
+            font-size: 46px;
+            color: #fff;
+            position: relative;
+            top: calc(50% - 10px); /* 50% - 3/4 of icon height */
+            opacity: 0;
+            transition: all 0.5s ease;
+          }
+        }
+      }
+
+      .attraction-caption {
+        position: relative;
+        background-color: @color1;
+        color: #fff;
+        border-top: 1px solid #fff;
+        padding: 15px 20px 0 20px;
+        height: 55px;
+        font-size: 14px;
+        transition: all 0.5s ease;
+
+        .attraction-caption-title {
+          float: left;
+          font-weight: 600;
+        }
+
+        .attraction-distance {
+          float: right;
+        }
+
+        &:before {
+          content: '';
+          width: 0;
+          height: 0;
+          border-left: 16px solid transparent;
+          border-right: 16px solid transparent;
+          border-bottom: 16px solid #fff;
+          position: absolute;
+          left: 50%;
+          top: -16px;
+          margin-left: -16px;
+        }
+
+        &:after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-left: 15px solid transparent;
+          border-right: 15px solid transparent;
+          border-bottom: 15px solid @color1;
+          position: absolute;
+          left: 50%;
+          top: -15px;
+          margin-left: -15px;
+          transition: all 0.5s ease;
+        }
+      }
+
+      &:hover {
+        .attraction-img {
+          img {
+            transform: scale(1.24);
+          }
+
+          .attraction-overlay {
+            //display: block;
+            background-color: fade(@color1, 70%);
+
+            i {
+              opacity: 1;
+            }
+          }
+        }
+
+        .attraction-caption {
+          background-color: @color1Hover;
+          transition: all 0.5s ease;
+
+          &:after {
+            border-bottom-color: @color1Hover;
+          }
+        }
+      }
+
+    }
+
+  }
+
+}
+
+/* 11. Newsletter
+-------------------------------------*/
+.newsletter {
+  margin-top: 23px;
+  padding-bottom: 172px;
+
+  .newsletter-box {
+    position: relative;
+    background-color: @color3;
+    padding: 85px 15px;
+    min-height: 300px;
+
+    .newsletter-box-icon {
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      top: -55px;
+      left: 50%;
+      margin-left: -55px;
+      background-color: #fff;
+      border: 2px solid @color1;
+      border-radius: 55px;
+      text-align: center;
+      font-size: 50px;
+      color: @color1;
+      line-height: 110px;
+    }
+
+    h3 {
+      font-weight: 300;
+      font-size: 24px;
+      margin-bottom: 35px;
+      text-align: center;
+      color: @default-title-color;
+
+      span {
+        font-weight: 400;
+        color: @color1;
+      }
+    }
+
+    .input-group {
+      background-color: #fff;
+      padding: 10px 2px;
+      height: 58px;
+
+      .input-group-addon {
+        background-color: #fff;
+        color: @color1;
+        border: none;
+        font-size: 24px;
+        border-right: 1px solid @color1;
+      }
+      .form-control {
+        background-color: #fff;
+        border: none;
+        box-shadow: none;
+        appearance: none;
+        font-size: 18px;
+        font-weight: 400;
+      }
+    }
+
+    .newsletter-box-submit {
+      width: 300px;
+      position: absolute;
+      left: 50%;
+      margin-left: -150px;
+      bottom: -85px;
+
+      .newsletter-box-button {
+        .btn {
+          height: 50px;
+          font-size: 24px;
+          font-weight: 400;
+          padding: 6px 12px;
+        }
+
+        &:after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-left: 15px solid transparent;
+          border-right: 15px solid transparent;
+          border-bottom: 15px solid @color1;
+          position: absolute;
+          left: 50%;
+          top: -15px;
+          margin-left: -15px;
+          transition: all 0.5s ease;
+        }
+
+        &:hover {
+          &:after {
+            border-bottom-color: @color1Hover;;
+          }
+        }
+      }
+
+      .newsletter-box-socialmedia {
+        margin-top: 20px;
+
+        h4 {
+          font-size: 18px;
+          font-weight: 300;
+          float: left;
+          padding-left: 5px;
+          margin-top: 10px;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+          float: right;
+
+          li {
+            float: left;
+
+            a {
+              width: 40px;
+              height: 40px;
+              border: 2px solid @color1;
+              text-align: center;
+              line-height: 40px;
+              color: @color1;
+              display: block;
+              font-size: 19px;
+              border-radius: 20px;
+              margin: 0 5px;
+              transition: all 0.5s ease;
+
+              &:hover {
+                border-color: @color1Hover;
+                color: @color1Hover;
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+  }
+}
+
+/* 12. Reviews
+-------------------------------------*/
+.reviews {
+  padding: 80px 0 85px 0;
+  background: #fff url("../img/review-background.jpg") no-repeat center fixed;
+  background-size: cover;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 300;
+    color: @default-title-color;
+  }
+
+  .review-controls {
+    text-align: right;
+  }
+
+  .carousel-control {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background-image: none;
+    background-color: @color1;
+    background-repeat: no-repeat;
+    text-shadow: none;
+    display: inline-block;
+    border: 1px solid #fff;
+    border-radius: 18px;
+    padding: 0;
+    margin: 23px 0 0 0;
+    text-align: center;
+    opacity: 1;
+    transition: all 0.5s ease;
+
+    i {
+      font-size: 22px;
+      text-shadow: none;
+      line-height: 33px;
+    }
+
+    &.left i {
+      margin-left: -3px;
+    }
+
+    &.right i {
+      margin-left: +3px;
+    }
+
+    &:hover {
+      background-color: @color1Hover;
+    }
+  }
+
+  .carousel-inner {
+    margin-top: 35px;
+  }
+
+  .review-box {
+    background-color: #fff;
+    padding: 30px;
+    border-bottom: 7px solid @color1;
+
+    h3 {
+      font-size: 18px;
+      margin: 0 0 20px 0;
+      padding: 0;
+      color: @default-title-color;
+    }
+
+    .review-person {
+      margin: 30px 0 20px 0;
+    }
+
+    .review-person-image {
+      float: left;
+      border-radius: 42px;
+    }
+
+    .review-person-name {
+      font-size: 24px;
+      margin: 0 0 10px 105px;
+      padding-top: 10px;
+      color: @default-title-color;
+    }
+
+    .review-person-location {
+      margin-left: 100px;
+      font-size: 17px;
+      color: @color1;
+      font-weight: 400;
+    }
+  }
+
+}
+
+/* 13. About
+-------------------------------------*/
+.about {
+  padding: 80px 0 85px 0;
+
+  .about-image {
+    padding-bottom: 1px;
+    border-bottom: 7px solid @color1;
+  }
+
+  h2 {
+    color: @default-title-color;
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 35px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 300;
+    color: #383838;
+  }
+
+  .about-signature {
+    margin-top: 35px;
+    img {
+      width: auto;
+    }
+  }
+}
+
+/* 14. Counter
+-------------------------------------*/
+.counter {
+  padding: 85px 0;
+  background-color: @color3;
+
+  .counter-icon {
+    font-size: 64px;
+    color: @color1;
+    float: left;
+    display: block;
+    margin-right: 15px;
+    width: 65px;
+    height: 65px;
+  }
+
+  .counter-number {
+    font-size: 40px;
+    color: @color1;
+    margin-left: 80px;
+    padding-top: 10px;
+    padding-bottom: 8px;
+  }
+
+  .counter-description {
+    font-size: 15px;
+    margin-left: 80px;
+    font-weight: 400;
+    color: @default-title-color;
+  }
+}
+
+/* 15. Rates
+-------------------------------------*/
+.rates {
+  padding: 80px 0 85px 0;
+
+  h2 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: lighter;
+    margin: 0 0 85px 0;
+    padding: 0;
+    color: @default-title-color;
+  }
+
+  .rate {
+    padding: 0;
+  }
+
+  .rate-box {
+    border-top: 1px solid #bebebe;
+    border-bottom: 1px solid #bebebe;
+    border-left: 1px solid #bebebe;
+    text-align: center;
+    padding: 30px 20px;
+    transition: all 0.5s ease;
+
+    .rate-icon {
+      color: #cccacc;
+      font-size: 53px;
+      line-height: 0;
+
+      .stars {
+        font-size: 14px;
+      }
+    }
+
+    .rate-description {
+      font-size: 18px;
+      margin: 35px 0;
+      display: block;
+      text-transform: uppercase;
+      color: @default-title-color;
+    }
+
+    .rate-price {
+      display: inline-block;
+      color: @color1;
+      line-height: 1;
+      margin-bottom: 45px;
+
+      .rate-price-currency {
+        font-size: 20px;
+        float: left;
+        display: block;
+        margin-top: 14px;
+      }
+
+      .rate-price-amount {
+        font-size: 93px;
+        float: left;
+        display: block;
+        font-weight: 600;
+      }
+
+      .rate-price-duration {
+        font-size: 14px;
+        float: left;
+        display: block;
+        margin-top: 70px;
+      }
+
+    }
+
+    .rate-action {
+      button {
+        background-color: @color1;
+        color: #fff;
+        font-size: 16px;
+        padding: 10px 20px;
+
+        i {
+          font-size: 27px;
+          margin: 0 7px 0 0;
+          vertical-align: sub;
+        }
+
+        &:hover {
+          background-color: @color1Hover;
+        }
+      }
+    }
+
+    &:last-of-type {
+      border-right: 1px solid #bebebe;
+    }
+
+    &.highlight {
+      //padding: 30px 0;
+      transform: scale(1.05);
+      z-index: 10;
+      //margin-top: -10px;
+      background-color: @color1;
+      border: none;
+
+      .rate-icon {
+        color: @color3;
+      }
+
+      .rate-description {
+        color: #fff;
+      }
+
+      .rate-price {
+        color: #fff;
+      }
+
+      .rate-action button {
+        border: 2px solid #fff;
+      }
+
+      + .rate-box {
+        border-left: none;
+      }
+
+    }
+
+  }
+
+  .rates-payment-info {
+    text-align: center;
+    margin-top: 65px;
+
+    p {
+      font-size: 20px;
+      display: inline-block;
+      font-weight: 300;
+      margin-right: 10px;
+    }
+
+    img {
+      vertical-align: middle;
+      height: 40px;
+      margin-top: -9px;
+    }
+
+  }
+
+}
+
+/* 16. Services
+-------------------------------------*/
+.services {
+  padding: 80px 0 37px 0;
+  background-color: @color2;
+
+  h2 {
+    text-align: center;
+    font-size: 48px;
+    font-weight: lighter;
+    margin: 0 0 88px 0;
+    padding: 0;
+    color: @default-title-color;
+  }
+
+  .service {
+    margin-bottom: 53px;
+
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      margin: -20px auto 0 auto;
+      border: 2px solid @color1;
+      border-radius: 31px;
+      text-align: center;
+      font-size: 22px;
+      color: @color1;
+      line-height: 57px;
+      position: relative;
+      float: left;
+
+
+      &:after {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-bottom: 6px solid @color1;
+        position: absolute;
+        left: 50%;
+        bottom: 0px;
+        margin-left: -6px;
+      }
+    }
+
+    h3 {
+      margin: 0 0 6px 77px;
+      font-size: 20px;
+      font-weight: 400;
+      color: @default-title-color;
+    }
+
+    p {
+      margin: 0 0 0 77px;
+    }
+  }
+
+}
+
+/* 17. Content
+-------------------------------------*/
+.content {
+  padding: 80px 0 85px 0;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 30px;
+    color: @default-title-color;
+  }
+
+  h3 {
+    margin-bottom: 25px;
+    font-size: 20px;
+    color: @color1;
+    font-weight: normal;
+    line-height: 1.6;
+  }
+
+  p {
+    margin-bottom: 25px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .btn{
+    font-weight: 600;
+  }
+
+  .content-img-box{
+    padding-bottom: 1px;
+    border-bottom: 7px solid @color1;
+  }
+
+  .content-img-left,
+  .content-img-right {
+    margin-bottom: 85px;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* 18. Partners
+-------------------------------------*/
+.partners {
+  //padding: 85px 0;
+  background-color: @color2;
+
+  .partners-container {
+    //border-top: 1px solid @color1;
+    //border-bottom: 1px solid @color1;
+    padding: 45px 15px 80px 15px;
+  }
+
+  .partner-img{
+    padding: 5px;
+    background-color: #fff;
+    //border: 1px solid @color1;
+  }
+
+  h2 {
+    font-size: 14px;
+    margin: 0 0 25px 0;
+    color: @color1;
+  }
+
+}
+
+/* 19. Contact
+-------------------------------------*/
+.contact {
+  padding: 80px 0 85px 0;
+
+  h2 {
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 20px;
+    color: @default-title-color;
+  }
+
+  h3 {
+    margin-bottom: 25px;
+    font-size: 20px;
+    font-weight: 600;
+    color: @color1;
+  }
+
+  .contact-header{
+    margin-bottom: 45px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid #dcdcdc;
+  }
+
+  .contact-img{
+    float: left;
+    margin-right: 20px;
+    padding: 1px;
+    border: 2px solid #d0cccc;
+    width: 83px;
+  }
+
+  .contact-person{
+    font-size: 20px;
+    font-weight: 600;
+    //margin-top: 5px;
+  }
+
+  .contact-title{
+    font-weight: 400;
+  }
+
+  .contact-phone{
+    font-size: 20px;
+    font-weight: 600;
+    color: @color1;
+    margin-top: 8px;
+
+    i{
+      font-size: 30px;
+      margin-right: 10px;
+      display: block;
+      float: left;
+      margin-top: -3px;
+    }
+  }
+
+  .input-group {
+    border: 1px solid #f5f5f5;
+    background-color: #f1f1f1;
+    padding: 10px 2px;
+    height: 58px;
+    margin-bottom: 14px;
+
+    .input-group-addon {
+      background-color: #f1f1f1;
+      color: @color1;
+      border: none;
+      font-size: 24px;
+      border-right: 1px solid @color1;
+    }
+
+    .form-control {
+      background-color: #f1f1f1;
+      border: none;
+      box-shadow: none;
+      font-size: 18px;
+      font-weight: 400;
+    }
+
+    &.textbox {
+      width: 100%;
+
+      .input-group-addon {
+        height: 44px;
+        width: 55px;
+        display: block;
+        float: left;
+
+        i {
+          vertical-align: middle;
+        }
+      }
+
+      textarea {
+        float: left;
+        width: 490px;
+      }
+
+    }
+  }
+
+  .contact-form-info {
+    float: left;
+    margin-top: 11px;
+    color: @default-text-color;
+    font-size: 12px;
+
+  }
+
+  .btn-contact-form {
+    float: right;
+    font-weight: 600;
+
+    i {
+      margin-top: -4px;
+      margin-left: 2px;
+    }
+  }
+
+}
+
+/* 20. Address
+-------------------------------------*/
+.address {
+  padding: 70px 0 70px 0;
+  background-color: @color3;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 15px;
+  }
+
+  address {
+    font-size: 20px;
+    color: @color1;
+    margin-bottom: 10px;
+  }
+
+  .address-info {
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: @default-title-color;
+  }
+
+  .phones {
+    margin-top: 30px;
+    list-style: none;
+    color: @color1;
+    font-size: 24px;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      padding: 0 15px;
+
+      i {
+        font-size: 36px;
+        vertical-align: sub;
+        margin-right: 7px;
+      }
+    }
+  }
+
+}
+
+/* 21. Footer
+-------------------------------------*/
+footer {
+  background-color: @color1;
+  color: #fff;
+  position: relative;
+  min-height: 85px;
+
+  .footer-copyright {
+    margin-top: 34px;
+    font-size: 18px;
+    font-weight: 300;
+  }
+
+  .footer-social-media {
+    list-style: none;
+    font-size: 24px;
+    margin-top: 30px;
+
+    li {
+      display: inline-block;
+      padding: 0 10px;
+      float: right;
+    }
+
+    a {
+      color: #fff;
+    }
+  }
+
+  &:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid @color1;
+    position: absolute;
+    left: 50%;
+    top: -30px;
+    margin-left: -30px;
+  }
+}
+
+/* 22. Scroll Up Button
+-------------------------------------*/
+.scroll-up-btn {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #fff;
+  position: fixed;
+  bottom: 44px;
+  right: 64px;
+  display: none;
+  background-color: @color1;
+  text-align: center;
+  line-height: 46px;
+  font-size: 24px;
+  z-index: 10;
+  transition: all 0.5s ease;
+
+  i {
+    color: #fff;
+  }
+
+  &:hover {
+    background-color: @color1Hover;
+  }
+}
+
+/* 23. Inquiry Modal
+-------------------------------------*/
+#inquiryModal .modal-dialog {
+  width: 748px;
+
+  .modal-content {
+    border-radius: 0;
+    box-shadow: none;
+    border: 2px solid #fff;
+
+    .modal-header {
+      color: #fff;
+      background-color: @color1;
+      border-bottom: none;
+
+      .close {
+        color: #fff;
+        text-shadow: none;
+        opacity: .6;
+        font-size: 27px;
+        margin: 1px 7px 0 0;
+      }
+
+      .close:hover, .close:focus {
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 1;
+      }
+
+      .modal-title {
+        font-size: 24px;
+        font-weight: 400;
+        color: #fff;
+      }
+    }
+
+    .modal-body {
+      padding: 0;
+
+      h2 {
+        font-size: 18px;
+        font-weight: 300;
+        color: @color1;
+        margin-top: 0;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-size: 14px;
+        font-weight: normal;
+        margin-bottom: 0;
+        color: @default-text-color;
+        padding-left: 3px;
+      }
+
+      .input-group {
+        border: 1px solid #f5f5f5;
+        background-color: #f1f1f1;
+      }
+
+      .form-control {
+        background-color: #f1f1f1;
+        border: 1px solid #f5f5f5;
+        box-shadow: none;
+        appearance: none;
+        font-size: 14px;
+        font-weight: 400;
+        height: 47px;
+        padding-left: 10px;
+        border-radius: 0;
+      }
+
+      .room-and-date {
+        padding: 25px 30px 0 30px;
+
+        .form-control::-webkit-input-placeholder {
+          color: @default-text-color;
+        }
+
+        .form-control:-moz-placeholder {
+          color: @default-text-color;
+          opacity: 1;
+        }
+
+        .form-control::-moz-placeholder {
+          color: @default-text-color;
+          opacity: 1;
+        }
+
+        .form-control:-ms-input-placeholder {
+          color: @default-text-color;
+        }
+
+        .inquiry-check-in,
+        .inquiry-check-out,
+        .inquiry-people {
+          margin-bottom: 15px;
+        }
+
+        .room-select {
+          height: 58px;
+          width: 100%;
+          overflow: hidden;
+          background-color: #f1f1f1;
+          margin-bottom: 30px;
+          margin-top: 15px;
+          position: relative;
+          border: 1px solid #f5f5f5;
+
+          .input-group {
+            width: 100%;
+          }
+
+          &:after {
+            font-family: FontAwesome;
+            content: '\f13a';
+            position: absolute;
+            right: 15px;
+            top: 17px;
+            font-size: 24px;
+            color: @color1;
+            z-index: 6;
+          }
+
+          select {
+            background: transparent;
+            //            line-height: 1;
+            border: 0;
+            border-radius: 0;
+            height: 58px;
+            font-size: 24px;
+            font-weight: 400;
+            appearance: none;
+            -moz-appearance: none;
+            -ms-progress-appearance: none;
+            box-shadow: none;
+            color: @color1;
+          }
+
+          &:before {
+            display: block;
+            position: absolute;
+            content: '';
+            right: 0;
+            top: 0;
+            height: 58px;
+            width: 58px;
+            margin: 0;
+            background: #f1f1f1;
+            z-index: 5;
+          }
+        }
+
+        select::-ms-expand {
+          display: none;
+        }
+
+        .date-select {
+          margin-bottom: 10px;
+          float: left;
+          width: 50%;
+          padding-right: 7px;
+        }
+
+        .time-select {
+          margin-bottom: 10px;
+          float: right;
+          width: 50%;
+          overflow: hidden;
+          position: relative;
+
+          &:after {
+            font-family: FontAwesome;
+            content: '\f13a';
+            position: absolute;
+            right: 18px;
+            bottom: 12px;
+            color: @color1;
+            z-index: 6;
+          }
+
+          select {
+            background: transparent;
+            line-height: 1;
+            border: 0;
+            border-radius: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-progress-appearance: none;
+            box-shadow: none;
+          }
+
+          &:before {
+            display: block;
+            position: absolute;
+            content: '';
+            right: 0;
+            bottom: 0;
+            height: 47px;
+            width: 47px;
+            margin: 0;
+            background-color: #f1f1f1;
+            z-index: 5;
+          }
+        }
+
+        .people-select {
+          margin-bottom: 10px;
+          float: right;
+          width: 50%;
+          overflow: hidden;
+          position: relative;
+
+          &:after {
+            font-family: FontAwesome;
+            content: '\f13a';
+            position: absolute;
+            right: 18px;
+            bottom: 12px;
+            color: @color1;
+            z-index: 6;
+          }
+
+          select {
+            background: transparent;
+            line-height: 1;
+            border: 0;
+            border-radius: 0;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-progress-appearance: none;
+            box-shadow: none;
+          }
+
+          &:before {
+            display: block;
+            position: absolute;
+            content: '';
+            right: 0;
+            bottom: 0;
+            height: 47px;
+            width: 47px;
+            margin: 0 7px 0 0;
+            background-color: #f1f1f1;
+            z-index: 5;
+          }
+        }
+
+        .input-group-addon {
+          border: none;
+          color: #fff;
+          background-color: @color1;
+          font-size: 24px;
+          border-radius: 0;
+        }
+
+        label {
+          display: block;
+        }
+      }
+
+      hr {
+        margin-top: 25px;
+        margin-bottom: 35px;
+      }
+
+      .personal-information {
+        padding: 0px 30px 20px 30px;
+
+        .first-name-group {
+          float: left;
+          width: 50%;
+          padding-right: 7px;
+        }
+
+        .last-name-group {
+          float: right;
+          width: 50%;
+          padding-left: 7px;
+        }
+
+        .address-group {
+        }
+
+        .zip-code-group {
+          float: left;
+          width: 30%;
+          padding-right: 7px;
+        }
+
+        .city-group {
+          float: right;
+          width: 70%;
+          padding-left: 7px;
+        }
+
+        .phone-group {
+          float: left;
+          width: 50%;
+          padding-right: 7px;
+        }
+
+        .email-group {
+          float: right;
+          width: 50%;
+          padding-left: 7px;
+        }
+
+      }
+
+      .newsletter-checkbox {
+        margin: 20px 0;
+
+        input[type="checkbox"] {
+          display: none;
+        }
+
+        label {
+          font-size: 18px;
+          font-weight: 300;
+
+          &:before {
+            content: "";
+            display: inline-block;
+            font-size: 15px;
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            background-color: @color1;
+            border-radius: @border-radius;
+            line-height: 24px;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+            color: #f3f3f3;
+            text-align: center;
+            float: left;
+          }
+        }
+
+        input[type=checkbox]:checked + label:before {
+          content: "\2713";
+          color: #fff;
+          font-size: 26px;
+          text-shadow: none;
+        }
+      }
+    }
+
+    .modal-footer {
+      background-color: @color3;
+      text-align: left;
+      padding-top: 20px;
+      border-top: none;
+
+      .inquiry-info {
+        font-size: 12px;
+        float: left;
+        padding-left: 15px;
+
+        p {
+          line-height: 20px;
+          margin-left: 20px;
+        }
+
+        .inquiry-info-sign {
+          font-size: 44px;
+          color: @color1;
+          float: left;
+          line-height: 35px;
+        }
+      }
+
+      .btn-inquiry-submit {
+        float: right;
+        font-size: 16px;
+        background-color: @color1;
+        color: #fff;
+        padding: 11px 35px;
+      }
+    }
+  }
+}
+
+
+
+/* 24. Breakpoints / Media Queries
+-------------------------------------*/
+
+/* Large devices (desktops, 1200px and down)*/
+//////////////////////////////////////////////////////////////////////////
+@media (max-width: 1200px) {
+
+  body {
+    line-height: 23px;
+  }
+
+
+  /* 4. Top Navbar 1200px
+  -------------------------------------*/
+  .top-navbar .navbar-default {
+
+    .navbar-nav {
+
+      a {
+        color: @default-text-color;
+        font-size: 13px;
+      }
+
+      .active > a {
+        background-color: #ffffff;
+        font-size: 14px;
+      }
+    }
+  }
+
+
+  /* 5. Teaser Slider 1200px
+  -------------------------------------*/
+  .teaser-slider {
+
+    .item {
+      height: 550px;
+    }
+  }
+
+  .teaser-slider-ph {
+    height: 545px;
+  }
+
+
+  /* 6. Call to Action 1200px
+  -------------------------------------*/
+  .call-to-action {
+
+    .call-to-action-box {
+      height: 170px;
+      border-bottom: 5px solid @color1;
+    }
+
+    .call-to-action-button {
+      color: #ffffff;
+      background-color: @color1;
+      border: none;
+      font-size: 17px;
+      padding: 20px 27px 15px;
+      vertical-align: top;
+
+      i {
+        font-size: 28px;
+        margin: -4px 8px 0 0;
+      }
+    }
+
+    .call-to-action-phone {
+      font-size: 15px;
+      margin-top: 18px;
+    }
+  }
+
+
+  /* 7. Features 1200px
+  -------------------------------------*/
+  .features {
+    padding-top: 140px;
+    padding-bottom: 70px;
+
+    h2 {
+      font-size: 42px;
+      margin: 0 0 65px 0;
+    }
+
+    .feature {
+      border-bottom: 5px solid @color1;
+      padding-top: 34px;
+      text-align: center;
+
+      .feature-icon {
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        font-size: 46px;
+        line-height: 120px;
+      }
+
+      h3 {
+        margin: 26px 0 24px 0;
+        font-size: 19px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+
+
+  /* 8. Room Tabs 1200px
+  -------------------------------------*/
+  .room-tabs {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    .room-tabs-info {
+      font-size: 12px;
+    }
+
+    .nav-tabs {
+      margin-bottom: 38px;
+      font-size: 16px;
+      border-bottom: 5px solid #e3e3e3;
+
+      li {
+        margin-bottom: -5px;
+
+        a {
+          border-bottom: 5px solid #e3e3e3;
+        }
+
+        a:hover {
+          border-bottom: 5px solid #e3e3e3;
+        }
+      }
+
+      li.active {
+        a {
+          border-bottom: 5px solid @color1;
+        }
+      }
+    }
+
+    .room-tabs-gallery {
+      .room-tabs-gallery-thumbnails {
+        width: 65px;
+      }
+
+      .room-tabs-gallery-image {
+        width: 380px;
+
+        .room-tabs-gallery-preview-container {
+          height: 295px;
+        }
+      }
+
+      .room-tabs-gallery-caption {
+        font-size: 13px;
+      }
+    }
+
+    .room-tabs-description {
+      font-size: 12px;
+
+      h3 {
+        font-size: 20px;
+        margin-bottom: 18px;
+      }
+    }
+
+    .room-tabs-checklist {
+      li {
+        padding: 0 0 5px 0;
+
+        i{
+          font-size: 16px;
+          margin-right: 7px;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
+
+  /* 10. Attractions 1200px
+  -------------------------------------*/
+  .attractions {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    h2 {
+
+      font-size: 42px;
+      margin: 0 0 55px 0;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 30px;
+      margin-bottom: 30px;
+    }
+
+    .attraction-link a .attraction-caption {
+      font-size: 12px;
+    }
+  }
+
+
+  /* 11. Newsletter 1200px
+  -------------------------------------*/
+  .newsletter {
+    padding-bottom: 157px;
+
+    .newsletter-box {
+
+      h3 {
+        font-size: 20px;
+      }
+
+    }
+  }
+
+
+  /* 12. Reviews 1200px
+  -------------------------------------*/
+  .reviews {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    h2 {
+      font-size: 32px;
+    }
+
+    .carousel-control {
+      margin: 5px 0 0 0;
+    }
+
+    .carousel-inner {
+      margin-top: 35px;
+    }
+
+    .review-box {
+      border-bottom: 5px solid @color1;
+      font-size: 12px;
+
+      h3 {
+        font-size: 16px;
+        margin: 0 0 22px 0;
+      }
+
+      .review-person {
+        margin: 30px 0 20px 0;
+      }
+
+      .review-person-image {
+        float: left;
+        border-radius: 35px;
+        width: 70px;
+      }
+
+      .review-person-name {
+        font-size: 20px;
+        margin: 0 0 10px 90px;
+        padding-top: 10px;
+      }
+
+      .review-person-location {
+        margin-left: 85px;
+        font-size: 16px;
+      }
+    }
+  }
+
+
+  /* 13. About 1200px
+  -------------------------------------*/
+  .about {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    .about-image {
+      border-bottom: 5px solid @color1;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 23px;
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 28px;
+    }
+
+    .about-signature {
+      margin-top: 25px;
+      width: 200px;
+    }
+  }
+
+
+  /* 14. Counter 1200px
+  -------------------------------------*/
+  .counter {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    .counter-icon {
+      font-size: 60px;
+    }
+
+    .counter-number {
+      font-size: 36px;
+    }
+
+    .counter-description {
+      font-size: 14px;
+    }
+  }
+
+
+  /* 15. Rates 1200px
+  -------------------------------------*/
+  .rates {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    h2 {
+      font-size: 42px;
+      margin: 0 0 65px 0;
+    }
+
+    .rate-box {
+
+      .rate-icon {
+        color: #cccacc;
+        font-size: 53px;
+        line-height: 0;
+
+        .stars {
+          font-size: 14px;
+        }
+      }
+
+      .rate-description {
+        font-size: 16px;
+      }
+
+      .rate-price {
+
+        .rate-price-currency {
+          font-size: 20px;
+        }
+
+        .rate-price-amount {
+          font-size: 83px;
+        }
+
+        .rate-price-duration {
+          font-size: 14px;
+        }
+      }
+
+      .rate-action {
+        button {
+          font-size: 14px;
+          padding: 10px 20px;
+
+          i {
+            font-size: 22px;
+            margin: 0 7px 0 0;
+          }
+        }
+      }
+    }
+
+    .rates-payment-info {
+      margin-top: 55px;
+
+      p {
+        font-size: 18px;
+        margin-right: 10px;
+      }
+
+      img {
+        height: 30px;
+      }
+    }
+  }
+
+
+  /* 16. Services 1200px
+  -------------------------------------*/
+  .services {
+    padding-top: 70px;
+    padding-bottom: 37px;
+
+    h2 {
+      font-size: 42px;
+      margin: 0 0 65px 0;
+    }
+
+    .service {
+      margin-bottom: 33px;
+
+      .service-icon {
+        width: 55px;
+        height: 55px;
+        margin: -20px auto 0 auto;
+        border: 2px solid @color1;
+        border-radius: 31px;
+        text-align: center;
+        font-size: 20px;
+        color: @color1;
+        line-height: 54px;
+        position: relative;
+        float: left;
+
+
+        &:after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-bottom: 6px solid @color1;
+          position: absolute;
+          left: 50%;
+          bottom: 0px;
+          margin-left: -6px;
+        }
+      }
+
+      h3 {
+        margin: 0 0 6px 70px;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 0 0 0 70px;
+        font-size: 12px;
+      }
+    }
+  }
+
+
+  /* 17. Content 1200px
+  -------------------------------------*/
+  .content {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    p {
+      margin-bottom: 15px;
+      font-size: 12px;
+
+      .btn {
+        font-size: 13px;
+      }
+    }
+
+    .content-img-left,
+    .content-img-right {
+      margin-bottom: 70px;
+    }
+  }
+
+
+  /* 18. Partners 1200px
+  -------------------------------------*/
+  .partners {
+
+    h2 {
+      font-size: 12px;
+    }
+
+    .partners-container {
+      padding: 32px 15px 70px 15px;
+    }
+  }
+
+
+  /* 19. Contact 1200px
+  -------------------------------------*/
+  .contact {
+    padding-top: 70px;
+    padding-bottom: 70px;
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+    }
+
+    h3 {
+      margin-bottom: 25px;
+      font-size: 18px;
+    }
+
+    .input-group {
+      padding: 6px 2px;
+      height: 50px;
+      margin-bottom: 12px;
+
+      .input-group-addon {
+        font-size: 22px;
+      }
+
+      .form-control {
+        font-size: 16px;
+      }
+
+      &.textbox {
+
+        .input-group-addon {
+          height: 36px;
+          width: 54px;
+        }
+
+        textarea {
+          width: 394px;
+          height: 223px;
+        }
+      }
+    }
+  }
+
+
+  /* 20. Address 1200px
+  -------------------------------------*/
+  .address {
+    padding-top: 70px;
+    background-position: 70px;
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    address {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .address-info {
+      font-size: 18px;
+    }
+
+    .phones {
+      margin-top: 35px;
+      font-size: 22px;
+
+      li {
+        i {
+          font-size: 34px;
+        }
+      }
+    }
+  }
+
+
+  /* 21. Footer 1200px
+  -------------------------------------*/
+  footer {
+
+    .footer-copyright {
+      font-size: 16px;
+    }
+
+    .footer-social-media {
+      font-size: 22px;
+      margin-top: 34px;
+    }
+  }
+}
+
+
+
+/* Medium devices (desktops, 992px and down) */
+//////////////////////////////////////////////////////////////////////////
+@media (max-width: 992px) {
+
+  body {
+    text-align: center;
+  }
+
+
+  /* 4. Top Navbar 992px
+  -------------------------------------*/
+  .top-navbar {
+    width: 100%;
+
+    .navbar-brand {
+      margin-top: 5px;
+      margin-left: -10px;
+    }
+
+    .navbar-default {
+
+      .navbar-collapse {
+        border: none;
+      }
+
+      .navbar-toggle {
+        margin-top: 30px;
+        margin-right: 0;
+      }
+
+      .navbar-nav {
+        margin-top: 25px;
+        margin-right: 0;
+
+        li {
+          border-bottom: 1px solid @color1;
+
+          &:last-of-type {
+            border-bottom: none;
+          }
+        }
+
+        .active > a {
+          background-color: @color3;
+
+          &:after {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+
+  /* 6. Call to Action 992px
+  -------------------------------------*/
+  .call-to-action {
+    width: 326px;
+  }
+
+
+  /* 7. Features 992px
+  -------------------------------------*/
+  .features {
+
+    .feature {
+      margin-bottom: 35px;
+    }
+  }
+
+
+  /* 8. Room Tabs 992px
+  -------------------------------------*/
+  .room-tabs {
+
+    .room-tabs-info img {
+      float: none;
+      margin-bottom: 25px;
+    }
+
+    .nav-tabs {
+      text-align: center;
+
+      li {
+        display: inline-block;
+        float: none;
+      }
+    }
+
+    .room-tabs-gallery {
+      margin-bottom: 35px;
+
+      .room-tabs-gallery-thumbnails {
+        width: 100%;
+        float: none;
+        display: block;
+        min-height: 75px;
+        text-align: center;
+
+        a {
+          margin-right: 10px;
+          display: inline-block;
+          width: 75px;
+        }
+      }
+
+      .room-tabs-gallery-image {
+        width: 100%;
+        float: none;
+
+        .room-tabs-gallery-preview-container {
+          height: 80%;
+        }
+      }
+
+      .room-tabs-gallery-caption {
+        text-align: left;
+
+        .btn-room-check {
+          float: right;
+        }
+      }
+    }
+
+    .room-tabs-checklist {
+      &.left {
+        text-align: right;
+
+        li {
+          i {
+            float: right;
+            margin: 7px 0 0 5px;
+          }
+        }
+      }
+
+      &.right {
+        text-align: left;
+        li {
+          i {
+            float: left;
+            margin: 7px 5px 0 0;
+          }
+        }
+      }
+    }
+  }
+
+
+  /* 11. Newsletter 992px
+  -------------------------------------*/
+  .newsletter {
+    padding-bottom: 150px;
+
+    .newsletter-box {
+      min-height: 270px;
+
+      .newsletter-box-icon {
+        width: 100px;
+        height: 100px;
+        top: -50px;
+        margin-left: -50px;
+        border-radius: 50px;
+        font-size: 46px;
+        line-height: 100px;
+      }
+
+      h3 {
+        font-size: 16px;
+      }
+
+      .input-group {
+        padding: 7px 2px;
+        height: 48px;
+
+        .input-group-addon {
+          font-size: 22px;
+        }
+        .form-control {
+          font-size: 16px;
+        }
+      }
+
+      .newsletter-box-submit {
+        width: 280px;
+        position: absolute;
+        left: 50%;
+        margin-left: -140px;
+        bottom: -80px;
+
+        .newsletter-box-button {
+          .btn {
+            height: 45px;
+            font-size: 22px;
+          }
+        }
+
+        .newsletter-box-socialmedia {
+          margin-top: 20px;
+
+          h4 {
+            font-size: 16px;
+            margin-top: 13px;
+          }
+        }
+      }
+    }
+  }
+
+
+  /* 12. Reviews 992px
+  -------------------------------------*/
+  .reviews {
+    .review-controls {
+      text-align: center;
+      margin-top: 35px;
+    }
+
+    .review-box {
+      margin-bottom: 35px;
+
+      .review-person {
+        //margin: 30px 0 20px 0;
+      }
+
+      .review-person-image {
+        float: none;
+        border-radius: 42px;
+      }
+
+      .review-person-name {
+        margin: 0 0 10px 0px;
+      }
+
+      .review-person-location {
+        margin-left: 0px;
+      }
+    }
+  }
+
+
+  /* 13. About 992px
+  -------------------------------------*/
+  .about {
+    .about-image {
+      margin-bottom: 35px;
+    }
+
+    .about-signature {
+      margin: 35px auto 0;
+    }
+  }
+
+
+  /* 17. Counter 992px
+  -------------------------------------*/
+  .counter {
+    .counter-icon {
+      float: none;
+      margin: 0 auto;
+    }
+
+    .counter-number {
+      margin-left: 0;
+    }
+
+    .counter-description {
+      margin-left: 0;
+    }
+  }
+
+
+  /* 15. Rates 992px
+  -------------------------------------*/
+  .rates {
+    padding-left: 25px;
+    padding-right: 25px;
+
+    .rate-box {
+      border: 1px solid #bebebe !important;
+      margin-bottom: 35px;
+      width: 90%;
+      margin-left: auto;
+      margin-right: auto;
+
+      &.highlight {
+        border: none !important;
+        transform: scale(1.02);
+      }
+    }
+  }
+
+
+  /* 16. Services 992px
+  -------------------------------------*/
+  .services {
+
+    .service-row {
+      margin-bottom: 0;
+    }
+
+    .service {
+      margin-bottom: 35px;
+
+      .service-icon {
+        width: 55px;
+        height: 55px;
+        margin: 0 auto 20px auto;
+        border: 2px solid @color1;
+        border-radius: 31px;
+        text-align: center;
+        font-size: 20px;
+        color: @color1;
+        line-height: 54px;
+        position: relative;
+        float: none;
+
+
+        &:after {
+          content: '';
+          width: 0;
+          height: 0;
+          border-left: 6px solid transparent;
+          border-right: 6px solid transparent;
+          border-bottom: 6px solid @color1;
+          position: absolute;
+          left: 50%;
+          bottom: 0px;
+          margin-left: -6px;
+        }
+      }
+
+      h3 {
+        margin: 0 0 6px 0;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+  }
+
+
+  /* 17. Content 992px
+  -------------------------------------*/
+  .content {
+    p {
+
+      &:last-of-type {
+        margin-bottom: 30px;
+      }
+    }
+
+    .content-img-left,
+    .content-img-right {
+      margin-bottom: 40px;
+    }
+
+    .content-img {
+      &:last-of-type {
+        margin-bottom: 35px;
+      }
+    }
+  }
+
+
+  /* 18. Partners 992px
+  -------------------------------------*/
+  .partners {
+    .partner {
+      margin-bottom: 25px;
+    }
+  }
+
+  /* 19. Contact 992px
+  -------------------------------------*/
+  .contact {
+
+
+    .contact-img{
+      float: none;
+      margin: 0 auto 25px;
+    }
+
+
+
+
+    .contact-phone{
+       i{
+        display: inline-block;
+        float: none;
+      }
+    }
+
+    .input-group {
+      &.textbox {
+        textarea {
+          width: 655px;
+        }
+      }
+    }
+  }
+
+
+  /* 21. Footer 992px
+  -------------------------------------*/
+  footer {
+
+    .footer-copyright {
+      font-size: 14px;
+    }
+
+    .footer-social-media {
+      padding: 0;
+      margin-top: 25px;
+      margin-bottom: 35px;
+
+      li {
+        display: inline-block;
+        float: none;
+      }
+    }
+  }
+
+
+  /* 23. Inquiry Modal 992px
+ -------------------------------------*/
+  #inquiryModal .modal-dialog {
+    .modal-content {
+      .modal-body {
+        text-align: left;
+      }
+    }
+  }
+
+}
+
+
+
+/* Small devices (768px and down) */
+//////////////////////////////////////////////////////////////////////////
+@media (max-width: 768px) {
+
+  /* 5. Teaser Slider 768px
+  -------------------------------------*/
+  .teaser-slider {
+
+    .item {
+      height: 430px;
+    }
+  }
+
+  .teaser-slider-ph {
+    height: 425px;
+  }
+
+
+  /* 7. Features 768px
+  -------------------------------------*/
+  .features {
+    h2 {
+      font-size: 28px;
+    }
+  }
+
+
+  /* 8. Room Tabs 768px
+  -------------------------------------*/
+  .room-tabs {
+    h2 {
+      font-size: 24px;
+    }
+    .nav-tabs {
+      font-size: 14px;
+    }
+    .room-tabs-description h3 {
+      font-size: 18px;
+    }
+
+    .room-tabs-checklist {
+      margin-bottom: 0;
+      margin-top: 0;
+
+      li {
+        background-color: @color3;
+        margin-bottom: 2px;
+      }
+
+      &.left {
+        text-align: center;
+        li i {
+          float: none;
+          display: none;
+        }
+      }
+    }
+
+    .room-tabs-checklist {
+      &.right {
+        text-align: center;
+        li i {
+          float: none;
+          display: none;
+        }
+      }
+    }
+  }
+
+
+  /* 9. Location 768px
+  -------------------------------------*/
+  .location {
+
+    .location-address {
+      font-size: 16px;
+      height: 60px;
+      margin-top: -60px;
+
+      i {
+        font-size: 17px;
+      }
+    }
+  }
+
+
+  /* 10. Attractions 768px
+  -------------------------------------*/
+  .attractions {
+
+    h2 {
+      font-size: 28px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 26px;
+    }
+  }
+
+
+  /* 11. Newsletter 768px
+  -------------------------------------*/
+  .newsletter {
+    .newsletter-box {
+      padding: 85px 15px 70px;
+
+      h3 {
+        font-size: 16px;
+        line-height: 30px;
+      }
+
+      .input-group {
+        margin: 0 20px 20px 20px;
+      }
+    }
+  }
+
+
+  /* 12. Reviews 768px
+  -------------------------------------*/
+  .reviews {
+
+    h2 {
+      font-size: 24px;
+    }
+  }
+
+
+  /* 13. About
+  -------------------------------------*/
+  .about {
+    h2 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 26px;
+    }
+  }
+
+
+  /* 14. Counter 768px
+  -------------------------------------*/
+  .counter {
+    .counter-box {
+      margin-bottom: 35px;
+    }
+  }
+
+
+  /* 15. Rates 768px
+-------------------------------------*/
+  .rates {
+
+    h2 {
+      font-size: 28px;
+    }
+
+    .rates-payment-info {
+      img {
+        margin-top: 0;
+      }
+    }
+  }
+
+
+  /* 16. Services 768px
+  -------------------------------------*/
+  .services {
+    h2 {
+      font-size: 28px;
+    }
+  }
+
+
+  /* 17. Content 768px
+  -------------------------------------*/
+  .content {
+
+    h2 {
+      font-size: 24px;
+    }
+
+    h3 {
+      font-size: 18px;
+    }
+  }
+
+
+  /* 19. Contact 768px
+  -------------------------------------*/
+  .contact {
+
+    h2 {
+      font-size: 28px;
+    }
+
+    h3 {
+      font-size: 16px;
+    }
+
+    .input-group {
+      &.textbox {
+        textarea {
+          width: 85%;
+        }
+      }
+    }
+  }
+
+
+  /* 20. Address 768px
+  -------------------------------------*/
+  .address {
+
+    address {
+      font-size: 16px;
+    }
+
+    .address-info {
+      font-size: 16px;
+      line-height: 26px;
+    }
+
+    .phones {
+      font-size: 18px;
+      margin-top: 25px;
+
+      li {
+        margin-bottom: 5px;
+
+        i {
+          font-size: 36px;
+          vertical-align: sub;
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+
+
+  /* 23. Inquiry Modal 768px
+  -------------------------------------*/
+  .modal {
+    padding: 0 !important;
+    margin: 0 !important;
+
+  }
+
+  #inquiryModal .modal-dialog {
+    width: 100%;
+    margin: 0;
+
+    .modal-content {
+      border: 0;
+
+      .modal-header {
+        text-align: left;
+      }
+
+      .modal-body {
+        text-align: left;
+
+        .room-and-date {
+
+          .date-select {
+            float: none;
+            width: 100%;
+            padding-right: 0px;
+          }
+
+          .time-select {
+            float: none;
+            width: 100%;
+          }
+
+          .people-select {
+            float: none;
+            width: 100%;
+          }
+
+        }
+
+        .personal-information {
+
+          .first-name-group {
+            float: none;
+            width: 100%;
+            padding-right: 0px;
+          }
+
+          .last-name-group {
+            float: none;
+            width: 100%;
+            padding-left: 0px;
+          }
+
+          .zip-code-group {
+            float: none;
+            width: 100%;
+            padding-right: 0px;
+          }
+
+          .city-group {
+            float: none;
+            width: 100%;
+            padding-left: 0px;
+          }
+
+          .phone-group {
+            float: none;
+            width: 100%;
+            padding-right: 0px;
+          }
+
+          .email-group {
+            float: none;
+            width: 100%;
+            padding-left: 0px;
+          }
+
+        }
+      }
+
+      .modal-footer {
+
+        .inquiry-info {
+          float: none;
+          padding-left: 0px;
+          text-align: center;
+        }
+
+        .btn-inquiry-submit {
+          float: none;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+
+
+/* Extra Small devices (480px and down) */
+//////////////////////////////////////////////////////////////////////////
+@media (max-width: 480px) {
+
+  /* 5. Teaser Slider 480px
+  -------------------------------------*/
+  .teaser-slider {
+
+    .item {
+      //height: 350px;
+    }
+  }
+
+  .teaser-slider-ph {
+    //height: 345px;
+  }
+
+
+  /* 19. Contact 480px
+  -------------------------------------*/
+  .contact {
+    .input-group {
+      &.textbox {
+        textarea {
+          width: 82%;
+        }
+      }
+    }
+
+    .contact-form-info {
+      float: none;
+      text-align: center;
+    }
+
+    .btn-contact-form {
+      float: none;
+      width: 100%;
+    }
+
+  }
+
+
+  /* 8. Room Tabs 480px
+  -------------------------------------*/
+  .room-tabs {
+
+    .nav-tabs {
+      border: none;
+
+      li {
+        display: block;
+        margin-bottom: 0;
+      }
+    }
+    .room-tabs-gallery {
+      .room-tabs-gallery-caption {
+        text-align: center;
+        height: 110px;
+
+        .btn-room-check {
+          float: none;
+          display: block;
+          width: 100%;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+
+
+  /* 9. Location 480px
+  -------------------------------------*/
+  .location {
+
+    .location-address {
+      font-size: 12px;
+      font-weight: 600;
+    }
+  }
+}
+
+
+
+/* 25. Helper Classes */
+//////////////////////////////////////////////////////////////////////////
+.text-light {
+  font-weight: 300;
+}
+
+.mt5 {
+  margin-top: 5px;
+}
+
+.mt10 {
+  margin-top: 10px;
+}
+
+.mt15 {
+  margin-top: 15px;
+}
+
+.mt20 {
+  margin-top: 20px;
+}
+
+.mt25 {
+  margin-top: 25px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.mr15 {
+  margin-right: 15px;
+}
+
+.mr20 {
+  margin-right: 20px;
+}
+
+.mr25 {
+  margin-right: 25px;
+}
+
+.mb5 {
+  margin-bottom: 5px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb25 {
+  margin-bottom: 25px;
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.ml15 {
+  margin-left: 15px;
+}
+
+.ml20 {
+  margin-left: 20px;
+}
+
+.ml25 {
+  margin-left: 25px;
+}
+
+
+
+/* 26. Change default Nav Breakpoint */
+//////////////////////////////////////////////////////////////////////////
+@media (max-width: 992px) {
+  .navbar-header {
+    float: none;
+  }
+
+  .navbar-left, .navbar-right {
+    float: none !important;
+  }
+
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-collapse {
+    border-top: 1px solid transparent;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .navbar-fixed-top {
+    top: 0;
+  }
+
+  .navbar-collapse.collapse {
+    display: none !important;
+  }
+
+  .navbar-nav {
+    float: none !important;
+    margin-top: 7.5px;
+  }
+
+  .navbar-nav > li {
+    float: none;
+  }
+
+  .navbar-nav > li > a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .collapse.in {
+    display: block !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

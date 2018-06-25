@@ -1,0 +1,75 @@
+﻿@charset "UTF-8";
+
+body {
+    background-color: #eee;
+    background-image: url('../img/background2.jpg');
+    background-size: cover;
+}
+
+.control-label {
+    display: none;
+}
+
+.container {
+    float: right;
+    padding-top: 40px;
+    padding-right: 50px;
+}
+
+.form-signin {
+    max-width: 400px;
+    padding: 15px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background-color: rgba(249, 249, 249, 0.7);
+    float: right;
+    padding-bottom: 20px;
+}
+
+    .form-signin .form-signin-heading,
+    .form-signin .checkbox {
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    .form-signin .checkbox {
+        font-weight: normal;
+    }
+
+    .form-signin ::placeholder {
+        color: #c7bcbc;
+    }
+
+    .form-signin .form-control {
+        position: relative;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-align: center;
+        font-size: larger;
+    }
+
+        .form-signin .form-control:focus {
+            z-index: 2;
+        }
+
+    .form-signin input[type="email"] {
+        margin-bottom: -1px;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+    }
+
+    .form-signin .checkbox label {
+        font-size: larger;
+    }
+
+    .form-signin #remember {
+        height: 15px;
+        width: 15px;
+    }

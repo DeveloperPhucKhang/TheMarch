@@ -1,0 +1,52 @@
+﻿<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav slimscrollsidebar">
+        <div class="sidebar-head">
+            <h3><span class="fa-fw open-close"><i class="ti-menu hidden-xs"></i><i class="ti-close visible-xs"></i></span> <span class="hide-menu">Navigation</span></h3>
+        </div>
+        <ul class="nav" id="side-menu">
+            <li class="user-pro">
+                <a href="#" class="waves-effect">
+                    <img src="/static/AdminTemplate/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"> Steve Gection<span class="fa arrow"></span></span>
+                </a>
+                <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
+                    <li><a href="javascript:void(0)"><i class="ti-user"></i> <span class="hide-menu">My Profile</span></a></li>
+                    <li><a href="javascript:void(0)"><i class="ti-wallet"></i> <span class="hide-menu">My Balance</span></a></li>
+                    <li><a href="javascript:void(0)"><i class="ti-email"></i> <span class="hide-menu">Inbox</span></a></li>
+                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> <span class="hide-menu">Account Setting</span></a></li>
+                    <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
+                </ul>
+            </li>
+            <li class="devider"></li>
+            <li>
+                <a href="{{ url_for('banner') }}" class="waves-effect">
+                    <i class="mdi mdi-clipboard-text fa-fw"></i>
+                    <span class="hide-menu">Quản lí hình banner</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('event') }}" class="waves-effect">
+                    <i class="mdi mdi-clipboard-text fa-fw"></i>
+                    <span class="hide-menu">Quản lí sự kiện</span>
+                </a>
+            </li>
+            <li>
+                <a href="map-google.html" class="waves-effect">
+                    <i class="mdi mdi-clipboard-text fa-fw"></i>
+                    <span class="hide-menu">Quản lí ban nhạc</span>
+                </a>
+            </li>
+            <li>
+                <a href="map-google.html" class="waves-effect">
+                    <i class="mdi mdi-clipboard-text fa-fw"></i>
+                    <span class="hide-menu">Quản lí phòng tập</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('home') }}" class="waves-effect">
+                    <i class="mdi mdi-clipboard-text fa-fw"></i>
+                    <span class="hide-menu">Quay lại trang chủ</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

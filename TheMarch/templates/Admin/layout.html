@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/AdminTemplate/plugins/images/favicon.png">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/AdminTemplate/ampleadmin-dark/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/AdminTemplate/plugins/bower_components/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css" rel="stylesheet" type="text/css" />
+    <!-- animation CSS -->    
+    <!-- Menu CSS -->
+    <link href="/static/AdminTemplate/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/AdminTemplate/plugins/bower_components/dropify/dist/css/dropify.min.css">
+    <!-- animation CSS -->
+    <link href="/static/AdminTemplate/ampleadmin-dark/css/animate.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/static/AdminTemplate/ampleadmin-dark/css/style.css" rel="stylesheet">
+    <!-- color CSS -->
+    <link href="/static/AdminTemplate/ampleadmin-dark/css/colors/blue-dark.css" id="theme" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--alerts CSS -->
+    <link href="/static/AdminTemplate/plugins/bower_components/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
+    {% endblock %}
+</head>
+
+<body class="fix-header">
+    <!-- ============================================================== -->
+    <!-- Preloader -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+        </svg>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Wrapper -->
+    <!-- ============================================================== -->
+    <div id="wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        {% include 'Admin/navbar.html' %}
+        
+        <!-- End Top Navigation -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        {% include 'Admin/sidebar.html' %}        
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page Content -->
+        <!-- ============================================================== -->
+        <div id="page-wrapper">
+            {% block content %}
+            {% endblock %}
+            <!-- /.container-fluid -->
+            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by themedesigner.in </footer>
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    {% block scripts %}
+    <!-- jQuery -->
+    <script src="/static/AdminTemplate/plugins/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/AdminTemplate/ampleadmin-dark/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Menu Plugin JavaScript -->
+    <script src="/static/AdminTemplate/plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+    <!--slimscroll JavaScript -->
+    <script src="/static/AdminTemplate/ampleadmin-dark/js/jquery.slimscroll.js"></script>
+    <!--Wave Effects -->
+    <script src="/static/AdminTemplate/ampleadmin-dark/js/waves.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/AdminTemplate/ampleadmin-dark/js/custom.min.js"></script>
+    <script src="/static/AdminTemplate/ampleadmin-dark/js/jasny-bootstrap.js"></script>    
+    <!--Style Switcher -->
+    <script src="/static/AdminTemplate/plugins/bower_components/styleswitcher/jQuery.style.switcher.js"></script>
+    {% endblock %}
+</body>
+
+</html>
