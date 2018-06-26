@@ -3542,6 +3542,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="TheMarch\static\css\login.css" />
+    <Content Include="TheMarch\static\detail-event.js" />
     <Content Include="TheMarch\static\event.js">
       <SubType>Code</SubType>
     </Content>

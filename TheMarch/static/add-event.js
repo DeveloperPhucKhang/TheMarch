@@ -24,6 +24,7 @@
         }
         var short_description = $('#short_description').val();
         var description = $('.summernote').code();
+        //var description = $('.summernote').summernote('code');
         var is_important =$('#is_important').is(":checked");
         if($.trim(event_type) == '' || $.trim(title) == '' || $.trim(short_description) == ''){
             return;

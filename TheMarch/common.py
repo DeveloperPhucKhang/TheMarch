@@ -40,23 +40,17 @@ def load_banner_image():
     list_banner = current_db.Banner.find().sort("index", ASCENDING)
     for item in list_banner:        
         baner_url = "load_banner_image/%s" % item["file_name"]
-        banner_item = {"name": item["file_name"],"url": baner_url,"index": item["index"] }                      
-        #banner_saved = banner_info(item["file_name"], baner_url, item["index"])             
+        banner_item = {"name": item["file_name"],"url": baner_url,"index": item["index"] }                            
         file_display.append(banner_item)
-    #files = [f for f in os.listdir('TheMarch/' + app.config['BANNER_IMAGE_FOLDER']) if os.path.isfile(os.path.join('TheMarch/' + app.config['BANNER_IMAGE_FOLDER'],f)) and f not in IGNORED_FILES ]            
-    #for f in files:        
-        #baner_url = os.path.join(app.config['BANNER_IMAGE_FOLDER'], f)
-        #if f != 'default.jpg':            
-        #    baner_url = "load_banner_image/%s" % f
-        #    banner_saved = banner_info(f, baner_url)             
-        #    file_display.append(banner_saved)
     return file_display
 
 def load_event_data(location):
     list_event = []
     #Get list event
     if location == 'home':
-        list_event_db = current_db.Event.find({'is_important': 'true'}).sort("created_date", DESCENDING).limit(2) 
+        list_event_db = current_db.Event.find({'is_important': 'true', 'is_approve': 'true'}, 
+                    {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,
+                    'created_date': 1,'is_important': 1, "is_approve":1}).sort("created_date", DESCENDING).limit(2) 
         if list_event_db.count() == 0:
             list_event_db = current_db.Event.find().sort("created_date", DESCENDING).limit(2)
     else:
@@ -68,10 +62,11 @@ def load_event_data(location):
                     "title": item["title"],
                     "thumbnail": "load_event_thumbnail/%s" % item["thumbnail"],
                     "short_description": item["short_description"] ,
-                    "description": item["description"] ,
+                    #"description": item["description"] ,
                     "created_by": item["created_by"] ,
                     "created_date": item["created_date"] ,
-                    "is_important": item["is_important"] 
+                    "is_important": item["is_important"] ,
+                    "is_approve": item["is_approve"]
                 }                                          
         list_event.append(item)
     return list_event

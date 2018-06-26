@@ -29,11 +29,33 @@
                     <span class="hide-menu">Quản lí sự kiện</span>
                 </a>
             </li>
-            <li>
+            <!--<li>
                 <a href="map-google.html" class="waves-effect">
                     <i class="mdi mdi-clipboard-text fa-fw"></i>
                     <span class="hide-menu">Quản lí ban nhạc</span>
                 </a>
+            </li>-->
+            <li>
+                <a href="inbox.html" class="waves-effect">
+                    <i class="mdi mdi-clipboard-text fa-fw"></i>
+                    <span class="hide-menu">Quản lí ban nhạc<span class="fa arrow">
+                        </span>
+                    </span>
+                </a>
+                <ul class="nav nav-second-level" aria-expanded="true" style="">
+                    <li>
+                        <a href="{{ url_for('event') }}">
+                            <i class="ti-comments-smiley fa-fw"></i>
+                            <span class="hide-menu">Quản lí hình ban nhạc</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url_for('event') }}">
+                            <i class="ti-comments-smiley fa-fw"></i>
+                            <span class="hide-menu">Quản lí thông tin từng ban nhạc</span>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li>
                 <a href="map-google.html" class="waves-effect">

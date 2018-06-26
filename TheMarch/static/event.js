@@ -15,8 +15,12 @@ $(document).ready(function () {
                     var data = [];
                     for (var i = 0 ; i < result.list_event.length ; i++) {
                         var is_important = 'Không';
+                        var is_approve = 'Chưa xét duyệt';
                         if (result.list_event[i].is_important == 'true') {
                             is_important = 'Có';
+                        }
+                        if (result.list_event[i].is_approve == 'true') {
+                            is_approve = 'Đã xét duyệt';
                         }
                         data.push([
                             result.list_event[i]._id,
@@ -25,6 +29,7 @@ $(document).ready(function () {
                             result.list_event[i].created_by,
                             result.list_event[i].created_date,
                             is_important,
+                            is_approve
                         ]);
                     }
                     init_datatable(data);
@@ -55,6 +60,7 @@ $(document).ready(function () {
                 { title: "Người viết" },
                 { title: "Ngày viết" },
                 { title: "Hiển thị trang chủ" },
+                { title: "Tình trạng" },
                 { title: "Quản lí" }
             ],
             "order": [[1, "desc"]],
@@ -87,7 +93,11 @@ $(document).ready(function () {
                 },
                 {
                     "targets": 6,
-                    "width": 200,
+                    "width": 100,
+                },
+                {
+                    "targets": 7,
+                    "width": 170,
                 },
             ]
         });
@@ -156,6 +166,11 @@ $(document).ready(function () {
     }
     get_event_data();
 
+    $('#refesh_banner').on('click', function () {
+        // Reload table
+        table.destroy();
+        get_event_data();
+    });
 
 });
 
