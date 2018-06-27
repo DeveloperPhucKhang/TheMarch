@@ -4174,3 +4174,102 @@ address p {
 .gray-bg-alt {
     background: #e8e8e8;
 }
+
+/* 20. Address
+-------------------------------------*/
+
+.address {
+  font-family: 'Open Sans', sans-serif;
+  padding: 70px 0 70px 0;
+  background-color: #eaf5f7;
+  text-align: center;
+}
+
+.address h2 {
+  margin-bottom: 15px;
+}
+
+.address address {
+  font-size: 20px;
+  color: #685e27;
+  margin-bottom: 10px;
+}
+
+.address .address-info {
+  font-size: 20px;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #4a4a4a;
+}
+
+.address .phones {
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 30px;
+  list-style: none;
+  color: #685e27;
+  font-size: 24px;
+  padding: 0;
+}
+
+.address .phones li {
+  display: inline-block;
+  padding: 0 15px;
+}
+
+.address .phones li i {
+  font-size: 36px;
+  vertical-align: sub;
+  margin-right: 7px;
+}
+
+@media (max-width: 1200px) {
+  
+  /* 20. Address 1200px
+  -------------------------------------*/
+  .address {
+    padding-top: 70px;
+    background-position: 70px;
+  }
+  .address h2 {
+    margin-bottom: 15px;
+  }
+  .address address {
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+  .address .address-info {
+    font-size: 18px;
+  }
+  .address .phones {
+    margin-top: 35px;
+    font-size: 22px;
+  }
+  .address .phones li i {
+    font-size: 34px;
+  }
+}
+
+@media (max-width: 768px) {
+  
+  /* 20. Address 768px
+  -------------------------------------*/
+  .address address {
+    font-size: 16px;
+  }
+  .address .address-info {
+    font-size: 16px;
+    line-height: 26px;
+  }
+  .address .phones {
+    font-size: 18px;
+    margin-top: 25px;
+  }
+  .address .phones li {
+    margin-bottom: 5px;
+  }
+  .address .phones li i {
+    font-size: 36px;
+    vertical-align: sub;
+    margin-right: 7px;
+  }
+}
