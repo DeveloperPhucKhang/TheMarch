@@ -43,11 +43,19 @@
         var title = $('#title').val();
         var old_thumbnail = $('#old_thumbnail').attr('value');
         var thumbnail = $('#thumbnail')[0].files[0];
+        var old_thumbnail_detail = $('#old_thumbnail_detail').attr('value');
+        var thumbnail_detail = $('#thumbnail_detail')[0].files[0];
         var is_empty_thumbnail = true;
+        var is_empty_thumbnail_detail = true;
         var thumbnail_file = '';
+        var thumbnail_file_detail = '';
         if(thumbnail != undefined){
             thumbnail_file = thumbnail;
             is_empty_thumbnail = false
+        }
+        if (thumbnail_detail != undefined) {
+            thumbnail_file_detail = thumbnail_detail;
+            is_empty_thumbnail_detail = false
         }
         var short_description = $('#short_description').val();
         var description = $('.summernote').code();
@@ -62,6 +70,9 @@
         data.append('old_thumbnail', old_thumbnail);
         data.append('is_empty_thumbnail', is_empty_thumbnail);
         data.append('thumbnail_file', thumbnail_file);
+        data.append('old_thumbnail_detail', old_thumbnail_detail);
+        data.append('is_empty_thumbnail_detail', is_empty_thumbnail_detail);
+        data.append('thumbnail_file_detail', thumbnail_file_detail);
         data.append('short_description', short_description);
         data.append('description', description);
         data.append('is_important', is_important);

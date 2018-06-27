@@ -74,11 +74,15 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-12">Hình của sự kiện hiển thị lên trang chủ</label>
-                        <div class="m-b-10">
-                            <img id="old_thumbnail" value="{{event_detail.thumbnail_name}}" src="/{{event_detail.thumbnail}}" alt="Hình" class="col-md-3 col-xs-12 m-b-10">
+                        <label class="col-md-6">Hình của sự kiện hiện tại đang hiển thị lên trang chủ</label>
+                        <label class="col-md-6">Hình của sự kiện hiện tại đang hiển thị lên trang detail</label>
+                        <div class="col-md-6 m-b-10">
+                            <img id="old_thumbnail" style="max-height: 200px;" value="{{event_detail.thumbnail_name}}" src="/{{event_detail.thumbnail}}" alt="Hình" class="col-md-8 col-xs-12 m-b-10 p-l-0">
                         </div>
-                        <div class="col-sm-12">
+                        <div class="col-md-6 m-b-10">
+                            <img id="old_thumbnail_detail" style="max-height: 200px;" value="{{event_detail.thumbnail_detail_name}}" src="/{{event_detail.thumbnail_detail}}" alt="Hình" class="col-md-8 col-xs-12 m-b-10 p-l-0">
+                        </div>
+                        <div class="col-sm-6">
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput">
                                     <i class="glyphicon glyphicon-file fileinput-exists"></i>
@@ -88,6 +92,21 @@
                                     <span class="fileinput-new">Select file</span>
                                     <span class="fileinput-exists">Change</span>
                                     <input id="thumbnail" type="file" name="...">
+                                </span>
+                                <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-6">
+                            <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                <div class="form-control" data-trigger="fileinput">
+                                    <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                    <span class="fileinput-filename">{{event_detail.thumbnail_detail_name}}</span>
+                                </div>
+                                <span class="input-group-addon btn btn-default btn-file">
+                                    <span class="fileinput-new">Select file</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input id="thumbnail_detail" type="file" name="...">
                                 </span>
                                 <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                             </div>

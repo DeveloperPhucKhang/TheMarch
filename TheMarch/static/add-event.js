@@ -15,12 +15,21 @@
         e.preventDefault();
         var event_type = $('#event_type').val();
         var title = $('#title').val();
+        // thumbnail
         var thumbnail = $('#thumbnail')[0].files[0];
         var is_empty_thumbnail = true;
         var thumbnail_file = '';
         if(thumbnail != undefined){
             thumbnail_file = thumbnail;
             is_empty_thumbnail = false
+        }
+        // thumbnail detail
+        var thumbnail_detail = $('#thumbnail_detail')[0].files[0];
+        var is_empty_thumbnail_detail = true;
+        var thumbnail_file_detail = '';
+        if (thumbnail_detail != undefined) {
+            thumbnail_file_detail = thumbnail_detail;
+            is_empty_thumbnail_detail = false
         }
         var short_description = $('#short_description').val();
         var description = $('.summernote').code();
@@ -34,6 +43,8 @@
         data.append('title', title);
         data.append('is_empty_thumbnail', is_empty_thumbnail);
         data.append('thumbnail_file', thumbnail_file);
+        data.append('is_empty_thumbnail_detail', is_empty_thumbnail_detail);
+        data.append('thumbnail_file_detail', thumbnail_file_detail);
         data.append('short_description', short_description);
         data.append('description', description);
         data.append('is_important', is_important);

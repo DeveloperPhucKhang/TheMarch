@@ -24,16 +24,6 @@ from PIL import Image
 import TheMarch.common as common
 
 bootstrap = Bootstrap(app)
-app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['SECRET_KEY'] = 'hard to guess string'
-app.config['ROOT_FOLDER'] = 'TheMarch/'
-app.config['BANNER_IMAGE_FOLDER'] = 'dataset/banner/'
-app.config['COFFEE_IMAGE_FOLDER'] = 'dataset/coffee/'
-app.config['EVENT_IMAGE_FOLDER'] = 'dataset/event/'
-app.config['BAND_IMAGE_FOLDER'] = 'dataset/band/'
-app.config['GYM_IMAGE_FOLDER'] = 'dataset/gym/'
-app.config['EVENT_THUMBNAIL_FOLDER'] = 'dataset/event/'
-IGNORED_FILES = set(['.gitignore'])
 
 # flask-login
 login_manager = LoginManager()
@@ -251,25 +241,28 @@ def add_event():
 def detail_event(eventid):        
     # Load detail data
     try:
-        event = common.current_db.Event.find_one({"_id": ObjectId(eventid)}, 
-                    {'_id': 1,'event_type': 1,'title': 1,
-                    'thumbnail': 1,'short_description': 1,'created_by': 1,
-                    'created_date': 1,'is_important': 1, 'is_approve': 1})
-        item = None;
-        if event != None:
-            item = {
-                    "_id": str(event["_id"]),
-                    "event_type": event["event_type"],
-                    "title": event["title"],
-                    "thumbnail": "load_event_thumbnail/%s" % event["thumbnail"],
-                    "thumbnail_name": event["thumbnail"],
-                    "short_description": event["short_description"] ,
-                    #"description": event["description"] ,
-                    "created_by": event["created_by"] ,
-                    "created_date": event["created_date"] ,
-                    "is_important": event["is_important"] ,
-                    "is_approve": event["is_approve"] 
-                }         
+        #event = common.current_db.Event.find_one({"_id": ObjectId(eventid)}, 
+        #            {'_id': 1,'event_type': 1,'title': 1,
+        #            'thumbnail': 1,'short_description': 1,'created_by': 1,
+        #            'created_date': 1,'is_important': 1, 'is_approve': 1,'thumbnail_detail': 1 })
+        #item = None;
+        #if event != None:
+        #    item = {
+        #            "_id": str(event["_id"]),
+        #            "event_type": event["event_type"],
+        #            "title": event["title"],
+        #            "thumbnail": "load_event_thumbnail/%s" % event["thumbnail"],
+        #            "thumbnail_name": event["thumbnail"],
+        #            "thumbnail_detail_name": event["thumbnail_detail"],
+        #            "thumbnail_detail": "load_event_thumbnail/%s" % event["thumbnail_detail"],
+        #            "short_description": event["short_description"] ,
+        #            #"description": event["description"] ,
+        #            "created_by": event["created_by"] ,
+        #            "created_date": event["created_date"] ,
+        #            "is_important": event["is_important"] ,
+        #            "is_approve": event["is_approve"],
+        #        }       
+        item = common.load_event_detail_data(eventid)  
         return render_template(
             'Admin/detail-event.html', 
             event_detail = item,       
@@ -277,7 +270,8 @@ def detail_event(eventid):
         )
     except Exception, e:
         return render_template(
-            'Admin/detail-event.html',        
+            'Admin/detail-event.html',
+            event_detail = [],
             year=datetime.now().year,
         )
 
@@ -316,6 +310,8 @@ def add_event_db():
         title = request.form['title']
         thumbnail = 'default.jpg'
         is_empty_thumbnail = request.form['is_empty_thumbnail']        
+        thumbnail_detail = 'default.jpg'
+        is_empty_thumbnail_detail = request.form['is_empty_thumbnail_detail']        
         description = request.form['description']
         short_description = request.form['short_description']
         created_date = datetime.now()
@@ -332,10 +328,20 @@ def add_event_db():
             # save file to disk
             files.save(file_path)
             thumbnail = file_name
+        if is_empty_thumbnail_detail == 'false':
+            #save thumbnail detail to server
+            files = request.files['thumbnail_file_detail']
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'])
+            file_path = os.path.join('TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            thumbnail_detail = file_name
         new_event = {
                         "event_type": event_type,
                         "title": title,
                         "thumbnail": thumbnail,
+                        "thumbnail_detail": thumbnail_detail,
                         "short_description": short_description,
                         "description": description,
                         "is_important": is_important,
@@ -357,15 +363,20 @@ def update_event_db():
         event_id = request.form['event_id']
         event_type = request.form['event_type']
         title = request.form['title']
+        #thumbnail image
         old_thumbnail = request.form['old_thumbnail']
-        thumbnail = 'default.jpg'
-        is_empty_thumbnail = request.form['is_empty_thumbnail']        
+        thumbnail = old_thumbnail
+        is_empty_thumbnail = request.form['is_empty_thumbnail']       
+        #thumbnail detail image 
+        old_thumbnail_detail = request.form['old_thumbnail_detail']
+        thumbnail_detail = old_thumbnail_detail
+        is_empty_thumbnail_detail = request.form['is_empty_thumbnail_detail']        
         description = request.form['description']
         short_description = request.form['short_description']
         is_important = request.form['is_important']        
         if is_empty_thumbnail == 'false':
             #delete old thumnail                                    
-            #Delete old banner image, database                               
+            #Delete old thumnail image, database                               
             if old_thumbnail != '' and old_thumbnail != 'default.jpg':            
                 old_file_path = os.path.join('TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'], old_thumbnail)
                 if os.path.exists(old_file_path):
@@ -378,10 +389,26 @@ def update_event_db():
             # save file to disk
             files.save(file_path)
             thumbnail = file_name
+        if is_empty_thumbnail_detail == 'false':
+            #delete old thumnail detail                                   
+            #Delete old thumnail detail image, database                               
+            if old_thumbnail_detail != '' and old_thumbnail_detail != 'default.jpg':            
+                old_file_path = os.path.join('TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'], old_thumbnail_detail)
+                if os.path.exists(old_file_path):
+                    os.remove(old_file_path)
+            #save thumbnail to server
+            files = request.files['thumbnail_file_detail']
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'])
+            file_path = os.path.join('TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            thumbnail_detail = file_name
         update_event = {
                         "event_type": event_type,
                         "title": title,
                         "thumbnail": thumbnail,
+                        "thumbnail_detail": thumbnail_detail,
                         "short_description": short_description,
                         "description": description,
                         "is_important": is_important,
