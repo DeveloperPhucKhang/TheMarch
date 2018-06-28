@@ -3553,9 +3553,13 @@
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\varun.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\weather-bg.jpg" />
+    <Content Include="TheMarch\static\band_thumnail.js" />
     <Content Include="TheMarch\static\content\bootstrap.css" />
     <Content Include="TheMarch\static\content\bootstrap.min.css" />
     <Content Include="TheMarch\static\content\site.css" />
+    <Content Include="TheMarch\static\css\custom-home.css">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="TheMarch\static\css\custom.css" />
     <Content Include="TheMarch\static\css\event.css">
       <SubType>Code</SubType>
@@ -4810,6 +4814,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="TheMarch\static\home-detail-event.js" />
+    <Content Include="TheMarch\static\home.js" />
     <Content Include="TheMarch\static\scripts\bootstrap.js" />
     <Content Include="TheMarch\static\scripts\bootstrap.min.js" />
     <Content Include="TheMarch\static\scripts\jquery-1.10.2.intellisense.js" />
@@ -4827,6 +4832,7 @@
     <Content Include="TheMarch\static\scripts\_references.js" />
     <Content Include="TheMarch\templates\about.html" />
     <Content Include="TheMarch\templates\Admin\add-event.html" />
+    <Content Include="TheMarch\templates\Admin\band-thumbnail.html" />
     <Content Include="TheMarch\templates\Admin\banner.html" />
     <Content Include="TheMarch\templates\Admin\detail-event.html" />
     <Content Include="TheMarch\templates\Admin\event.html">

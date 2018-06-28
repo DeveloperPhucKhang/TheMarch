@@ -85,19 +85,20 @@ def unauthorized():
     #if common.reset_msg:
     #    message = common.reset_msg
     #    common.reset_msg = None
-    #    return render_template('Admin/login.html', form = LoginForm(), reset_msg = message)
+    #    return render_template('Admin/login.html', form = LoginForm(),
+    #    reset_msg = message)
     #else:
     #    return render_template('Admin/login.html', form = LoginForm())
 
 #############
-#Login 
+#Login
 #############
 @app.route('/login', methods=['GET'])
 def login_page():
     return render_template('Admin/login.html', form = LoginForm())
 
 #############
-#Login 
+#Login
 #############
 @app.route('/login', methods=['POST'])
 def do_admin_login():
@@ -144,23 +145,24 @@ def upload_banner():
             banner_number = request.form['banner_number']
             old_file_name = request.form['old_file_name']
             if banner_number > 0:           
-                #Delete old banner image, database                               
+                #Delete old banner image, database
                 if old_file_name != '':            
                     old_file_path = os.path.join('TheMarch/' + app.config['BANNER_IMAGE_FOLDER'], old_file_name)
                     if os.path.exists(old_file_path):
                         os.remove(old_file_path)
                     #delete database
                     common.current_db.Banner.remove({"file_name": old_file_name, "index": banner_number})
-                #Inset new image                                
+                #Inset new image
                 if float(banner_number) == 0:
-                    #Get max index                    
+                    #Get max index
                     max_banner = common.current_db.Banner.find().sort("index", DESCENDING).limit(1)
                     if max_banner.count() == 0:
                         banner_number = 1
                     else:
                         banner_number = int(max_banner[0]['index']) + 1
                     banner_number = str(banner_number)
-                #file_name = file_name.replace(os.path.splitext(file_name)[0], banner_number + '_banner')    
+                #file_name = file_name.replace(os.path.splitext(file_name)[0],
+                #banner_number + '_banner')
                 file_name = banner_number + '_' + file_name     
                 file_path = os.path.join('TheMarch/' + app.config['BANNER_IMAGE_FOLDER'], file_name)   
                 # save file to disk
@@ -202,11 +204,9 @@ def delete_banner():
 #@login_required
 def banner():    
     list_banner = common.load_banner_image()
-    return render_template(
-        'Admin/banner.html',
+    return render_template('Admin/banner.html',
         banner_data = list_banner,
-        year=datetime.now().year,
-    )
+        year=datetime.now().year,)
 
 @app.route("/refesh_banner", methods=['GET'])
 #@login_required
@@ -220,10 +220,8 @@ def refesh_banner():
 @app.route("/admin/event", methods=['GET'])
 #@login_required
 def event():        
-    return render_template(
-        'Admin/event.html',        
-        year=datetime.now().year,
-    )
+    return render_template('Admin/event.html',        
+        year=datetime.now().year,)
 
 #############
 # Add Event controller
@@ -231,10 +229,8 @@ def event():
 @app.route("/admin/add_event", methods=['GET'])
 #@login_required
 def add_event():        
-    return render_template(
-        'Admin/add-event.html',        
-        year=datetime.now().year,
-    )
+    return render_template('Admin/add-event.html',        
+        year=datetime.now().year,)
 
 #############
 # Detail Event controller
@@ -243,40 +239,15 @@ def add_event():
 #@login_required
 def detail_event(eventid):        
     # Load detail data
-    try:
-        #event = common.current_db.Event.find_one({"_id": ObjectId(eventid)}, 
-        #            {'_id': 1,'event_type': 1,'title': 1,
-        #            'thumbnail': 1,'short_description': 1,'created_by': 1,
-        #            'created_date': 1,'is_important': 1, 'is_approve': 1,'thumbnail_detail': 1 })
-        #item = None;
-        #if event != None:
-        #    item = {
-        #            "_id": str(event["_id"]),
-        #            "event_type": event["event_type"],
-        #            "title": event["title"],
-        #            "thumbnail": "load_event_thumbnail/%s" % event["thumbnail"],
-        #            "thumbnail_name": event["thumbnail"],
-        #            "thumbnail_detail_name": event["thumbnail_detail"],
-        #            "thumbnail_detail": "load_event_thumbnail/%s" % event["thumbnail_detail"],
-        #            "short_description": event["short_description"] ,
-        #            #"description": event["description"] ,
-        #            "created_by": event["created_by"] ,
-        #            "created_date": event["created_date"] ,
-        #            "is_important": event["is_important"] ,
-        #            "is_approve": event["is_approve"],
-        #        }       
+    try:     
         item = common.load_event_detail_data(eventid)  
-        return render_template(
-            'Admin/detail-event.html', 
+        return render_template('Admin/detail-event.html', 
             event_detail = item,       
-            year=datetime.now().year,
-        )
+            year=datetime.now().year,)
     except Exception, e:
-        return render_template(
-            'Admin/detail-event.html',
+        return render_template('Admin/detail-event.html',
             event_detail = [],
-            year=datetime.now().year,
-        )
+            year=datetime.now().year,)
 
 #############
 # Event controller
@@ -370,7 +341,7 @@ def update_event_db():
         old_thumbnail = request.form['old_thumbnail']
         thumbnail = old_thumbnail
         is_empty_thumbnail = request.form['is_empty_thumbnail']       
-        #thumbnail detail image 
+        #thumbnail detail image
         old_thumbnail_detail = request.form['old_thumbnail_detail']
         thumbnail_detail = old_thumbnail_detail
         is_empty_thumbnail_detail = request.form['is_empty_thumbnail_detail']        
@@ -378,8 +349,8 @@ def update_event_db():
         short_description = request.form['short_description']
         is_important = request.form['is_important']        
         if is_empty_thumbnail == 'false':
-            #delete old thumnail                                    
-            #Delete old thumnail image, database                               
+            #delete old thumnail
+            #Delete old thumnail image, database
             if old_thumbnail != '' and old_thumbnail != 'default.jpg':            
                 old_file_path = os.path.join('TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'], old_thumbnail)
                 if os.path.exists(old_file_path):
@@ -393,8 +364,8 @@ def update_event_db():
             files.save(file_path)
             thumbnail = file_name
         if is_empty_thumbnail_detail == 'false':
-            #delete old thumnail detail                                   
-            #Delete old thumnail detail image, database                               
+            #delete old thumnail detail
+            #Delete old thumnail detail image, database
             if old_thumbnail_detail != '' and old_thumbnail_detail != 'default.jpg':            
                 old_file_path = os.path.join('TheMarch/' + app.config['EVENT_THUMBNAIL_FOLDER'], old_thumbnail_detail)
                 if os.path.exists(old_file_path):
@@ -457,4 +428,62 @@ def approve_event():
         return simplejson.dumps({'result': 'success'})        
     except Exception, e:
         return simplejson.dumps({'result': 'error'})
+
+#############
+# Band thumbnail controller
+#############
+@app.route("/admin/band_thumbnail", methods=['GET'])
+#@login_required
+def band_thumbnail():    
+    list_band = common.load_band_thumbnail()
+    return render_template('Admin/band-thumbnail.html',
+        band_data = list_band,
+        year=datetime.now().year,)
+
+#############
+# Save band thumbnail info
+#############
+@app.route("/admin/save_band_thumbnail_info", methods=['POST'])
+#@login_required
+def save_band_thumbnail_info():   
+    try:
+        band_id = request.form['band_id']           
+        name = request.form['name']
+        url = request.form['url']
+        common.current_db.Band_thumbnail.update({"_id": ObjectId(band_id)}, {"$set": {"name": name,"url": url}})                    
+        return simplejson.dumps({'result': 'success'})        
+    except Exception, e:
+        return simplejson.dumps({'result': 'error'})
+
+#############
+# Upload band thumbnail
+#############
+@app.route("/admin/upload_band_thumbnail", methods=['POST'])
+#@login_required
+def upload_band_thumbnail():    
+    files = request.files['file']
+    if files:     
+        try:     
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['BAND_IMAGE_FOLDER'])
+            band_id = request.form['band_id']
+            band_index = request.form['band_index']
+            old_file_name = request.form['old_file_name']     
+            #Delete old band image, database
+            if old_file_name != '' and old_file_name != 'default.jpg':            
+                old_file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], old_file_name)
+                if os.path.exists(old_file_path):
+                    os.remove(old_file_path)        
+            file_name = band_index + '_' + file_name     
+            file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            #Image.open(files).save(file_path)
+            # Save database
+            common.current_db.Band_thumbnail.update({"_id": ObjectId(band_id)}, {"$set": {"thumbnail": file_name}})                
+            return simplejson.dumps({'result': 'success', 'file_name' : file_name})
+        except Exception, e:
+            return simplejson.dumps({'result': 'error', 'error_message': str(e) ,'file_name' : 'No file'})
+    else:
+        return simplejson.dumps({"result": 'success', 'file_name' : 'No file'})    
        

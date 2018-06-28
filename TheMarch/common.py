@@ -56,6 +56,23 @@ def load_banner_image():
         file_display.append(banner_item)
     return file_display
 
+def load_band_thumbnail():
+    file_display = []
+    #Get list banner
+    list_band = current_db.Band_thumbnail.find().sort("index", ASCENDING)
+    for item in list_band:        
+        thumbnail_url = "load_band_image/%s" % item["thumbnail"]
+        band_item = {
+                        "_id": item["_id"],
+                        "index": item["index"],
+                        "thumbnail": thumbnail_url,
+                        "thumbnail_name": item["thumbnail"],
+                        "name": item["name"],
+                        "url": item["url"] 
+                    }                            
+        file_display.append(band_item)
+    return file_display
+
 def load_event_data(location):
     list_event = []
     #Get list event

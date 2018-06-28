@@ -24,10 +24,13 @@
         },
     });
 
+    var data = new FormData();
+    data.append('event_id', $('#event_id').val());
     // Load list event recently
     $.ajax({
         url: "/home/list_event_recently", //the page containing python script
-        type: "GET", //request type,
+        type: "POST", //request type,
+        data: data,
         cache: false,
         processData: false,
         contentType: false,

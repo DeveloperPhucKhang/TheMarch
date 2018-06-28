@@ -31,6 +31,7 @@
 
   <!-- Theme Style -->
   <link rel="stylesheet" href="/static/FrontEnd/css/styles.css">
+  <link rel="stylesheet" href="/static/css/custom-home.css">
   <!-- Available main styles: styles-blue.css, styles-ochre.css -->
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -73,7 +74,7 @@
           <!-- Nav-Links start -->
           <ul class="nav navbar-nav navbar-right">
             <!--<li><a>Đăng nhập</a></li>-->
-             <li class="dropdown">
+             <!--<li class="dropdown">
                  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                      Xin chào: Admin
                      <span class="caret"></span>
@@ -82,7 +83,7 @@
                      <li><a href="{{ url_for('admin') }}">Trang quản lí</a></li>
                      <li><a href="#">Đăng xuất</a></li>                     
                  </ul>
-             </li>
+             </li>-->
             <li class="active"><a class="scroll-to" href="#sc-content">SỰ KIỆN</a></li>
             <li><a class="scroll-to" href="#sc-attractions">BAN NHẠC & DJ</a></li>
             <!-- <li><a class="scroll-to" href="#sc-reviews">COFFEE</a></li> -->
@@ -163,20 +164,24 @@
         </div>
     </section>
     Call to Action end-->
-
+      <!--style="text-align: center; margin-bottom:50px;-->
     <!--Content start EVENT-->
     <section class="content" id="sc-content">
       <div class="container">
+        <h2 style="text-align: center;font-size: 48px;font-weight: lighter;margin: 0 0 70px 0;padding: 0;color: #4a4a4a;">
+          Sự kiện của chúng tôi
+        </h2>
         {% for sub in event %}
         {% if loop.index == 1 %}
           <!--Content Image Right start-->
           <div class="row content-img-right">
               <div class="col-md-6">
-                  <h2>{{sub.event_type}}</h2>
+                  <input id="event_id_1" type="hidden" value="{{sub._id}}" />
+                  <h2 class="event-name">{{sub.event_type}}</h2>
 
-                  <h3>{{sub.title}}</h3>
+                  <h3 class="event-title">{{sub.title}}</h3>
 
-                  <p>{{sub.short_description}}</p>
+                  <p class="event-short-description">{{sub.short_description}}</p>
                   <p>
                       <a class="scroll-to" href="/home/detail_event/{{sub._id}}">Xem thêm...</a>
                   </p>
@@ -191,11 +196,12 @@
         {% else %}
           <div class="row content-img-left">
               <div class="col-md-6 pull-right">
-                  <h2>{{sub.event_type}}</h2>
+                  <input id="event_id_2" type="hidden" value="{{sub._id}}" />
+                  <h2 class="event-name">{{sub.event_type}}</h2>
 
-                  <h3>{{sub.title}}</h3>
+                  <h3 class="event-title">{{sub.title}}</h3>
 
-                  <p>
+                  <p class="event-short-description">
                       {{sub.short_description}}
                   </p>
                   <p>
@@ -249,7 +255,7 @@
             </div>
           </div>
           <!-- Wrapper for slides -->
-          <div class="carousel-inner" role="listbox">
+          <div id="content-slider-inner" class="carousel-inner" role="listbox">
 
             <!--Content slider Item Page 1 start-->
             <div class="item active">
@@ -444,7 +450,7 @@
             <div class="attraction-video">
               <!--Video Preview Image start-->
               <div class="video-preview-img">
-                <img src="/static/FrontEnd/img/youtube-preview.jpg" alt="Video Preview Image" class="img-responsive" />
+                <img style="max-height: 600px;" src="{{band_thumbnail[0].thumbnail}}" alt="Video Preview Image" class="img-responsive" />
 
                 <div class="video-play-button"><i class="fa fa-play fa-fw"></i></div>
               </div>
@@ -465,9 +471,9 @@
           <div class="col-md-6">
             <!--Attraction link 1 start-->
             <div class="attraction-link">
-              <a href="http://www.tablemountain.net/" target="_blank">
+              <a href="{{band_thumbnail[1].url}}" target="_blank">
                 <div class="attraction-img">
-                  <img class="img-responsive" src="/static/FrontEnd/img/things-to-do1.jpg" alt="Things to do" />
+                  <img style="max-height: 220px;" class="img-responsive" src="{{band_thumbnail[1].thumbnail}}" alt="Things to do" />
 
                   <div class="attraction-overlay">
                     <i class="icon-link"></i>
@@ -475,8 +481,8 @@
                 </div>
 
                 <div class="attraction-caption">
-                  <div class="attraction-caption-title">Lego band</div>
-                  <div class="attraction-distance">5 Thành viên</div>
+                  <div class="attraction-caption-title">{{band_thumbnail[1].name}}</div>
+                  <!--<div class="attraction-distance">5 Thành viên</div>-->
                 </div>
               </a>
             </div>
@@ -485,9 +491,9 @@
               <div class="col-md-6 col-sm-6">
                 <!--Attraction link 2 start-->
                 <div class="attraction-link">
-                  <a href="http://www.waterfront.co.za/" target="_blank">
+                  <a href="{{band_thumbnail[2].url}}" target="_blank">
                     <div class="attraction-img">
-                      <img class="img-responsive" src="/static/FrontEnd/img/things-to-do2.jpg" alt="Things to do" />
+                      <img style="max-height: 262px;" class="img-responsive" src="{{band_thumbnail[2].thumbnail}}" alt="Things to do" />
 
                       <div class="attraction-overlay">
                         <i class="icon-link"></i>
@@ -495,8 +501,8 @@
                     </div>
 
                     <div class="attraction-caption">
-                      <div class="attraction-caption-title">The Blackmarcs</div>
-                      <div class="attraction-distance">3 Thành viên</div>
+                      <div class="attraction-caption-title">{{band_thumbnail[2].name}}</div>
+                      <!--<div class="attraction-distance">3 Thành viên</div>-->
                     </div>
                   </a>
                 </div>
@@ -505,9 +511,9 @@
               <div class="col-md-6 col-sm-6">
                 <!--Attraction link 3 start-->
                 <div class="attraction-link">
-                  <a href="http://www.theoldbiscuitmill.co.za/" target="_blank">
+                  <a href="{{band_thumbnail[3].url}}" target="_blank">
                     <div class="attraction-img">
-                      <img class="img-responsive" src="/static/FrontEnd/img/things-to-do3.jpg" alt="Things to do" />
+                      <img style="max-height: 205px;" class="img-responsive" src="{{band_thumbnail[3].thumbnail}}" alt="Things to do" />
 
                       <div class="attraction-overlay">
                         <i class="icon-link"></i>
@@ -515,8 +521,8 @@
                     </div>
 
                     <div class="attraction-caption">
-                      <div class="attraction-caption-title">XXX Rock band</div>
-                      <div class="attraction-distance">5 Thành viên</div>
+                      <div class="attraction-caption-title">{{band_thumbnail[3].name}}</div>
+                      <!--<div class="attraction-distance">5 Thành viên</div>-->
                     </div>
                   </a>
                 </div>
@@ -527,9 +533,9 @@
           <div class="col-md-3 col-sm-6">
             <!--Attraction link 4 start-->
             <div class="attraction-link">
-              <a href="http://www.winelands.co.za/" target="_blank">
+              <a href="{{band_thumbnail[4].url}}" target="_blank">
                 <div class="attraction-img">
-                  <img class="img-responsive" src="/static/FrontEnd/img/things-to-do4.jpg" alt="Things to do" />
+                  <img style="height: 393px;" class="img-responsive" src="{{band_thumbnail[4].thumbnail}}" alt="Things to do" />
 
                   <div class="attraction-overlay">
                     <i class="icon-link"></i>
@@ -537,8 +543,8 @@
                 </div>
 
                 <div class="attraction-caption">
-                  <div class="attraction-caption-title">Phúc Võ</div>
-                  <div class="attraction-distance">Solo Artist</div>
+                  <div class="attraction-caption-title">{{band_thumbnail[4].name}}</div>
+                  <!--<div class="attraction-distance">Solo Artist</div>-->
                 </div>
               </a>
             </div>
@@ -547,9 +553,9 @@
           <div class="col-md-3 col-sm-6">
             <!--Attraction link 5 start-->
             <div class="attraction-link">
-              <a href="http://www.southafrica.info/travel/surf/whale.htm#.VabNE5PtlBc" target="_blank">
+              <a href="{{band_thumbnail[5].url}}" target="_blank">
                 <div class="attraction-img">
-                  <img class="img-responsive" src="/static/FrontEnd/img/things-to-do5.jpg" alt="Things to do" />
+                  <img style="max-height: 175px;" class="img-responsive" src="{{band_thumbnail[5].thumbnail}}" alt="Things to do" />
 
                   <div class="attraction-overlay">
                     <i class="icon-link"></i>
@@ -557,7 +563,7 @@
                 </div>
 
                 <div class="attraction-caption">
-                  <div class="attraction-caption-title">Ban nhạc hòa tấu phương Tây</div>
+                  <div class="attraction-caption-title">{{band_thumbnail[5].name}}</div>
                   <div class="attraction-distance"></div>
                 </div>
               </a>
@@ -565,9 +571,9 @@
             <!--Attraction link 5 end-->
             <!--Attraction link 6 start-->
             <div class="attraction-link">
-              <a href="http://www.bayharbour.co.za/" target="_blank">
+              <a href="{{band_thumbnail[6].url}}" target="_blank">
                 <div class="attraction-img">
-                  <img class="img-responsive" src="/static/FrontEnd/img/things-to-do6.jpg" alt="Things to do" />
+                  <img style="max-height: 197px;" class="img-responsive" src="{{band_thumbnail[6].thumbnail}}" alt="Things to do" />
 
                   <div class="attraction-overlay">
                     <i class="icon-link"></i>
@@ -575,7 +581,7 @@
                 </div>
 
                 <div class="attraction-caption">
-                  <div class="attraction-caption-title">Dàn nhạc cụ dân tộc</div>
+                  <div class="attraction-caption-title">{{band_thumbnail[6].name}}</div>
                   <div class="attraction-distance"></div>
                 </div>
               </a>
@@ -1567,7 +1573,9 @@
 
 
   <script src="/static/FrontEnd/js/custom.js"></script>
+  <script src="/static/home.js"></script>
 
 </body>
 
 </html>
+

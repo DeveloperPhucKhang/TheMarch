@@ -3,7 +3,7 @@ Routes and views for the flask application.
 """
 
 from datetime import datetime
-from flask import render_template, send_from_directory
+from flask import render_template, send_from_directory, request
 from TheMarch import app
 from pymongo import MongoClient, ASCENDING, DESCENDING
 import TheMarch.common as common
@@ -12,6 +12,7 @@ import simplejson
 import json
 from datetime import timedelta
 from operator import itemgetter, attrgetter
+from bson.objectid import ObjectId
 
 @app.route('/')
 @app.route('/home')
@@ -20,12 +21,15 @@ def home():
     list_banner = common.load_banner_image()
     #Load event
     list_event = common.load_event_data('home')
+    #Load band thumbnail
+    list_band = common.load_band_thumbnail()
     """Renders the home page."""
     return render_template(
         'Home/home.html',
         title='Home Page',
         banner = list_banner,
         event = list_event,
+        band_thumbnail = list_band,
         year=datetime.now().year,
     )
 
@@ -72,12 +76,13 @@ def detail_event_home(eventid):
 #############
 # Detail Event Home page
 #############
-@app.route("/home/list_event_recently", methods=['GET'])
+@app.route("/home/list_event_recently", methods=['POST'])
 #@login_required
 def list_event_recently():
     list_event = []
     try:
-        list_event_recently = common.current_db.Event.find({'is_approve': 'true'}, 
+        event_id = request.form['event_id']
+        list_event_recently = common.current_db.Event.find({'is_approve': 'true', "_id": { '$ne': ObjectId(event_id) } }, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
                     'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING).limit(3)
         for item in list_event_recently:                
@@ -94,6 +99,38 @@ def list_event_recently():
     except Exception, e:
         return simplejson.dumps({"result": 'error', 'list_event_recently': 'None'})
 
+
+#############
+# Detail Event Home page
+#############
+@app.route("/home/list_event_slider", methods=['POST'])
+#@login_required
+def list_event_slider():
+    list_event = []
+    try:
+        event_id_1 = request.form['event_id_1']
+        event_id_2 = request.form['event_id_2']
+        list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$nin': [ObjectId(event_id_1), ObjectId(event_id_2)] } }, 
+                    {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
+                    'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
+        for item in list_event_slider:                
+            item = {
+                    "_id": str(item["_id"]),
+                    "event_type": item["event_type"],
+                    "title": item["title"],
+                    "thumbnail": "load_event_thumbnail/%s" % item["thumbnail"],
+                    "created_date": item["created_date"] ,
+                    "thumbnail_detail": item["thumbnail_detail"]
+                }                                          
+            list_event.append(item)
+        if len(list_event) < 2:
+            list_event = []
+        if len(list_event)%2 == 1:
+            list_event.append(list_event[0])
+        return simplejson.dumps({"result": 'success', 'list_event_slider': list_event})
+    except Exception, e:
+        return simplejson.dumps({"result": 'error', 'list_event_recently': 'None'})
+
 @app.route('/load_banner_image/<string:filename>', methods=['GET'])
 @app.route('/admin/load_banner_image/<string:filename>', methods=['GET'])
 def load_banner_image(filename):
@@ -102,4 +139,9 @@ def load_banner_image(filename):
 @app.route('/load_event_thumbnail/<string:filename>', methods=['GET'])
 @app.route('/admin/load_event_thumbnail/<string:filename>', methods=['GET'])
 def load_event_thumbnail(filename):
-    return send_from_directory(app.config['EVENT_THUMBNAIL_FOLDER'], filename=filename)    
+    return send_from_directory(app.config['EVENT_THUMBNAIL_FOLDER'], filename=filename)  
+
+@app.route('/load_band_image/<string:filename>', methods=['GET'])
+@app.route('/admin/load_band_image/<string:filename>', methods=['GET'])
+def load_band_image(filename):
+    return send_from_directory(app.config['BAND_IMAGE_FOLDER'], filename=filename)      
