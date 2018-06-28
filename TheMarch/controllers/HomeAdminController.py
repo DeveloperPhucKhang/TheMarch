@@ -153,9 +153,12 @@ def upload_banner():
                     common.current_db.Banner.remove({"file_name": old_file_name, "index": banner_number})
                 #Inset new image                                
                 if float(banner_number) == 0:
-                    #Get max index
+                    #Get max index                    
                     max_banner = common.current_db.Banner.find().sort("index", DESCENDING).limit(1)
-                    banner_number = int(max_banner[0]['index']) + 1
+                    if max_banner.count() == 0:
+                        banner_number = 1
+                    else:
+                        banner_number = int(max_banner[0]['index']) + 1
                     banner_number = str(banner_number)
                 #file_name = file_name.replace(os.path.splitext(file_name)[0], banner_number + '_banner')    
                 file_name = banner_number + '_' + file_name     
