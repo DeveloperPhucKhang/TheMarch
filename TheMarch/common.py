@@ -66,9 +66,11 @@ def load_event_data(location):
         if list_event_db.count() == 0:
             list_event_db = current_db.Event.find().sort("created_date", DESCENDING).limit(2)
     else:
-        list_event_db = current_db.Event.find().sort("created_date", DESCENDING)
+        list_event_db = current_db.Event.find({}, 
+                    {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,
+                    'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
     for item in list_event_db:                
-        item = {
+        sub_item = {
                     "_id": str(item["_id"]),
                     "event_type": item["event_type"],
                     "title": item["title"],
@@ -81,7 +83,7 @@ def load_event_data(location):
                     "is_approve": item["is_approve"],
                     "thumbnail_detail": item["thumbnail_detail"]
                 }                                          
-        list_event.append(item)
+        list_event.append(sub_item)
     return list_event
 
 def load_event_detail_data(eventid):

@@ -286,7 +286,7 @@ def load_event_admin():
     try:
         list_event = common.load_event_data('admin')    
         return simplejson.dumps({"result": 'success', 'list_event': list_event})
-    except:
+    except Exception, e:
         return simplejson.dumps({"result": 'error'})
 
 #############
