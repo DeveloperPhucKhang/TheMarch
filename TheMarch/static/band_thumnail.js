@@ -94,7 +94,7 @@
             processData: false,
             contentType: false,
             success: function (result) {
-                show_alert();
+                show_alert('Load thành công!');
                 result = jQuery.parseJSON(result);
                 var list_band = result.list_band;
                 $("#thumbnail_video").html("");
@@ -204,7 +204,7 @@ function upload_band_thumbnail(current_input) {
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
-                show_alert();
+                show_alert('Lưu thành công!');
                 $(current_input_file).attr('thumbnail_name', result.file_name);
             }
             else {
@@ -243,7 +243,7 @@ function save_band_info(id, index) {
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
-                show_alert()
+                show_alert('Lưu thành công')
             }
             else {
                 show_error('');
@@ -254,16 +254,4 @@ function save_band_info(id, index) {
         },
     });
 
-}
-
-function show_alert() {
-    $.toast({
-        heading: 'Lưu thành công',
-        text: '',
-        position: 'top-right',
-        loaderBg: '#ff6849',
-        icon: 'success',
-        hideAfter: 3500,
-        stack: 6
-    });
 }

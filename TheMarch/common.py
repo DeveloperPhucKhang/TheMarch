@@ -127,3 +127,42 @@ def load_event_detail_data(eventid):
                 "is_approve": event["is_approve"],
             }
     return item    
+
+def load_band_user():
+    list_band = []
+    #Get list banner
+    list_band_data = current_db.User.find({'role': 'band'}).sort("user", DESCENDING)
+    for item in list_band_data:        
+        band_item = {
+                        "_id": str(item["_id"]),
+                        "name": item["name"],
+                        "user": item["user"],
+                        "role": item["role"],
+                        "password": item["password"]
+                    }                            
+        list_band.append(band_item)
+    return list_band
+
+def load_band_data():
+    list_event = []
+    #Get list band
+    list_band_db = current_db.Band_detail.find({}, 
+                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
+                'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
+    for item in list_band_db:                
+        sub_item = {
+                    "_id": str(item["_id"]),
+                    "band_name": item["band_name"],
+                    "title": item["title"],
+                    "thumbnail": "load_band_image/%s" % item["thumbnail"],
+                    "short_description": item["short_description"] ,
+                    #"description": item["description"] ,
+                    "created_by": item["created_by"] ,
+                    "created_date": item["created_date"] ,
+                    "is_important": item["is_important"] ,
+                    "is_approve": item["is_approve"],
+                    "thumbnail_detail": item["thumbnail_detail"],
+                    "band_type": item["band_type"]
+                }                                          
+        list_event.append(sub_item)
+    return list_event

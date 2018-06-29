@@ -766,7 +766,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
+    <Content Include="TheMarch\static\add-band-detail.js" />
     <Content Include="TheMarch\static\add-event.js" />
+    <Content Include="TheMarch\static\admin.js" />
     <Content Include="TheMarch\static\AdminTemplate\ampleadmin-dark\bootstrap\CHANGELOG.md" />
     <Content Include="TheMarch\static\AdminTemplate\ampleadmin-dark\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="TheMarch\static\AdminTemplate\ampleadmin-dark\bootstrap\dist\css\bootstrap-theme.css.map" />
@@ -3553,6 +3555,8 @@
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\varun.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\weather-bg.jpg" />
+    <Content Include="TheMarch\static\band-user.js" />
+    <Content Include="TheMarch\static\band_detail.js" />
     <Content Include="TheMarch\static\band_thumnail.js" />
     <Content Include="TheMarch\static\content\bootstrap.css" />
     <Content Include="TheMarch\static\content\bootstrap.min.css" />
@@ -4831,8 +4835,11 @@
     <Content Include="TheMarch\static\scripts\respond.min.js" />
     <Content Include="TheMarch\static\scripts\_references.js" />
     <Content Include="TheMarch\templates\about.html" />
+    <Content Include="TheMarch\templates\Admin\add-band-detail.html" />
     <Content Include="TheMarch\templates\Admin\add-event.html" />
     <Content Include="TheMarch\templates\Admin\band-thumbnail.html" />
+    <Content Include="TheMarch\templates\Admin\band-user.html" />
+    <Content Include="TheMarch\templates\Admin\band_detail.html" />
     <Content Include="TheMarch\templates\Admin\banner.html" />
     <Content Include="TheMarch\templates\Admin\detail-event.html" />
     <Content Include="TheMarch\templates\Admin\event.html">

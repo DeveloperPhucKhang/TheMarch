@@ -30,10 +30,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-result = common.current_db.User.find()
-for item in result:
-    print("Name: " + item["name"] + "email: " + str(item["email"]))
-
 #############
 # Object user
 #############
@@ -511,3 +507,111 @@ def delete_band_thumbnail():
         return simplejson.dumps({'result': 'success'})        
     except:
         return simplejson.dumps({'result': 'error'})
+
+#############
+# Band user controller
+#############
+@app.route("/admin/band_user", methods=['GET'])
+#@login_required
+def band_user():    
+    return render_template('Admin/band-user.html',
+        year=datetime.now().year)
+
+#############
+# Event controller
+#############
+@app.route("/load_band_user_data", methods=['POST'])
+def load_band_user_data():
+    try:
+        list_band = common.load_band_user()
+        return simplejson.dumps({"result": 'success', 'list_band': list_band})
+    except Exception, e:
+        return simplejson.dumps({"result": 'error'})
+
+#############
+# Add band user
+#############
+@app.route("/admin/add_band_user", methods=['POST'])
+#@login_required
+def add_band_user():   
+    try:
+        name = request.form['name']           
+        user = request.form['user']
+        password = request.form['password']
+        #Check exist user
+        exist_user = common.current_db.User.find({"user": user})
+        if exist_user.count() > 0:
+            return simplejson.dumps({'result': 'error', 'message':'exist'})
+        common.current_db.User.insert({
+                                        "name": name, 
+                                        "user": user, 
+                                        "password": password,
+                                        "role": "band"
+                                        })                  
+        return simplejson.dumps({'result': 'success'})        
+    except Exception, e:
+        return simplejson.dumps({'result': 'error'})
+
+
+#############
+# Add band user
+#############
+@app.route("/admin/update_band_user", methods=['POST'])
+#@login_required
+def update_band_user():   
+    try:
+        user_id = request.form['user_id']           
+        name = request.form['name']           
+        #user = request.form['user']
+        password = request.form['password']
+        if password != '':
+            item = {"name": name,"password": password}
+        else:
+            item = {"name": name}
+        common.current_db.User.update({"_id": ObjectId(user_id)}, {"$set": item})       
+        return simplejson.dumps({'result': 'success'})        
+    except Exception, e:
+        return simplejson.dumps({'result': 'error'})
+
+#############
+# Delete band user
+#############
+@app.route("/delete_band_user", methods=['DELETE'])
+#@login_required
+def delete_band_user():   
+    user_id = request.form['user_id']
+    try:         
+        #update database
+        common.current_db.User.remove({"_id": ObjectId(user_id)})
+        return simplejson.dumps({'result': 'success'})        
+    except:
+        return simplejson.dumps({'result': 'error'})
+
+#############
+# Event controller
+#############
+@app.route("/admin/band_detail", methods=['GET'])
+#@login_required
+def band_detail():        
+    return render_template('Admin/band_detail.html',        
+        year=datetime.now().year)
+
+#############
+# band detail controller
+#############
+@app.route("/load_band_detail_data", methods=['POST'])
+def load_band_detail_data():
+    try:
+        list_band = common.load_band_data()    
+        return simplejson.dumps({"result": 'success', 'list_band': list_band})
+    except Exception, e:
+        return simplejson.dumps({"result": 'error'})
+
+#############
+# Add band detail controller
+#############
+@app.route("/admin/add_band_detail", methods=['GET'])
+#@login_required
+def add_band_detail():        
+    return render_template('Admin/add-band-detail.html',        
+        year=datetime.now().year,)
