@@ -55,7 +55,7 @@ $(document).ready(function () {
             data: dataSet,
             columns: [
                 { id: "id" },
-                { title: "Loại sự kiện" },
+                { title: "Tên sự kiện" },
                 { title: "Tiêu đề" },
                 { title: "Người viết" },
                 { title: "Ngày viết" },
