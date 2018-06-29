@@ -30,7 +30,7 @@
                                             '<div class="attraction-link">' +
                                                 '<a href="http://www.tablemountain.net/" target="_blank">' +
                                                     '<div class="attraction-img">' +
-                                                        '<img class="img-responsive img-slider" src="' + result.list_event_slider[i].thumbnail + '" alt="" />' +
+                                                        '<img style="object-fit: cover;max-height:200px" class="img-responsive img-slider" src="' + result.list_event_slider[i].thumbnail + '" alt="" />' +
                                                         '<div class="attraction-overlay">' +
                                                             '<i class="icon-link"></i>' +
                                                         '</div>' +
@@ -46,7 +46,7 @@
                                             '<div class="attraction-link">' +
                                                 '<a href="http://www.tablemountain.net/" target="_blank">' +
                                                     '<div class="attraction-img">' +
-                                                        '<img class="img-responsive img-slider" src="' + result.list_event_slider[i + 1].thumbnail + '" alt="" />' +
+                                                        '<img style="object-fit: cover;max-height:200px" class="img-responsive img-slider" src="' + result.list_event_slider[i + 1].thumbnail + '" alt="" />' +
                                                         '<div class="attraction-overlay">' +
                                                             '<i class="icon-link"></i>' +
                                                         '</div>' +

@@ -26,7 +26,7 @@
     <link href="../../static/DetailTemplate/css/default-theme.css" rel="stylesheet">
 
     <link href="../../static/DetailTemplate/css/blog.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/static/css/custom-home.css">
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="../../static/DetailTemplate/js/html5shiv.js"></script>
@@ -64,7 +64,7 @@
                   <ul class="menuzord-menu pull-right">
 
                       <li class="active"><a href="javascript:void(0)">TẤT CẢ</a>
-                          <div class="megamenu">
+                          <!--<div class="megamenu">
                               <div class="megamenu-row">
                                   <div class="col3">
                                       <ul class="list-unstyled">
@@ -112,10 +112,10 @@
                                   </div>
 
                               </div>
-                          </div>
+                          </div>-->
                       </li>
 
-                      <li class=""><a href="#">DJ & EDM</a>
+                      <!--<li class=""><a href="#">DJ & EDM</a>
                           <ul class="dropdown">
                               <li><a href="#">Avicii</a></li>
                               <li><a href="#">Deadmau5</a></li>
@@ -225,7 +225,7 @@
                               <li><a href="mp-index-parallax.html">Diplo</a> </li>
                               <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>
                           </ul>
-                      </li>
+                      </li>-->
                   </ul>
                   <!--mega menu end-->
 
@@ -239,6 +239,7 @@
         <!--body content start-->
         <section class="body-content ">
 
+            {% for sub in list_event %}
             <div class="page-content">
                 <div class="container">
                     <div class="row">
@@ -248,27 +249,22 @@
                             <div class="post-single">
                                 <div class="col-md-5">
                                     <div class="post-img">
-                                        <img src="../../static/DetailTemplate/img/post/p6.jpg" alt="">
+                                        <img style="object-fit: cover;max-height:300px" src="{{sub.thumbnail}}" alt="">
                                     </div>
                                 </div>
 
                                 <div class="col-md-7">
                                     <div class="post-desk text-center">
-                                        <ul class="post-cat">
-                                            <li><a href="#">interface</a></li>
-                                            <li><a href="#">standard</a></li>
-                                        </ul>
                                         <h4 class="text-uppercase">
-                                            <a href="blog-single.html">we work together for fun</a>
+                                            <a href="blog-single.html">{{sub.event_type}}</a>
                                         </h4>
                                         <div class="date">
-                                            <a href="#" class="author">martin smith</a> july 29, 2015
+                                            <a href="#" class="author"></a>{{sub.created_date}}
                                         </div>
-                                        <p>
-                                            Phasellus fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                            fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
+                                        <p class="event-short-description">
+                                            {{sub.short_description}}
                                         </p>
-                                        <a href="blog-single.html" class="p-read-more">Read More <i class="icon-arrows_slim_right"></i></a>
+                                        <a href="/home/detail_event/{{sub._id}}" class="p-read-more">Xem thêm <i class="icon-arrows_slim_right"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -280,225 +276,9 @@
             </div>
 
             <hr/>
-
-            <div class="page-content">
-                <div class="container">
-                    <div class="row">
-
-                        <!--blog list-->
-                        <div class="post-list-aside">
-                            <div class="post-single">
-
-                                <div class="col-md-7">
-                                    <div class="post-desk text-center">
-                                        <ul class="post-cat">
-                                            <li><a href="#">interface</a></li>
-                                            <li><a href="#">standard</a></li>
-                                        </ul>
-                                        <h4 class="text-uppercase">
-                                            <a href="blog-single.html">FASHION IN THE COUNTRY</a>
-                                        </h4>
-                                        <div class="date">
-                                            <a href="#" class="author">martin smith</a> july 29, 2015
-                                        </div>
-                                        <p>
-                                            Phasellus fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                            fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                        </p>
-                                        <a href="blog-single.html" class="p-read-more">Read More <i class="icon-arrows_slim_right"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-5">
-                                    <div class="post-img">
-                                        <img src="../../static/DetailTemplate/img/post/p5.jpg" alt="">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--blog list-->
-
-                    </div>
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="page-content">
-                <div class="container">
-                    <div class="row">
-
-                        <!--blog list-->
-                        <div class="post-list-aside">
-                            <div class="post-single">
-                                <div class="col-md-5">
-                                    <div class="post-img">
-                                        <img src="../../static/DetailTemplate/img/post/p4.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-7">
-                                    <div class="post-desk text-center">
-                                        <ul class="post-cat">
-                                            <li><a href="#">interface</a></li>
-                                            <li><a href="#">standard</a></li>
-                                        </ul>
-                                        <h4 class="text-uppercase">
-                                            <a href="blog-single.html">EXPLORE THE PACIFIC NORTHWEST</a>
-                                        </h4>
-                                        <div class="date">
-                                            <a href="#" class="author">martin smith</a> july 29, 2015
-                                        </div>
-                                        <p>
-                                            Phasellus fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                            fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                        </p>
-                                        <a href="blog-single.html" class="p-read-more">Read More <i class="icon-arrows_slim_right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--blog list-->
-
-                    </div>
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="page-content">
-                <div class="container">
-                    <div class="row">
-
-                        <!--blog list-->
-                        <div class="post-list-aside">
-                            <div class="post-single">
-
-                                <div class="col-md-7">
-                                    <div class="post-desk text-center">
-                                        <ul class="post-cat">
-                                            <li><a href="#">interface</a></li>
-                                            <li><a href="#">standard</a></li>
-                                        </ul>
-                                        <h4 class="text-uppercase">
-                                            <a href="blog-single.html">FAVORITE NEW YORK BARS</a>
-                                        </h4>
-                                        <div class="date">
-                                            <a href="#" class="author">martin smith</a> july 29, 2015
-                                        </div>
-                                        <p>
-                                            Phasellus fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                            fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                        </p>
-                                        <a href="blog-single.html" class="p-read-more">Read More <i class="icon-arrows_slim_right"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-5">
-                                    <div class="post-img">
-                                        <img src="../../static/DetailTemplate/img/post/p7.jpg" alt="">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--blog list-->
-
-                    </div>
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="page-content">
-                <div class="container">
-                    <div class="row">
-
-                        <!--blog list-->
-                        <div class="post-list-aside">
-                            <div class="post-single">
-                                <div class="col-md-5">
-                                    <div class="post-img">
-                                        <img src="../../static/DetailTemplate/img/post/p12.jpg" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-7">
-                                    <div class="post-desk text-center">
-                                        <ul class="post-cat">
-                                            <li><a href="#">interface</a></li>
-                                            <li><a href="#">standard</a></li>
-                                        </ul>
-                                        <h4 class="text-uppercase">
-                                            <a href="blog-single.html">FLOWERS & DECORATIONS</a>
-                                        </h4>
-                                        <div class="date">
-                                            <a href="#" class="author">martin smith</a> july 29, 2015
-                                        </div>
-                                        <p>
-                                            Phasellus fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                            fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                        </p>
-                                        <a href="blog-single.html" class="p-read-more">Read More <i class="icon-arrows_slim_right"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--blog list-->
-
-                    </div>
-                </div>
-            </div>
-
-            <hr/>
-
-            <div class="page-content">
-                <div class="container">
-                    <div class="row">
-
-                        <!--blog list-->
-                        <div class="post-list-aside">
-                            <div class="post-single">
-
-                                <div class="col-md-7">
-                                    <div class="post-desk text-center">
-                                        <ul class="post-cat">
-                                            <li><a href="#">interface</a></li>
-                                            <li><a href="#">standard</a></li>
-                                        </ul>
-                                        <h4 class="text-uppercase">
-                                            <a href="blog-single.html">10 AMAZING INTERIOR DESIGNERS</a>
-                                        </h4>
-                                        <div class="date">
-                                            <a href="#" class="author">martin smith</a> july 29, 2015
-                                        </div>
-                                        <p>
-                                            Phasellus fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                            fringilla suscipit risus nec eleifend. Pellentesque eu quam sem, ac malesuada leo sem quam pellente. Awesome sliders give you the opportunity to showcase your content.
-                                        </p>
-                                        <a href="blog-single.html" class="p-read-more ">Read More <i class="icon-arrows_slim_right"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-5">
-                                    <div class="post-img">
-                                        <img src="../../static/DetailTemplate/img/post/p6.jpg" alt="">
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                        <!--blog list-->
-
-                    </div>
-                </div>
-            </div>
-
-            <hr/>
-
+            {% endfor %}
             <!--pagination-->
-            <div class="text-center page-content">
+            <!--<div class="text-center page-content">
                 <ul class="pagination custom-pagination">
                     <li><a href="#">Prev</a></li>
                     <li class="active"><a href="#">1</a></li>
@@ -508,7 +288,7 @@
                     <li><a href="#">5</a></li>
                     <li><a href="#">Next</a></li>
                 </ul>
-            </div>
+            </div>-->
             <!--pagination-->
 
 

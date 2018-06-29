@@ -162,9 +162,11 @@ def load_band_image(filename):
 @app.route("/events_page", methods=['GET'])
 #@login_required
 def events_page():
-    #item = common.load_event_detail_data(eventid)  
+    #Load event
+    list_event = common.load_event_data('admin')
     return render_template(
-        'Home/events.html',         
+        'Home/events.html',
+        list_event = list_event,
         year=datetime.now().year,
     )
 
@@ -178,4 +180,4 @@ def bands_page():
     return render_template(
         'Home/bands.html',         
         year=datetime.now().year,
-    )
+    )   
