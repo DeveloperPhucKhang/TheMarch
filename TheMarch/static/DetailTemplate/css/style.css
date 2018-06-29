@@ -283,8 +283,11 @@ pre {
 
 
 .header-full-width .container {
-    width: 100%;
-    padding: 0 30px;
+    /* width: 100%;
+    padding: 0 30px;*/
+    padding: 0 10px;
+    min-height: 100px;
+    z-index: 15;
 }
 
 .dark-header.header-bottom-border {
@@ -340,7 +343,7 @@ header.transparent-header {
 }
 
 header.sticky .header-sticky {
-    box-shadow: 0 1px 0 rgba(0,0,0,.05);
+    /* box-shadow: 0 1px 0 rgba(0,0,0,.05); */
 }
 
 header.sticky{
@@ -379,12 +382,15 @@ header.nav-center-align .logo-brand img {
     z-index: 1200;
 }
 
+.img-responsive-logo {
+  width: 60px;
+}
 
 header .light-header,
 header.sticky .light-header,
 #header.transparent-header.sticky .light-header,
 .light-nav{
-    background: #fff !important;
+    /* background: #fff !important; */
 }
 
 header .dark-header,
@@ -405,7 +411,7 @@ header.sticky .semi-transparent {
 -----------------------------------------------------------------*/
 
 .menuzord {
-    background: none;
+    background: #FFF;
     padding: 0;
 }
 
@@ -440,10 +446,12 @@ header.sticky li.nav-icon i {
 }
 
 .nav-border-bottom .menuzord-menu>li>a {
-    line-height: 99px;
+    /* line-height: 99px; */
+    line-height: 94px;
 }
 
 header.sticky .menuzord-menu>li>a {
+    /* line-height: 60px; */
     line-height: 60px;
 }
 
