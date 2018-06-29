@@ -487,3 +487,27 @@ def upload_band_thumbnail():
     else:
         return simplejson.dumps({"result": 'success', 'file_name' : 'No file'})    
        
+@app.route("/refesh_band_thumbnail", methods=['GET'])
+#@login_required
+def refesh_band_thumbnail():    
+    list_band = common.load_band_thumbnail()                
+    return simplejson.dumps({'list_band': list_band})
+
+#############
+# Delete banner
+#############
+@app.route("/delete_band_thumbnail", methods=['DELETE'])
+#@login_required
+def delete_band_thumbnail():   
+    file_name = request.form['file_name'] 
+    band_index = request.form['band_index']
+    band_id = request.form['band_id']
+    file_path = os.path.join(app.config['ROOT_FOLDER'] + app.config['BAND_IMAGE_FOLDER'], file_name)
+    try:
+        if os.path.exists(file_path):
+            os.remove(file_path)            
+        #update database
+        common.current_db.Band_thumbnail.update({"_id": ObjectId(band_id)}, {"$set": {"thumbnail": 'default.jpg'}})
+        return simplejson.dumps({'result': 'success'})        
+    except:
+        return simplejson.dumps({'result': 'error'})

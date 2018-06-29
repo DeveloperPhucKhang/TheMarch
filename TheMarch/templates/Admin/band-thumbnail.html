@@ -14,18 +14,24 @@
         <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
             <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
             <!--<button id="add_banner" class="fcbtn btn btn-info btn-outline btn-1c pull-right">Thêm banner</button>-->
-            <button style="margin-right: 1%;" id="refesh_banner" class="fcbtn btn btn-info btn-outline btn-1c pull-right">Tải lại</button>
+            <button style="margin-right: 1%;" id="refesh_band" class="fcbtn btn btn-info btn-outline btn-1c pull-right">Tải lại</button>
         </div>
         <!-- /.col-lg-12 -->
     </div>
     <!-- .row -->
     <!--Thumbnail of video-->
-    <div class="row">
-        <div class="col-sm-4" index="11">
+    <div id="thumbnail_video" class="row">
+        <div class="col-sm-4" index="{{band_data[0].index}}">
             <div class="white-box">
-                <h3 class="box-title">Hình thumbnail của video</h3>
-                <label for="{{band_data[0].index}}_band">{{band_data[0].name}}</label>
-                <input type="file" id="{{band_data[0].index}}_band" class="dropify"
+                <form class="form-horizontal" data-toggle="validator">
+                    <button onclick="save_band_info('{{band_data[0]._id}}','{{band_data[0].index}}')" style="float:right;width: auto;" class="btn btn-block btn-default">Lưu</button>
+                    <h3 class="box-title">Hình thumbnail của video</h3>
+                    <div class="input-group m-b-10">
+                        <span class="input-group-addon" id="basic-addon1">Url video</span>
+                        <input id="txt_url_{{band_data[0].index}}" type="text" value="{{band_data[0].url}}" class="form-control" placeholder="Url" aria-describedby="basic-addon1" required>
+                    </div>
+                </form>
+                <input thumbnail_name="{{band_data[0].thumbnail_name}}" band_id="{{band_data[0]._id}}" type="file" id="{{band_data[0].index}}_band" class="dropify"
                        data-height="300"
                        data-default-file="{{band_data[0].thumbnail}}"
                        data-max-file-size="10M"
@@ -34,7 +40,7 @@
             </div>
         </div>
     </div>
-    <div id="list_banner" class="row">
+    <div id="list_band" class="row">
         {% for sub in band_data %}
         {% if loop.index > 1 %}
         <div class="col-sm-4" index="{{sub.index}}">

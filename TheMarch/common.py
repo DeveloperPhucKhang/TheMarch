@@ -63,7 +63,7 @@ def load_band_thumbnail():
     for item in list_band:        
         thumbnail_url = "load_band_image/%s" % item["thumbnail"]
         band_item = {
-                        "_id": item["_id"],
+                        "_id": str(item["_id"]),
                         "index": item["index"],
                         "thumbnail": thumbnail_url,
                         "thumbnail_name": item["thumbnail"],
