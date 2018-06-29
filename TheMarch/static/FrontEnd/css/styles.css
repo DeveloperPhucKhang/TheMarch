@@ -879,13 +879,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .attractions .attraction-link a:hover .attraction-caption {
-  background-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+  background-color: #685e27; /*#219eaf to #685e27 Giang 29/06*/
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
 .attractions .attraction-link a:hover .attraction-caption:after {
-  border-bottom-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+  border-bottom-color: #685e27; /*#219eaf to #685e27 Giang 29/06*/
 }
 
 /* 11. Newsletter
@@ -1594,13 +1594,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content .attraction-link a:hover .attraction-caption {
-  background-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+  background-color: #685e27; /*#219eaf to #685e27 Giang 29/06*/
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
 .content .attraction-link a:hover .attraction-caption:after {
-  border-bottom-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+  border-bottom-color: #685e27; /*#219eaf to #685e27 Giang 22/06*/
 }
 
 /* 18. Partners
