@@ -107,10 +107,20 @@ def list_event_recently():
 #@login_required
 def list_event_slider():
     list_event = []
+    list_event_slider = []
     try:
         event_id_1 = request.form['event_id_1']
         event_id_2 = request.form['event_id_2']
-        list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$nin': [ObjectId(event_id_1), ObjectId(event_id_2)] } }, 
+        if event_id_1 != 'undefined' and event_id_2 != 'undefined':
+            list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$nin': [ObjectId(event_id_1), ObjectId(event_id_2)] } }, 
+                    {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
+                    'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
+        elif  event_id_1 == 'undefined':
+            list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$ne':  ObjectId(event_id_2) } }, 
+                    {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
+                    'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
+        else:
+            list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$ne': ObjectId(event_id_1) } }, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
                     'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
         for item in list_event_slider:                
@@ -145,3 +155,27 @@ def load_event_thumbnail(filename):
 @app.route('/admin/load_band_image/<string:filename>', methods=['GET'])
 def load_band_image(filename):
     return send_from_directory(app.config['BAND_IMAGE_FOLDER'], filename=filename)      
+
+#############
+# Events Home page
+#############
+@app.route("/events_page", methods=['GET'])
+#@login_required
+def events_page():
+    #item = common.load_event_detail_data(eventid)  
+    return render_template(
+        'Home/events.html',         
+        year=datetime.now().year,
+    )
+
+#############
+# Events Home page
+#############
+@app.route("/bands_page", methods=['GET'])
+#@login_required
+def bands_page():
+    #item = common.load_event_detail_data(eventid)  
+    return render_template(
+        'Home/bands.html',         
+        year=datetime.now().year,
+    )
