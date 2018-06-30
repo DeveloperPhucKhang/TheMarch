@@ -156,7 +156,7 @@ Table of contents
         top:0;
     }
     .page-title{
-        margin-top: 47px;
+        margin-top: 80px;
     }
     .menuzord-responsive.menuzord {
         padding: 0
@@ -166,7 +166,7 @@ Table of contents
         /* line-height: 2.55; */
     }
     .menuzord-responsive .showhide {
-        margin: 0
+        margin: 10px;
     }
     .menuzord-responsive .menuzord-menu {
         width: 100%;

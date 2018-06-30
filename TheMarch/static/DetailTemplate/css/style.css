@@ -733,19 +733,27 @@ header .dark-header .menuzord-menu>li>a>i
     width: 100%
 }
 .menuzord .showhide {
-    width: 30px;
-    height: 46px;
-    padding: 13px 0 0;
-    display: none;
+    margin-top: 30px !important;
+    padding: 35px 10px;
+
     float: right;
-    text-decoration: none;
-    outline: 0;
-    -webkit-tap-highlight-color: transparent
+    background-color: transparent;
+    background-image: none;
+    border: 1px solid #E1E1E1;
+    border-radius: 4px;
+
+
+    padding-top: 4px;
+    padding-right: 9px;
+    padding-bottom: 9px;
+
+    width: 44px;
+    height: 34px;
 }
 .menuzord .showhide em {
-    width: 20px;
-    height: 3px;
-    margin: 3.5px 0px 0;
+    width: 24px;
+    height: 2px;
+    margin: 4.5px 0px 0;
     float: right;
     background: #777
 }
