@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -47,7 +47,7 @@
   <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/static/FrontEnd/img/ico/apple-touch-icon-72-precomposed.png">
   <link rel="apple-touch-icon-precomposed" href="/static/FrontEnd/img/ico/apple-touch-icon-57-precomposed.png">
   <link rel="shortcut icon" href="/static/FrontEnd/img/ico/favicon.png">
-
+    <link href="/static/AdminTemplate/plugins/bower_components/toast-master/css/jquery.toast.css" rel="stylesheet">
 </head>
 
 <body>
@@ -1083,32 +1083,32 @@
             <div class="col-md-6">
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
-                <input type="text" name="name" class="form-control" placeholder="Tên">
+                <input id="txt_name" type="text" name="name" class="form-control" placeholder="Tên">
               </div>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
-                <input type="text" name="email" class="form-control" placeholder="Địa chỉ Email">
+                <input id="txt_mail" type="text" name="email" class="form-control" placeholder="Địa chỉ Email">
               </div>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-phone fa-fw"></i></span>
-                <input type="text" name="phone" class="form-control" placeholder="Số điện thoại">
+                <input id="txt_phone" type="text" name="phone" class="form-control" placeholder="Số điện thoại">
               </div>
               <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-home fa-fw"></i></span>
-                <input type="text" name="address" class="form-control" placeholder="Địa chỉ">
+                <input id="txt_address" type="text" name="address" class="form-control" placeholder="Địa chỉ">
               </div>
             </div>
             <div class="col-md-6">
               <div class="input-group textbox">
                 <span class="input-group-addon"><i class="fa fa-pencil fa-fw"></i></span>
-                <textarea class="form-control" name="message" cols="30" rows="10" placeholder="Nội dung tin nhắn"></textarea>
+                <textarea id="txt_mail_content" class="form-control" name="message" cols="30" rows="10" placeholder="Nội dung tin nhắn"></textarea>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6 col-md-offset-6">
               <p class="contact-form-info">*Để gửi được tin nhắn, tất cả thông tin cần được điền chính xác</p>
-              <button class="btn btn-color1 btn-contact-form">Gửi tin nhắn<i class="fa fa-angle-right"></i></button>
+              <button onclick="send_mail_contact()" class="btn btn-color1 btn-contact-form">Gửi tin nhắn<i class="fa fa-angle-right"></i></button>
             </div>
           </div>
         </form>
@@ -1469,7 +1469,8 @@
 
   <!-- Google Maps Api -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSyV5iRzD7-6agsTEaq6sO9NQDfE5lUBQ&amp;sensor=false&amp;v=3&amp;callback=mtsMapInitialize"></script>
-
+    <script src="/static/AdminTemplate/plugins/bower_components/toast-master/js/jquery.toast.js"></script>
+    <script src="/static/AdminTemplate/ampleadmin-dark/js/toastr.js"></script>
 
   <script src="/static/FrontEnd/js/custom.js"></script>
   <script src="/static/home.js"></script>
