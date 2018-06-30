@@ -2141,6 +2141,9 @@ header.nav-block-left {
         padding-left: 0px;
     }
 
+    .body-content .padding100 {
+        padding-top: 100px;
+    }
 }
 
 /* ----------------------------------------------------------------
