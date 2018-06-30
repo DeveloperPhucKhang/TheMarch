@@ -243,7 +243,7 @@ def detail_event(eventid):
     except Exception, e:
         return render_template('Admin/detail-event.html',
             event_detail = [],
-            year=datetime.now().year,)
+            year=datetime.now().year)
 
 #############
 # Event controller
@@ -615,3 +615,171 @@ def load_band_detail_data():
 def add_band_detail():        
     return render_template('Admin/add-band-detail.html',        
         year=datetime.now().year,)
+
+@app.route("/add_band_detail_db", methods=['POST'])
+#@login_required
+def add_band_detail_db():  
+    try:
+        band_name = request.form['band_name']
+        band_type = request.form['band_type']
+        title = request.form['title']
+        thumbnail = 'default.jpg'
+        is_empty_thumbnail = request.form['is_empty_thumbnail']        
+        thumbnail_detail = 'default.jpg'
+        is_empty_thumbnail_detail = request.form['is_empty_thumbnail_detail']        
+        description = request.form['description']
+        short_description = request.form['short_description']
+        created_date = datetime.now()
+        created_date = '{0}/{1}/{2}'.format(created_date.year, created_date.month, created_date.day)
+        created_by = 'admin'
+        is_important = request.form['is_important']
+        is_approve = 'false'
+        if is_empty_thumbnail == 'false':
+            #save thumbnail to server
+            files = request.files['thumbnail_file']
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['BAND_IMAGE_FOLDER'])
+            file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            thumbnail = file_name
+        if is_empty_thumbnail_detail == 'false':
+            #save thumbnail detail to server
+            files = request.files['thumbnail_file_detail']
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['BAND_IMAGE_FOLDER'])
+            file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            thumbnail_detail = file_name
+        new_event = {
+                        "band_name": band_name,
+                        "band_type": band_type,
+                        "title": title,
+                        "thumbnail": thumbnail,
+                        "thumbnail_detail": thumbnail_detail,
+                        "short_description": short_description,
+                        "description": description,
+                        "is_important": is_important,
+                        "is_approve": is_approve,
+                        "created_date": created_date,
+                        "created_by": created_by
+                    }
+        common.current_db.Band_detail.insert(new_event)   
+        return simplejson.dumps({"result": 'success'}) 
+    except Exception, e:
+        print 'error' + str(e)
+        return simplejson.dumps({"result": 'error'}) 
+
+#############
+# Detail band controller
+#############
+@app.route("/admin/detail_band_page/<string:eventid>", methods=['GET'])
+#@login_required
+def detail_band_page(eventid):        
+    # Load detail data
+    try:     
+        item = common.load_band_detail_data(eventid)  
+        return render_template('Admin/edit-band-detail.html', 
+            band_detail = item,       
+            year=datetime.now().year)
+    except Exception, e:
+        return render_template('Admin/edit-band-detail.html',
+            band_detail = [],
+            year=datetime.now().year)
+
+#############
+# band detail description controller
+#############
+@app.route("/load_band_detail_description", methods=['POST'])
+def load_band_detail_description():
+    try:
+        band_id = request.form['band_id']
+        event = common.current_db.Band_detail.find_one({"_id": ObjectId(band_id)}, {'_id': 1,'description': 1, "band_type": 1})
+        description = None
+        band_type = None
+        if event != None:
+            description = {"description": event["description"]}
+            band_type = {"band_type": event["band_type"]}
+        return simplejson.dumps({"result": 'success', 'description': description, 'band_type': band_type})
+    except:
+        return simplejson.dumps({"result": 'error'})
+
+@app.route("/update_band_detail_db", methods=['POST'])
+#@login_required
+def update_band_detail_db():  
+    try:
+        band_id = request.form['band_id']
+        band_name = request.form['band_name']
+        band_type = request.form['band_type']
+        title = request.form['title']
+        #thumbnail image
+        old_thumbnail = request.form['old_thumbnail']
+        thumbnail = old_thumbnail
+        is_empty_thumbnail = request.form['is_empty_thumbnail']       
+        #thumbnail detail image
+        old_thumbnail_detail = request.form['old_thumbnail_detail']
+        thumbnail_detail = old_thumbnail_detail
+        is_empty_thumbnail_detail = request.form['is_empty_thumbnail_detail']        
+        description = request.form['description']
+        short_description = request.form['short_description']
+        is_important = request.form['is_important']        
+        if is_empty_thumbnail == 'false':
+            #delete old thumnail
+            #Delete old thumnail image, database
+            if old_thumbnail != '' and old_thumbnail != 'default.jpg':            
+                old_file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], old_thumbnail)
+                if os.path.exists(old_file_path):
+                    os.remove(old_file_path)
+            #save thumbnail to server
+            files = request.files['thumbnail_file']
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['BAND_IMAGE_FOLDER'])
+            file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            thumbnail = file_name
+        if is_empty_thumbnail_detail == 'false':
+            #delete old thumnail detail
+            #Delete old thumnail detail image, database
+            if old_thumbnail_detail != '' and old_thumbnail_detail != 'default.jpg':            
+                old_file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], old_thumbnail_detail)
+                if os.path.exists(old_file_path):
+                    os.remove(old_file_path)
+            #save thumbnail to server
+            files = request.files['thumbnail_file_detail']
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['BAND_IMAGE_FOLDER'])
+            file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            thumbnail_detail = file_name
+        update_event = {
+                        "band_name": band_name,
+                        "band_type": band_type,
+                        "title": title,
+                        "thumbnail": thumbnail,
+                        "thumbnail_detail": thumbnail_detail,
+                        "short_description": short_description,
+                        "description": description,
+                        "is_important": is_important,
+                    }
+        common.current_db.Band_detail.update({"_id": ObjectId(band_id)}, {"$set": update_event})     
+        return simplejson.dumps({"result": 'success'}) 
+    except Exception, e:
+        print 'error' + str(e)
+        return simplejson.dumps({"result": 'error'}) 
+
+#############
+# Approve event
+#############
+@app.route("/approve_band_detail", methods=['POST'])
+#@login_required
+def approve_band_detail():   
+    try:
+        band_id = request.form['band_id'] 
+        is_approve = request.form['is_approve']        
+        common.current_db.Band_detail.update({"_id": ObjectId(band_id)}, {"$set": {"is_approve": is_approve}})                    
+        return simplejson.dumps({'result': 'success'})        
+    except Exception, e:
+        return simplejson.dumps({'result': 'error'})

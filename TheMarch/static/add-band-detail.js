@@ -8,12 +8,13 @@
     });
 
     $('#back_event').on("click", function () {
-        window.location.href = '/admin/event';
+        window.location.href = '/admin/band_detail';
     })
 
     $('form').bind('submit', function (e) {
         e.preventDefault();
-        var event_type = $('#band_name').val();
+        var band_name = $('#band_name').val();
+        var band_type = $('#band_type').val();
         var title = $('#title').val();
         // thumbnail
         var thumbnail = $('#thumbnail')[0].files[0];
@@ -35,11 +36,12 @@
         var description = $('.summernote').code();
         //var description = $('.summernote').summernote('code');
         var is_important =$('#is_important').is(":checked");
-        if($.trim(event_type) == '' || $.trim(title) == '' || $.trim(short_description) == ''){
+        if ($.trim(band_name) == '' || $.trim(title) == '' || $.trim(short_description) == '') {
             return;
         }
         var data = new FormData();
-        data.append('event_type', event_type);
+        data.append('band_name', band_name);
+        data.append('band_type', band_type);
         data.append('title', title);
         data.append('is_empty_thumbnail', is_empty_thumbnail);
         data.append('thumbnail_file', thumbnail_file);
@@ -49,7 +51,7 @@
         data.append('description', description);
         data.append('is_important', is_important);
         $.ajax({
-            url: "/add_event_db", //the page containing python script
+            url: "/add_band_detail_db", //the page containing python script
             type: "POST", //request type,
             data: data,
             cache: false,
@@ -58,7 +60,7 @@
             success: function (result) {
                 result = jQuery.parseJSON(result);
                 if (result.result == 'success') {
-                    window.location.href = '/admin/event';
+                    window.location.href = '/admin/band_detail';
                 }
                 else {
                     show_error('');

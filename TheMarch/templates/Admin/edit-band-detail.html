@@ -1,5 +1,5 @@
 ﻿{% extends "Admin/layout.html" %}
-{% block title %}Quản lí sự kiện{% endblock %}
+{% block title %}Quản lí band detail{% endblock %}
 {% block head %}
 {{super()}}
 <link href="/static/css/event.css" rel="stylesheet">
@@ -22,22 +22,22 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="white-box">
-                <input id="event_id" type="hidden" value="{{event_detail._id}}" />
+                <input id="band_id" type="hidden" value="{{band_detail._id}}" />
                 <h3 class="box-title m-b-40" style="display: inline-block;">Thông tin sự kiện</h3>
                 <div id="btn_approve" class="btn-group m-r-10 m-l-10">
-                    {% if event_detail.is_approve ==  'true'%}
+                    {% if band_detail.is_approve ==  'true'%}
                     <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle waves-effect waves-light" type="button">
                         <i class="ti-arrow-circle-down"></i> Đã xét duyệt <span class="caret"></span>
                     </button>
                     <ul role="menu" class="dropdown-menu animated flipInX">                        
-                        <li><a href="#" onclick="approve_event(false)" >Chưa xét duyệt</a></li>
+                        <li><a href="#" onclick="approve_band_detail(false)" >Chưa xét duyệt</a></li>
                     </ul>
                     {% else%}
                     <button aria-expanded="false" data-toggle="dropdown" class="btn btn-danger dropdown-toggle waves-effect waves-light" type="button">
                          Chưa xét duyệt <span class="caret"></span>
                     </button>
                     <ul role="menu" class="dropdown-menu animated flipInX">
-                        <li><a href="#" onclick="approve_event(true)">Xét duyệt</a></li>                        
+                        <li><a href="#" onclick="approve_band_detail(true)">Xét duyệt</a></li>                        
                     </ul>
                     {% endif%}                    
                 </div>
@@ -45,24 +45,39 @@
                     <div class="form-group">
                         <label class="col-md-12">Tên sự kiện</label>
                         <div class="col-md-12">
-                            <input type="text" id="event_type" class="form-control" value="{{event_detail.event_type}}" required>
+                            <input type="text" id="band_name" class="form-control" value="{{band_detail.band_name}}" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12">Loại ban nhạc</label>
+                        <div class="col-sm-12">
+                            <select id="band_type" class="form-control">
+                                <option value="1">DJ & EDM</option>
+                                <option value="2">POP</option>
+                                <option value="3">ROCK</option>
+                                <option value="4">COUNTRY</option>
+                                <option value="5">R&B</option>
+                                <option value="6">RAP</option>
+                                <option value="7">LATIN</option>
+                                <option value="8">KHÁC</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12" for="title"></label>
                         <div class="col-md-12">
-                            <input type="text" id="title" class="form-control" value="{{event_detail.title}}" required>
+                            <input type="text" id="title" class="form-control" value="{{band_detail.title}}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-12">Phần mô tả ngắn hiển thị trên trang chủ</label>
                         <div class="col-md-12">
-                            <textarea class="form-control" id="short_description" rows="5" required>{{event_detail.short_description}}</textarea>
+                            <textarea class="form-control" id="short_description" rows="5" required>{{band_detail.short_description}}</textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="checkbox checkbox-success" style="padding-left:35px;">
-                            {% if event_detail.is_important ==  'true'%}
+                            {% if band_detail.is_important ==  'true'%}
                             <input id="is_important" type="checkbox" checked>
                             {% else%}
                             <input id="is_important" type="checkbox">
@@ -75,16 +90,16 @@
                         <label class="col-md-6">Hình của sự kiện hiện tại đang hiển thị lên trang chủ</label>
                         <label class="col-md-6">Hình của sự kiện hiện tại đang hiển thị lên trang detail</label>
                         <div class="col-md-6 m-b-10">
-                            <img id="old_thumbnail" style="max-height: 200px;" value="{{event_detail.thumbnail_name}}" src="/{{event_detail.thumbnail}}" alt="Hình" class="col-md-8 col-xs-12 m-b-10 p-l-0">
+                            <img id="old_thumbnail" style="max-height: 200px;" value="{{band_detail.thumbnail_name}}" src="/{{band_detail.thumbnail}}" alt="Hình" class="col-md-8 col-xs-12 m-b-10 p-l-0">
                         </div>
                         <div class="col-md-6 m-b-10">
-                            <img id="old_thumbnail_detail" style="max-height: 200px;" value="{{event_detail.thumbnail_detail_name}}" src="/{{event_detail.thumbnail_detail}}" alt="Hình" class="col-md-8 col-xs-12 m-b-10 p-l-0">
+                            <img id="old_thumbnail_detail" style="max-height: 200px;" value="{{band_detail.thumbnail_detail_name}}" src="/{{band_detail.thumbnail_detail}}" alt="Hình" class="col-md-8 col-xs-12 m-b-10 p-l-0">
                         </div>
                         <div class="col-sm-6">
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput">
                                     <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                    <span class="fileinput-filename">{{event_detail.thumbnail_name}}</span>
+                                    <span class="fileinput-filename">{{band_detail.thumbnail_name}}</span>
                                 </div>
                                 <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Select file</span>
@@ -99,7 +114,7 @@
                             <div class="fileinput fileinput-new input-group" data-provides="fileinput">
                                 <div class="form-control" data-trigger="fileinput">
                                     <i class="glyphicon glyphicon-file fileinput-exists"></i>
-                                    <span class="fileinput-filename">{{event_detail.thumbnail_detail_name}}</span>
+                                    <span class="fileinput-filename">{{band_detail.thumbnail_detail_name}}</span>
                                 </div>
                                 <span class="input-group-addon btn btn-default btn-file">
                                     <span class="fileinput-new">Select file</span>
@@ -193,5 +208,5 @@
 <script src="/static/AdminTemplate/plugins/bower_components/summernote/dist/summernote.min.js"></script>
 <script src="/static/AdminTemplate/ampleadmin-dark/js/validator.js"></script>
 <!--Style Switcher -->
-<script src="/static/detail-event.js"></script>
+<script src="/static/edit-band-detail.js"></script>
 {% endblock %}

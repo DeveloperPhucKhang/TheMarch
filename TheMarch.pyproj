@@ -3844,6 +3844,7 @@
     <Content Include="TheMarch\static\DetailTemplate\slider-revolution\js\jquery.themepunch.revolution.js" />
     <Content Include="TheMarch\static\DetailTemplate\slider-revolution\js\jquery.themepunch.revolution.min.js" />
     <Content Include="TheMarch\static\DetailTemplate\slider-revolution\js\jquery.themepunch.tools.min.js" />
+    <Content Include="TheMarch\static\edit-band-detail.js" />
     <Content Include="TheMarch\static\event.js">
       <SubType>Code</SubType>
     </Content>
@@ -4842,6 +4843,7 @@
     <Content Include="TheMarch\templates\Admin\band_detail.html" />
     <Content Include="TheMarch\templates\Admin\banner.html" />
     <Content Include="TheMarch\templates\Admin\detail-event.html" />
+    <Content Include="TheMarch\templates\Admin\edit-band-detail.html" />
     <Content Include="TheMarch\templates\Admin\event.html">
       <SubType>Code</SubType>
     </Content>

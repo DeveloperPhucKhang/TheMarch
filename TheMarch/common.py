@@ -144,7 +144,7 @@ def load_band_user():
     return list_band
 
 def load_band_data():
-    list_event = []
+    list_band = []
     #Get list band
     list_band_db = current_db.Band_detail.find({}, 
                 {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
@@ -164,5 +164,30 @@ def load_band_data():
                     "thumbnail_detail": item["thumbnail_detail"],
                     "band_type": item["band_type"]
                 }                                          
-        list_event.append(sub_item)
-    return list_event
+        list_band.append(sub_item)
+    return list_band
+
+def load_band_detail_data(bandid):
+    # Load detail data
+    band = current_db.Band_detail.find_one({"_id": ObjectId(bandid)}, 
+                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
+                'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1})
+    item = None;
+    if band != None:
+        item = {
+                "_id": str(band["_id"]),
+                    "band_name": band["band_name"],
+                    "title": band["title"],
+                    "thumbnail": "load_band_image/%s" % band["thumbnail"],
+                    "thumbnail_name": band["thumbnail"],
+                    "short_description": band["short_description"] ,
+                    #"description": item["description"] ,
+                    "created_by": band["created_by"] ,
+                    "created_date": band["created_date"] ,
+                    "is_important": band["is_important"] ,
+                    "is_approve": band["is_approve"],
+                    "thumbnail_detail": "load_band_image/%s" % band["thumbnail_detail"],
+                    "thumbnail_detail_name": band["thumbnail_detail"],
+                    "band_type": band["band_type"]
+            }
+    return item  

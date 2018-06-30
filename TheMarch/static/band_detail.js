@@ -150,8 +150,8 @@ $(document).ready(function () {
         //edit event
         $('#event_table tbody').on('click', '.edit-button', function () {
             var data = table.row($(this).parents('tr')).data();
-            var event_id = data[0];
-            window.location.href = '/admin/detail_event/' + event_id;
+            var band_id = data[0];
+            window.location.href = '/admin/detail_band_page/' + band_id;
         }),
 
         $('#event_table_length').append(add_button_html);
