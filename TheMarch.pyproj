@@ -4818,6 +4818,7 @@
     <Content Include="TheMarch\static\banner.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="TheMarch\static\home-bands.js" />
     <Content Include="TheMarch\static\home-detail-event.js" />
     <Content Include="TheMarch\static\home.js" />
     <Content Include="TheMarch\static\scripts\bootstrap.js" />

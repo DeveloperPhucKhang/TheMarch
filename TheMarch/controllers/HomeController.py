@@ -176,8 +176,20 @@ def events_page():
 @app.route("/bands_page", methods=['GET'])
 #@login_required
 def bands_page():
-    #item = common.load_event_detail_data(eventid)  
+    item = common.load_all_band_detail()  
     return render_template(
-        'Home/bands.html',         
+        'Home/bands.html',
+        list_band_detail = item,    
         year=datetime.now().year,
     )   
+
+#############
+# home band detail
+#############
+@app.route("/home/load_home_band_detail_data", methods=['POST'])
+def load_home_band_detail_data():
+    try:
+        list_band = common.load_all_band_detail()      
+        return simplejson.dumps({"result": 'success', 'list_band': list_band})
+    except Exception, e:
+        return simplejson.dumps({"result": 'error'})

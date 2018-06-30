@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from pymongo import MongoClient,ASCENDING, DESCENDING
 from bson.objectid import ObjectId
 import os
@@ -191,3 +192,41 @@ def load_band_detail_data(bandid):
                     "band_type": band["band_type"]
             }
     return item  
+
+def load_all_band_detail():
+    list_band = []
+    # Load detail data
+    list_band_db = current_db.Band_detail.find({'is_approve': 'true'}, 
+                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
+                'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1}).sort("band_type", DESCENDING)
+    for item in list_band_db:                
+        sub_item = {
+                        "_id": str(item["_id"]),
+                        "band_name": item["band_name"],
+                        "title": item["title"],
+                        "thumbnail": "load_band_image/%s" % item["thumbnail"],
+                        "short_description": item["short_description"] ,
+                        #"description": item["description"] ,
+                        "created_by": item["created_by"] ,
+                        "created_date": item["created_date"] ,
+                        "is_important": item["is_important"] ,
+                        "is_approve": item["is_approve"],
+                        "thumbnail_detail": "load_band_image/%s" % item["thumbnail_detail"],
+                        "band_type": item["band_type"],
+                        "band_type_name": get_band_type_name(item["band_type"])
+                    }                                          
+        list_band.append(sub_item)
+    return list_band  
+
+def get_band_type_name(id):
+    band_type_list = {
+        1: "DJ & EDM",
+        2: "POP",
+        3: "ROCK",
+        4: "COUNTRY",
+        5: "R&B",
+        6: "RAP",
+        7: "LATIN",
+        8: "KHÁC",
+    }
+    return band_type_list.get(int(id), "KHÁC")
