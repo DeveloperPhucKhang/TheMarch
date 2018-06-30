@@ -28,7 +28,7 @@ function load_menu_all(result) {
         html = '<div class="col3">' +
                     '<ul class="list-unstyled">';
         for (var i = 0; i < result.list_band.length; i++) {
-            html += '<li><a href="/home/band_detail/' + result.list_band[i]._id + '">' + result.list_band[i].band_name + '</a></li>';
+            html += '<li><a href="/home/home_band_detail/' + result.list_band[i]._id + '">' + result.list_band[i].band_name + '</a></li>';
         }
         html += '</ul></div>';
 
@@ -39,7 +39,7 @@ function load_menu_all(result) {
             html += '<div class="col3"><ul class="list-unstyled">';
             for (var z = 0; z < 7; z++) {
                 if (count < result.list_band.length) {
-                    html += '<li><a href="/home/band_detail/' + result.list_band[count]._id + '">' + result.list_band[count].band_name + '</a></li>';
+                    html += '<li><a href="/home/home_band_detail/' + result.list_band[count]._id + '">' + result.list_band[count].band_name + '</a></li>';
                 }
                 count = count + 1;
             }

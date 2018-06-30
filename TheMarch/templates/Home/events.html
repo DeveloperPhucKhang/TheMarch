@@ -240,6 +240,7 @@
         <section class="body-content ">
 
             {% for sub in list_event %}
+            {% if loop.index % 2 == 0 %}
             <div class="page-content">
                 <div class="container">
                     <div class="row">
@@ -274,7 +275,41 @@
                     </div>
                 </div>
             </div>
+            {% else %}
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
 
+                        <!--blog list-->
+                        <div class="post-list-aside">
+                            <div class="post-single">
+                                <div class="col-md-7">
+                                    <div class="post-desk text-center">
+                                        <h4 class="text-uppercase">
+                                            <a href="blog-single.html">{{sub.event_type}}</a>
+                                        </h4>
+                                        <div class="date">
+                                            <a href="#" class="author"></a>{{sub.created_date}}
+                                        </div>
+                                        <p class="event-short-description">
+                                            {{sub.short_description}}
+                                        </p>
+                                        <a href="/home/detail_event/{{sub._id}}" class="p-read-more">Xem thêm <i class="icon-arrows_slim_right"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="post-img">
+                                        <img style="object-fit: cover;max-height:300px" src="{{sub.thumbnail}}" alt="">
+                                    </div>
+                                </div>                                
+                            </div>
+                        </div>
+                        <!--blog list-->
+
+                    </div>
+                </div>
+            </div>
+            {% endif %}    
             <hr/>
             {% endfor %}
             <!--pagination-->

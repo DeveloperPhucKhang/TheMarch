@@ -177,10 +177,12 @@ def events_page():
 @app.route("/bands_page/<string:menu>", methods=['GET'])
 #@login_required
 def bands_page(menu):
-    item = common.load_band_by_menu('all')  
+    list_band_detail = common.load_band_by_menu('all')  
+    list_band_menu = common.load_band_by_menu(menu)  
     return render_template(
         'Home/bands.html',
-        list_band_detail = item,    
+        list_band_detail = list_band_detail,
+        list_band_menu = list_band_menu,    
         year=datetime.now().year,
     )   
 
@@ -201,9 +203,40 @@ def load_home_band_detail_data():
 @app.route("/home/home_band_detail/<string:band_id>", methods=['GET'])
 #@login_required
 def home_band_detail(band_id):    
-    item = common.load_all_band_detail()  
+    item = common.load_band_detail_data(band_id)  
+    list_item = common.load_band_by_menu('all') 
     return render_template(
         'Home/band-detail.html',
-        list_band_detail = item,    
+        band_detail_data = item,   
+        list_band_detail = list_item, 
         year=datetime.now().year,
     ) 
+
+
+#############
+# Detail Event Home page
+#############
+@app.route("/home/list_band_by_type", methods=['POST'])
+#@login_required
+def list_band_by_type():
+    list_event = []
+    try:
+        band_id = request.form['band_id']
+        band_type = request.form['band_type']
+        list_band = common.current_db.Band_detail.find({'is_approve': 'true', 'band_type':band_type, "_id": { '$ne': ObjectId(band_id) } }, 
+                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1, 'band_type': 1,
+                    'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING).limit(3)
+        for item in list_band:                
+            item = {
+                    "_id": str(item["_id"]),
+                    "band_name": item["band_name"],
+                    "band_type": item["band_type"],
+                    "title": item["title"],
+                    "thumbnail": "/load_band_image/%s" % item["thumbnail"],
+                    "created_date": item["created_date"] ,
+                    "thumbnail_detail": item["thumbnail_detail"]
+                }                                          
+            list_event.append(item) 
+        return simplejson.dumps({"result": 'success', 'list_band': list_event})
+    except Exception, e:
+        return simplejson.dumps({"result": 'error', 'list_band': 'None'})

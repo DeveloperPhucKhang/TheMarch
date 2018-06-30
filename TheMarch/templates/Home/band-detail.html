@@ -4,9 +4,11 @@
 <!--page title start-->
 <section class="page-title">
     <div class="container">
+        <input type="hidden" id="band_detail_id" value="{{band_detail_data._id}}"/>
+        <input type="hidden" id="band_type" value="{{band_detail_data.band_type}}" />
         <div class="row">
             <div class="col-md-12">
-                <h4 class="text-uppercase">Tên Band Nè!</h4>
+                <h4 class="text-uppercase">{{band_detail_data.band_name}}</h4>
                 <ol class="breadcrumb">
                     <li><a href="#">Fanpage</a></li>
                     <li><a href="#">Youtube Channel</a></li>
@@ -28,14 +30,14 @@
                     <div class="blog-classic">
                         <div class="blog-post">
                             <div class="full-width">
-                                <img src="../../static/DetailTemplate/img/post/p12.jpg" alt="" />
+                                <img style="max-height:400px;object-fit: cover;" src="{{band_detail_data.thumbnail_detail}}" alt="" />
                             </div>
-                            <h4 class="text-uppercase"><a href="blog-single.html">standard blog post with photo</a></h4>
+                            <h4 class="text-uppercase"><a href="blog-single.html">{{band_detail_data.title}}</a></h4>
                             <ul class="post-meta">
-                                <li><i class="fa fa-music"></i><a href="#">Thể loại</a></li>
+                                <li><i class="fa fa-music"></i><a href="#">{{band_detail_data.band_type_name}}</a></li>
                             </ul>
-
-                            <p>
+                            <div id="content_detail"></div>
+                            <!--<p>
                                 Lorem ipsum dolor sit amet, consectetur <a href="#">adipisicing elit</a>. Ab adipisci architecto
                                 consequatur debitis eos eum hic illum ipsam itaque laborum magni minima
                                 molestias nostrum numquam odit officia pariatur perspiciatis placeat porro quae
@@ -61,16 +63,16 @@
                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at debitis
                                 deleniti dignissimos ea enim iste laboriosam nihil omnis possimus quia, tempora,
                                 totam voluptatibus! Animi consectetur dolor in laboriosam unde.
-                            </p>
+                            </p>-->
 
-<pre>
+<!--<pre>
 .blog-classic {
     margin-bottom: 70px;
     padding-bottom: 70px;
     border-bottom: 1px solid #efefef;
 }
 </pre>
-                            <p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  </p>
+                            <p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets.. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.  </p>-->
                         </div>
                     </div>
                     <!--classic image post-->
@@ -93,8 +95,8 @@
                         <div class="heading-title-alt text-left heading-border-bottom">
                             <h6 class="text-uppercase">Band cùng thể loại</h6>
                         </div>
-                        <ul class="widget-latest-post">
-                            <li>
+                        <ul id="list_same_band" class="widget-latest-post">
+                            <!--<li>
                                 <div class="thumb"><a href="#"><img src="../../static/DetailTemplate/img/post/post-thumb.jpg" alt="" /></a></div>
                                 <div class="w-desk">
                                     <a href="#">Old Father Getup</a>
@@ -114,7 +116,7 @@
                                     <a href="#">Alone with the music</a>
                                     May 05, 2014
                                 </div>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                     <!--latest post widget-->
@@ -127,4 +129,8 @@
 
 </section>
 <!--body content end-->
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="/static/home-band-detail.js"></script>
 {% endblock %}

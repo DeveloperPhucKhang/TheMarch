@@ -179,7 +179,7 @@ def load_band_detail_data(bandid):
                 "_id": str(band["_id"]),
                     "band_name": band["band_name"],
                     "title": band["title"],
-                    "thumbnail": "load_band_image/%s" % band["thumbnail"],
+                    "thumbnail": "/load_band_image/%s" % band["thumbnail"],
                     "thumbnail_name": band["thumbnail"],
                     "short_description": band["short_description"] ,
                     #"description": item["description"] ,
@@ -187,9 +187,10 @@ def load_band_detail_data(bandid):
                     "created_date": band["created_date"] ,
                     "is_important": band["is_important"] ,
                     "is_approve": band["is_approve"],
-                    "thumbnail_detail": "load_band_image/%s" % band["thumbnail_detail"],
+                    "thumbnail_detail": "/load_band_image/%s" % band["thumbnail_detail"],
                     "thumbnail_detail_name": band["thumbnail_detail"],
-                    "band_type": band["band_type"]
+                    "band_type": band["band_type"],
+                    "band_type_name": get_band_type_name(band["band_type"])
             }
     return item  
 
@@ -198,6 +199,10 @@ def load_band_by_menu(menu):
     # Load detail data
     if menu == 'all':
         list_band_db = current_db.Band_detail.find({'is_approve': 'true'}, 
+                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
+                    'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1}).sort("band_type", DESCENDING)
+    else:
+        list_band_db = current_db.Band_detail.find({'is_approve': 'true', 'band_type' : menu},
                     {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
                     'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1}).sort("band_type", DESCENDING)
     for item in list_band_db:                

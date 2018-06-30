@@ -56,7 +56,7 @@
                         <ul id="bands_menu" class="menuzord-menu pull-right">
 
                             <li class="active">
-                                <a href="javascript:void(0)">TẤT CẢ</a>
+                                <a href="/bands_page/all">TẤT CẢ</a>
                                 <div class="megamenu">
                                     <div id="all_menu" class="megamenu-row">
 
@@ -110,11 +110,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">DJ & EDM</a>
+                                <a href="/bands_page/1">DJ & EDM</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '1' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
@@ -130,11 +130,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">POP</a>
+                                <a href="/bands_page/2">POP</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '2' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
@@ -150,11 +150,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">ROCK</a>
+                                <a href="/bands_page/3">ROCK</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '3' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
@@ -170,11 +170,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">COUNTRY</a>
+                                <a href="/bands_page/4">COUNTRY</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '4' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
@@ -190,11 +190,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">R&B</a>
+                                <a href="/bands_page/5">R&B</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '5' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
@@ -210,11 +210,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">RAP</a>
+                                <a href="/bands_page/6">RAP</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '6' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
@@ -230,11 +230,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">LATIN</a>
+                                <a href="/bands_page/7">LATIN</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '7' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
@@ -250,11 +250,11 @@
                             </li>
 
                             <li class="">
-                                <a href="#">KHÁC</a>
+                                <a href="/bands_page/8">KHÁC</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '8' %}
-                                    <li><a href="/home/band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
                                     <!--<li><a href="#">Avicii</a></li>
