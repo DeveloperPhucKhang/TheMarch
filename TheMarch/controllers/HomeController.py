@@ -14,6 +14,9 @@ import json
 from datetime import timedelta
 from operator import itemgetter, attrgetter
 from bson.objectid import ObjectId
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 
 @app.route('/')
 @app.route('/home')
@@ -240,3 +243,42 @@ def list_band_by_type():
         return simplejson.dumps({"result": 'success', 'list_band': list_event})
     except Exception, e:
         return simplejson.dumps({"result": 'error', 'list_band': 'None'})
+
+@app.route("/send_mail_contact", methods=['POST'])
+#@login_required
+def send_mail_contact():
+    name = request.form['name']
+    mail = request.form['mail']
+    phone = request.form['phone']
+    address = request.form['address']
+    mail_content = request.form['mail_content']
+    
+    me = "duypv250592@gmail.com"
+    you = "duypv@outlook.com"
+    msg = MIMEMultipart('alternative')
+    msg['Subject'] = "Test mail"
+    msg['From'] = me
+    msg['To'] = you
+    text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttps://www.python.org"
+    html = """\
+    <html>
+      <head></head>
+      <body>
+        <p>Hi!<br>
+           How are you?<br>
+           Here is the <a href="https://www.python.org">link</a> you wanted.
+        </p>
+      </body>
+    </html>
+    """
+    try:
+        part1 = MIMEText(text, 'plain')
+        part2 = MIMEText(html, 'html')
+        msg.attach(part1)
+        msg.attach(part2)
+        s = smtplib.SMTP('localhost')
+        s.sendmail(me, you, msg.as_string())
+        s.quit()
+    except Exception, e:
+        return simplejson.dumps({"result": 'error'})    
+    return simplejson.dumps({"result": 'success'})

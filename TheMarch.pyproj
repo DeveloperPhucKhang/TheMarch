@@ -4850,6 +4850,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="TheMarch\templates\Admin\layout.html" />
+    <Content Include="TheMarch\templates\Admin\login-page.html" />
     <Content Include="TheMarch\templates\Admin\login.html" />
     <Content Include="TheMarch\templates\Admin\navbar.html" />
     <Content Include="TheMarch\templates\Admin\sidebar.html" />

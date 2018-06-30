@@ -76,7 +76,7 @@ def load_user(user_id):
 #############
 @login_manager.unauthorized_handler
 def unauthorized():        
-    return render_template('Admin/login.html', form = LoginForm())    
+    return render_template('Admin/login-page.html', form = LoginForm())    
     #message = None
     #if common.reset_msg:
     #    message = common.reset_msg

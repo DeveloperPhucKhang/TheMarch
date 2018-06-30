@@ -76,11 +76,11 @@ $(document).ready(function () {
                 },
                 {
                     "targets": 1,
-                    "width": 250,
+                    "width": 220,
                 },
                 {
                     "targets": 3,
-                    "width": 110,
+                    "width": 150,
                 },
                 {
                     "targets": 4,
