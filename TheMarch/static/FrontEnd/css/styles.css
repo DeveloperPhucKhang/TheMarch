@@ -495,7 +495,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .room-tabs {
   background-color: #ffffff;
-  padding: 80px 0 85px 0;
+  padding: 110px 0 85px 0;
 }
 
 .room-tabs h2 {
@@ -725,7 +725,7 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------*/
 
 .attractions {
-  padding: 80px 0 85px 0;
+  padding: 110px 0 85px 0;
   background-color: #fff;
 }
 
@@ -1404,7 +1404,7 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------*/
 
 .content {
-  padding: 80px 0 85px 0;
+  padding: 110px 0 85px 0;
 }
 
 .content h2 {
@@ -1629,7 +1629,7 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------*/
 
 .contact {
-  padding: 80px 0 85px 0;
+  padding: 110px 0 85px 0;
 }
 
 .contact h2 {
@@ -2323,7 +2323,7 @@ footer:after {
   /* 8. Room Tabs 1200px
   -------------------------------------*/
   .room-tabs {
-    padding-top: 70px;
+    padding-top: 110px;
     padding-bottom: 70px;
   }
   .room-tabs h2 {
@@ -2380,7 +2380,7 @@ footer:after {
   /* 10. Attractions 1200px
   -------------------------------------*/
   .attractions {
-    padding-top: 70px;
+    padding-top: 110px;
     padding-bottom: 70px;
   }
   .attractions h2 {
@@ -2576,7 +2576,7 @@ footer:after {
   /* 17. Content 1200px
   -------------------------------------*/
   .content {
-    padding-top: 70px;
+    padding-top: 110px;
     padding-bottom: 70px;
   }
   .content h2 {
@@ -2609,7 +2609,7 @@ footer:after {
   /* 19. Contact 1200px
   -------------------------------------*/
   .contact {
-    padding-top: 70px;
+    padding-top: 110px;
     padding-bottom: 70px;
   }
   .contact h2 {
