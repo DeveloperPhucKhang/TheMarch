@@ -4854,6 +4854,7 @@
     <Content Include="TheMarch\templates\Admin\sidebar.html" />
     <Content Include="TheMarch\templates\contact.html" />
     <Content Include="TheMarch\templates\Home\band-detail.html" />
+    <Content Include="TheMarch\templates\Home\bands-layout.html" />
     <Content Include="TheMarch\templates\Home\bands.html" />
     <Content Include="TheMarch\templates\Home\event-detail.html" />
     <Content Include="TheMarch\templates\Home\events.html" />

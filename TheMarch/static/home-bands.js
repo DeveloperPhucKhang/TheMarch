@@ -33,12 +33,15 @@ function load_menu_all(result) {
         html += '</ul></div>';
 
     } else {
-        var z = 0;
+        var count = 0;
         for (var i = 0; i < result.list_band.length; i = i + 7) {
-            z = i;
+            count = i;
             html += '<div class="col3"><ul class="list-unstyled">';
-            for (z; z < result.list_band.length; z++) {
-                html += '<li><a href="/home/band_detail/' + result.list_band[z]._id + '">' + result.list_band[z].band_name + '</a></li>';
+            for (var z = 0; z < 7; z++) {
+                if (count < result.list_band.length) {
+                    html += '<li><a href="/home/band_detail/' + result.list_band[count]._id + '">' + result.list_band[count].band_name + '</a></li>';
+                }
+                count = count + 1;
             }
             html += '</ul></div>';
         }

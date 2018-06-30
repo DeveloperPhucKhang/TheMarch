@@ -2,7 +2,7 @@
 var current_id = '';
 
 $(document).ready(function () {
-    function get_event_data() {
+    function get_band_detail_data() {
         $.ajax({
             url: "/load_band_detail_data", //the page containing python script
             type: "POST", //request type,            
@@ -100,10 +100,10 @@ $(document).ready(function () {
         // Delete event
         $('#event_table tbody').on('click', '.delete-button', function () {
             var data = table.row($(this).parents('tr')).data();
-            var event_id = data[0];
-            current_id = event_id;
+            var band_id = data[0];
+            current_id = band_id;
             swal({
-                title: "Anh có chắc chắn muốn xóa sự kiện này?",
+                title: "Anh có chắc chắn muốn xóa bài viết band nhạc này?",
                 text: "Xóa rồi sẽ không thể phục hồi được!",
                 type: "warning",
                 showCancelButton: true,
@@ -114,9 +114,9 @@ $(document).ready(function () {
                 showLoaderOnConfirm: true
             }, function () {
                 var data = new FormData();
-                data.append('event_id', current_id);
+                data.append('band_id', current_id);
                 $.ajax({
-                    url: "/delete_event", //the page containing python script
+                    url: "/delete_band_detail", //the page containing python script
                     type: "DELETE", //request type,
                     data: data,
                     cache: false,
@@ -134,7 +134,7 @@ $(document).ready(function () {
                             });
                             // Reload table
                             table.destroy();
-                            get_event_data();
+                            get_band_detail_data();
                         }
                         else {
                             show_error('Có lỗi xảy ra trong khi xóa sự kiện!');
@@ -159,12 +159,12 @@ $(document).ready(function () {
             window.location.href = '/admin/add_band_detail';
         })
     }
-    get_event_data();
+    get_band_detail_data();
 
     $('#refesh_banner').on('click', function () {
         // Reload table
         table.destroy();
-        get_event_data();
+        get_band_detail_data();
     });
 
 });

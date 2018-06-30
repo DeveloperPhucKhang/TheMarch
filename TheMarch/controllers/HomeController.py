@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Routes and views for the flask application.
 """
@@ -173,10 +174,10 @@ def events_page():
 #############
 # Events Home page
 #############
-@app.route("/bands_page", methods=['GET'])
+@app.route("/bands_page/<string:menu>", methods=['GET'])
 #@login_required
-def bands_page():
-    item = common.load_all_band_detail()  
+def bands_page(menu):
+    item = common.load_band_by_menu('all')  
     return render_template(
         'Home/bands.html',
         list_band_detail = item,    
@@ -189,7 +190,20 @@ def bands_page():
 @app.route("/home/load_home_band_detail_data", methods=['POST'])
 def load_home_band_detail_data():
     try:
-        list_band = common.load_all_band_detail()      
+        list_band = common.load_band_by_menu('all')      
         return simplejson.dumps({"result": 'success', 'list_band': list_band})
     except Exception, e:
         return simplejson.dumps({"result": 'error'})
+
+#############
+# bands detail
+#############
+@app.route("/home/home_band_detail/<string:band_id>", methods=['GET'])
+#@login_required
+def home_band_detail(band_id):    
+    item = common.load_all_band_detail()  
+    return render_template(
+        'Home/band-detail.html',
+        list_band_detail = item,    
+        year=datetime.now().year,
+    ) 

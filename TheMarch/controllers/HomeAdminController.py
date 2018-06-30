@@ -763,6 +763,7 @@ def update_band_detail_db():
                         "short_description": short_description,
                         "description": description,
                         "is_important": is_important,
+                        "is_approve": 'false',
                     }
         common.current_db.Band_detail.update({"_id": ObjectId(band_id)}, {"$set": update_event})     
         return simplejson.dumps({"result": 'success'}) 
@@ -782,4 +783,26 @@ def approve_band_detail():
         common.current_db.Band_detail.update({"_id": ObjectId(band_id)}, {"$set": {"is_approve": is_approve}})                    
         return simplejson.dumps({'result': 'success'})        
     except Exception, e:
+        return simplejson.dumps({'result': 'error'})
+
+#############
+# Delete event
+#############
+@app.route("/delete_band_detail", methods=['DELETE'])
+#@login_required
+def delete_band_detail():   
+    try:
+        band_id = request.form['band_id'] 
+        band = common.current_db.Band_detail.find_one({"_id": ObjectId(band_id)})
+        if band != None:
+            #delete database
+            common.current_db.Band_detail.remove({"_id": ObjectId(band_id)})
+            thumbnail = band.get('thumbnail')
+            if thumbnail != 'default.jpg':
+                #delete file thumbnail
+                file_path = os.path.join(app.config['ROOT_FOLDER'] + app.config['BAND_IMAGE_FOLDER'], thumbnail)    
+                if os.path.exists(file_path):
+                    os.remove(file_path)                           
+        return simplejson.dumps({'result': 'success'})        
+    except:
         return simplejson.dumps({'result': 'error'})
