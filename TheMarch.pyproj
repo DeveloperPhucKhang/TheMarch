@@ -4858,6 +4858,7 @@
     <Content Include="TheMarch\templates\Home\bands-layout.html" />
     <Content Include="TheMarch\templates\Home\bands.html" />
     <Content Include="TheMarch\templates\Home\event-detail.html" />
+    <Content Include="TheMarch\templates\Home\events-layout.html" />
     <Content Include="TheMarch\templates\Home\events.html" />
     <Content Include="TheMarch\templates\Home\home.html" />
     <Content Include="TheMarch\templates\index.html" />
