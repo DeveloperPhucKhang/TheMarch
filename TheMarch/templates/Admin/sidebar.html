@@ -6,17 +6,18 @@
         <ul class="nav" id="side-menu">
             <li class="user-pro">
                 <a href="#" class="waves-effect">
-                    <img src="/static/AdminTemplate/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span class="hide-menu"> Steve Gection<span class="fa arrow"></span></span>
+                    <img src="/static/AdminTemplate/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span class="hide-menu">{{current_user.user_name}}<span class="fa arrow"></span></span>
                 </a>
                 <ul class="nav nav-second-level collapse" aria-expanded="false" style="height: 0px;">
-                    <li><a href="javascript:void(0)"><i class="ti-user"></i> <span class="hide-menu">My Profile</span></a></li>
+                    <!--<li><a href="javascript:void(0)"><i class="ti-user"></i> <span class="hide-menu">My Profile</span></a></li>
                     <li><a href="javascript:void(0)"><i class="ti-wallet"></i> <span class="hide-menu">My Balance</span></a></li>
                     <li><a href="javascript:void(0)"><i class="ti-email"></i> <span class="hide-menu">Inbox</span></a></li>
-                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> <span class="hide-menu">Account Setting</span></a></li>
-                    <li><a href="javascript:void(0)"><i class="fa fa-power-off"></i> <span class="hide-menu">Logout</span></a></li>
+                    <li><a href="javascript:void(0)"><i class="ti-settings"></i> <span class="hide-menu">Account Setting</span></a></li>-->
+                    <li><a href="{{ url_for('logout') }}"><i class="fa fa-power-off"></i> <span class="hide-menu">Đăng xuất</span></a></li>
                 </ul>
             </li>
             <li class="devider"></li>
+            {% if current_user.role ==  'admin'%}
             <li>
                 <a href="{{ url_for('banner') }}" class="waves-effect">
                     <i class="mdi mdi-clipboard-text fa-fw"></i>
@@ -75,6 +76,14 @@
                     <span class="hide-menu">Quay lại trang chủ</span>
                 </a>
             </li>
+            {% else%}
+            <li>
+                <a href="{{ url_for('band_detail') }}" class="waves-effect">
+                    <i class="mdi mdi-clipboard-text fa-fw"></i>
+                    <span class="hide-menu">Quản lí thông tin bài viết của ban nhạc</span>
+                </a>
+            </li>
+            {% endif%}
         </ul>
     </div>
 </div>

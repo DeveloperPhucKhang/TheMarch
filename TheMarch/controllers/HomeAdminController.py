@@ -34,10 +34,12 @@ login_manager.login_view = 'login'
 # Object user
 #############
 class User(UserMixin):
-    def __init__(self,id, user_name, password):
+    def __init__(self,id, user_name, password, role,name):
         self.id = id
         self.user_name = user_name
         self.password = password
+        self.role = role
+        self.name = name
         self.set_password(password)
 
     def set_password(self, password):
@@ -45,30 +47,21 @@ class User(UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-#############
-# Delare login form
-#############
-class LoginForm(FlaskForm):
-    username = StringField('User Name'.decode('utf-8'),
-                           validators=[InputRequired(), Length(min=4, max=80)], 
-                           render_kw={"placeholder": "Tên đăng nhập".decode('utf-8')})
-    password = PasswordField('Password'.decode('utf-8'),
-                           validators=[InputRequired()], 
-                           render_kw={"placeholder": "Mật khẩu".decode('utf-8')})
-    remember = BooleanField('Ghi nhớ'.decode('utf-8'))
-
 @app.route('/admin')
 @login_required
 def admin():
-    return redirect(url_for('banner'))
+    if current_user.role == 'admin':
+        return redirect(url_for('banner'))
+    else:
+        return redirect(url_for('band_detail'))
 
 #############
 # Get detail of user
 #############
 @login_manager.user_loader
 def load_user(user_id):
-    current_user = common.current_db.User.find_one({"_id": ObjectId(user_id)})
-    currentUser = User(user_id, current_user.get('username'), current_user.get('password'))
+    loged_user = common.current_db.User.find_one({"_id": ObjectId(user_id)})
+    currentUser = User(user_id, loged_user.get('user'), loged_user.get('password'), loged_user.get('role'), loged_user.get('name'))
     return currentUser
 
 #############
@@ -76,15 +69,7 @@ def load_user(user_id):
 #############
 @login_manager.unauthorized_handler
 def unauthorized():        
-    return render_template('Admin/login-page.html', form = LoginForm())    
-    #message = None
-    #if common.reset_msg:
-    #    message = common.reset_msg
-    #    common.reset_msg = None
-    #    return render_template('Admin/login.html', form = LoginForm(),
-    #    reset_msg = message)
-    #else:
-    #    return render_template('Admin/login.html', form = LoginForm())
+    return render_template('Admin/login-page.html')    
 
 #############
 #Login
@@ -98,40 +83,53 @@ def login_page():
 #############
 @app.route('/login', methods=['POST'])
 def do_admin_login():
-    form = LoginForm(request.form)
+    #form = LoginForm(request.form)
     username = request.form["username"]
     password = request.form["password"]
+    remember_login = request.form.get('remember')
+    if remember_login == 'false':
+        remember_login = False
+    else:
+        remember_login = True
     # CHeck username
-    current_user = common.current_db.User.find_one({"email": username})
-    if current_user:
+    user_db = common.current_db.User.find_one({"user": username})
+    if user_db:
         # Check pass
-        #if check_password_hash(password, current_user.get('password')):
+        #if check_password_hash(password, login_user.get('password')):
         #    return 'Login success'
-        if password == current_user.get('password'):
-            remember = request.form.get("remember", "no") == "yes"
-            currentUser = User(current_user.get('_id'), username, password)
+        if password == user_db.get('password'):
+            #remember = request.form.get("remember", "no") == "yes"
+            currentUser = User(user_db.get('_id'), username, password, user_db.get('role'), user_db.get('name'))
             # Excute Login
-            if login_user(currentUser, remember=form.remember.data):
+            if login_user(currentUser, remember=remember_login):
                 session.permanent = True
-                app.permanent_session_lifetime = timedelta(minutes=3000)
+                app.permanent_session_lifetime = timedelta(minutes=1)
                 session.update(dict(user=username))
-                return redirect(url_for('home_admin'))   
+                return simplejson.dumps({'result': 'success', 'role':current_user.role})
             # Cannot Login
             else:                    
-                return render_template('login.html', form=form, errorLogin = constants.ERR_LOGIN_FAILED.decode('utf-8'))
+                return simplejson.dumps({'result': 'error', 'type': 'server', 'message' : 'Xảy ra lỗi trong quá trình đăng nhập!'.decode('utf-8')})  
             # Check password failed
         else:                
-            return render_template('login.html', form=form , passError= constants.ERR_PASSWORD.decode('utf-8'))
+            return simplejson.dumps({'result': 'error','type': 'password', 'message' : 'Mật khẩu không đúng!'.decode('utf-8')})                
     # Check user name failed
-    else:               
-        return render_template('login.html', form=form, userError= constants.ERR_USER_NAME.decode('utf-8'))
-    return render_template('login.html', form=form)
-    
+    else: 
+        return simplejson.dumps({'result': 'error', 'type': 'username','message' : 'Tên đăng nhập không đúng'.decode('utf-8')})                
+
+#############
+#Logout
+#############
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect('/')
+
 #############
 # Upload banner
 #############
 @app.route("/upload_banner", methods=['POST'])
-#@login_required
+@login_required
 def upload_banner():    
     files = request.files['file']
     if files:     
@@ -179,7 +177,7 @@ def upload_banner():
 # Delete banner
 #############
 @app.route("/delete_banner", methods=['DELETE'])
-#@login_required
+@login_required
 def delete_banner():   
     file_name = request.form['file_name'] 
     banner_number = request.form['banner_number']
@@ -197,15 +195,18 @@ def delete_banner():
 # Banner controller
 #############
 @app.route("/admin/banner", methods=['GET'])
-#@login_required
-def banner():    
+@login_required
+def banner():
+    if current_user.role != 'admin':
+        return render_template('Admin/error-permission.html')
     list_banner = common.load_banner_image()
     return render_template('Admin/banner.html',
         banner_data = list_banner,
+        #current_user = current_user,
         year=datetime.now().year,)
 
 @app.route("/refesh_banner", methods=['GET'])
-#@login_required
+@login_required
 def refesh_banner():    
     list_banner = common.load_banner_image()                
     return simplejson.dumps({'list_banner': list_banner})
@@ -214,8 +215,10 @@ def refesh_banner():
 # Event controller
 #############
 @app.route("/admin/event", methods=['GET'])
-#@login_required
+@login_required
 def event():        
+    if current_user.role != 'admin':
+        return render_template('Admin/error-permission.html')
     return render_template('Admin/event.html',        
         year=datetime.now().year,)
 
@@ -223,8 +226,10 @@ def event():
 # Add Event controller
 #############
 @app.route("/admin/add_event", methods=['GET'])
-#@login_required
-def add_event():        
+@login_required
+def add_event():
+    if current_user.role != 'admin':
+        return render_template('Admin/error-permission.html')    
     return render_template('Admin/add-event.html',        
         year=datetime.now().year,)
 
@@ -232,9 +237,11 @@ def add_event():
 # Detail Event controller
 #############
 @app.route("/admin/detail_event/<string:eventid>", methods=['GET'])
-#@login_required
+@login_required
 def detail_event(eventid):        
     # Load detail data
+    if current_user.role != 'admin':
+            return render_template('Admin/error-permission.html')
     try:     
         item = common.load_event_detail_data(eventid)  
         return render_template('Admin/detail-event.html', 
@@ -273,7 +280,7 @@ def load_event_description():
 
 
 @app.route("/add_event_db", methods=['POST'])
-#@login_required
+@login_required
 def add_event_db():  
     try:
         event_type = request.form['event_type']
@@ -327,7 +334,7 @@ def add_event_db():
 
 
 @app.route("/update_event_db", methods=['POST'])
-#@login_required
+@login_required
 def update_event_db():  
     try:
         event_id = request.form['event_id']
@@ -393,7 +400,7 @@ def update_event_db():
 # Delete event
 #############
 @app.route("/delete_event", methods=['DELETE'])
-#@login_required
+@login_required
 def delete_event():   
     try:
         event_id = request.form['event_id'] 
@@ -415,7 +422,7 @@ def delete_event():
 # Approve event
 #############
 @app.route("/approve_event", methods=['POST'])
-#@login_required
+@login_required
 def approve_event():   
     try:
         event_id = request.form['event_id'] 
@@ -429,8 +436,10 @@ def approve_event():
 # Band thumbnail controller
 #############
 @app.route("/admin/band_thumbnail", methods=['GET'])
-#@login_required
+@login_required
 def band_thumbnail():    
+    if current_user.role != 'admin':
+        return render_template('Admin/error-permission.html')
     list_band = common.load_band_thumbnail()
     return render_template('Admin/band-thumbnail.html',
         band_data = list_band,
@@ -440,7 +449,7 @@ def band_thumbnail():
 # Save band thumbnail info
 #############
 @app.route("/admin/save_band_thumbnail_info", methods=['POST'])
-#@login_required
+@login_required
 def save_band_thumbnail_info():   
     try:
         band_id = request.form['band_id']           
@@ -455,7 +464,7 @@ def save_band_thumbnail_info():
 # Upload band thumbnail
 #############
 @app.route("/admin/upload_band_thumbnail", methods=['POST'])
-#@login_required
+@login_required
 def upload_band_thumbnail():    
     files = request.files['file']
     if files:     
@@ -484,7 +493,7 @@ def upload_band_thumbnail():
         return simplejson.dumps({"result": 'success', 'file_name' : 'No file'})    
        
 @app.route("/refesh_band_thumbnail", methods=['GET'])
-#@login_required
+@login_required
 def refesh_band_thumbnail():    
     list_band = common.load_band_thumbnail()                
     return simplejson.dumps({'list_band': list_band})
@@ -493,7 +502,7 @@ def refesh_band_thumbnail():
 # Delete banner
 #############
 @app.route("/delete_band_thumbnail", methods=['DELETE'])
-#@login_required
+@login_required
 def delete_band_thumbnail():   
     file_name = request.form['file_name'] 
     band_index = request.form['band_index']
@@ -512,8 +521,10 @@ def delete_band_thumbnail():
 # Band user controller
 #############
 @app.route("/admin/band_user", methods=['GET'])
-#@login_required
-def band_user():    
+@login_required
+def band_user():
+    if current_user.role != 'admin':
+            return render_template('Admin/error-permission.html')    
     return render_template('Admin/band-user.html',
         year=datetime.now().year)
 
@@ -532,7 +543,7 @@ def load_band_user_data():
 # Add band user
 #############
 @app.route("/admin/add_band_user", methods=['POST'])
-#@login_required
+@login_required
 def add_band_user():   
     try:
         name = request.form['name']           
@@ -557,7 +568,7 @@ def add_band_user():
 # Add band user
 #############
 @app.route("/admin/update_band_user", methods=['POST'])
-#@login_required
+@login_required
 def update_band_user():   
     try:
         user_id = request.form['user_id']           
@@ -577,7 +588,7 @@ def update_band_user():
 # Delete band user
 #############
 @app.route("/delete_band_user", methods=['DELETE'])
-#@login_required
+@login_required
 def delete_band_user():   
     user_id = request.form['user_id']
     try:         
@@ -591,7 +602,7 @@ def delete_band_user():
 # Event controller
 #############
 @app.route("/admin/band_detail", methods=['GET'])
-#@login_required
+@login_required
 def band_detail():        
     return render_template('Admin/band_detail.html',        
         year=datetime.now().year)
@@ -600,10 +611,11 @@ def band_detail():
 # band detail controller
 #############
 @app.route("/load_band_detail_data", methods=['POST'])
+@login_required
 def load_band_detail_data():
     try:
-        list_band = common.load_band_data()    
-        return simplejson.dumps({"result": 'success', 'list_band': list_band})
+        list_band = common.load_band_data(current_user)    
+        return simplejson.dumps({"result": 'success', 'list_band': list_band, 'current_user_role': current_user.role})
     except Exception, e:
         return simplejson.dumps({"result": 'error'})
 
@@ -611,13 +623,18 @@ def load_band_detail_data():
 # Add band detail controller
 #############
 @app.route("/admin/add_band_detail", methods=['GET'])
-#@login_required
+@login_required
 def add_band_detail():        
+    if current_user.role != 'admin':
+        #Check number of record from current user
+        list_band_db = common.current_db.Band_detail.find({"userId": ObjectId(current_user.id)})
+        if list_band_db.count() > 0:
+            return render_template('Admin/error-permission.html')
     return render_template('Admin/add-band-detail.html',        
         year=datetime.now().year,)
 
 @app.route("/add_band_detail_db", methods=['POST'])
-#@login_required
+@login_required
 def add_band_detail_db():  
     try:
         band_name = request.form['band_name']
@@ -652,7 +669,8 @@ def add_band_detail_db():
             # save file to disk
             files.save(file_path)
             thumbnail_detail = file_name
-        new_event = {
+        new_event = {   
+                        "userId": ObjectId(current_user.id),
                         "band_name": band_name,
                         "band_type": band_type,
                         "title": title,
@@ -675,7 +693,7 @@ def add_band_detail_db():
 # Detail band controller
 #############
 @app.route("/admin/detail_band_page/<string:eventid>", methods=['GET'])
-#@login_required
+@login_required
 def detail_band_page(eventid):        
     # Load detail data
     try:     
@@ -706,7 +724,7 @@ def load_band_detail_description():
         return simplejson.dumps({"result": 'error'})
 
 @app.route("/update_band_detail_db", methods=['POST'])
-#@login_required
+@login_required
 def update_band_detail_db():  
     try:
         band_id = request.form['band_id']
@@ -775,7 +793,7 @@ def update_band_detail_db():
 # Approve event
 #############
 @app.route("/approve_band_detail", methods=['POST'])
-#@login_required
+@login_required
 def approve_band_detail():   
     try:
         band_id = request.form['band_id'] 
@@ -789,7 +807,7 @@ def approve_band_detail():
 # Delete event
 #############
 @app.route("/delete_band_detail", methods=['DELETE'])
-#@login_required
+@login_required
 def delete_band_detail():   
     try:
         band_id = request.form['band_id'] 
@@ -806,3 +824,4 @@ def delete_band_detail():
         return simplejson.dumps({'result': 'success'})        
     except:
         return simplejson.dumps({'result': 'error'})
+

@@ -24,6 +24,7 @@
             <div class="white-box">
                 <input id="band_id" type="hidden" value="{{band_detail._id}}" />
                 <h3 class="box-title m-b-40" style="display: inline-block;">Thông tin sự kiện</h3>
+                {% if current_user.role ==  'admin'%}
                 <div id="btn_approve" class="btn-group m-r-10 m-l-10">
                     {% if band_detail.is_approve ==  'true'%}
                     <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle waves-effect waves-light" type="button">
@@ -41,6 +42,7 @@
                     </ul>
                     {% endif%}                    
                 </div>
+                {% endif%}
                 <form class="form-horizontal" data-toggle="validator">
                     <div class="form-group">
                         <label class="col-md-12">Tên sự kiện</label>
@@ -134,7 +136,7 @@
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Lưu</button>
-                        <button onclick="clear()" class="btn btn-info waves-effect waves-light">Clear tất cả</button>
+                        <!--<button onclick="clear()" class="btn btn-info waves-effect waves-light">Clear tất cả</button>-->
                     </div>
                 </form>
             </div>
