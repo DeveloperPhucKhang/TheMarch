@@ -103,7 +103,7 @@ def do_admin_login():
             # Excute Login
             if login_user(currentUser, remember=remember_login):
                 session.permanent = True
-                app.permanent_session_lifetime = timedelta(minutes=1)
+                app.permanent_session_lifetime = timedelta(minutes=30)
                 session.update(dict(user=username))
                 return simplejson.dumps({'result': 'success', 'role':current_user.role})
             # Cannot Login
