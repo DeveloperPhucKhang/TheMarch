@@ -158,6 +158,13 @@ $(document).ready(function () {
             window.location.href = '/admin/detail_band_page/' + band_id;
         })
 
+        //edit event
+        $('#event_table tbody').on('click', '.preview-button', function () {
+            var data = table.row($(this).parents('tr')).data();
+            var band_id = data[0];
+            window.location.href = '/admin/band_detail_preview/' + band_id;
+        })
+
         if (current_user_role == 'admin' || dataSet.length == 0) {
             $('#event_table_length').append(add_button_html);
         }

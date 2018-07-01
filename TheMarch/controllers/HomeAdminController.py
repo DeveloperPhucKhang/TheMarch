@@ -825,3 +825,17 @@ def delete_band_detail():
     except:
         return simplejson.dumps({'result': 'error'})
 
+#############
+# bands detail preview
+#############
+@app.route("/admin/band_detail_preview/<string:band_id>", methods=['GET'])
+#@login_required
+def band_detail_preview(band_id):    
+    item = common.load_band_detail_data(band_id)  
+    #list_item = common.load_band_by_menu('all') 
+    return render_template(
+        'Admin/band-detail-preview.html',
+        band_detail_data = item,   
+        #list_band_detail = list_item, 
+        year=datetime.now().year,
+    ) 

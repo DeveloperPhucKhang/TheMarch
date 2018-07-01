@@ -3555,6 +3555,7 @@
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\varun.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\weather-bg.jpg" />
+    <Content Include="TheMarch\static\band-detail-preview.js" />
     <Content Include="TheMarch\static\band-user.js" />
     <Content Include="TheMarch\static\band_detail.js" />
     <Content Include="TheMarch\static\band_thumnail.js" />
@@ -4841,6 +4842,7 @@
     <Content Include="TheMarch\templates\about.html" />
     <Content Include="TheMarch\templates\Admin\add-band-detail.html" />
     <Content Include="TheMarch\templates\Admin\add-event.html" />
+    <Content Include="TheMarch\templates\Admin\band-detail-preview.html" />
     <Content Include="TheMarch\templates\Admin\band-thumbnail.html" />
     <Content Include="TheMarch\templates\Admin\band-user.html" />
     <Content Include="TheMarch\templates\Admin\band_detail.html" />
