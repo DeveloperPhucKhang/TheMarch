@@ -4822,6 +4822,7 @@
     <Content Include="TheMarch\static\home-bands.js" />
     <Content Include="TheMarch\static\home-detail-event.js" />
     <Content Include="TheMarch\static\home.js" />
+    <Content Include="TheMarch\static\login-page.js" />
     <Content Include="TheMarch\static\scripts\bootstrap.js" />
     <Content Include="TheMarch\static\scripts\bootstrap.min.js" />
     <Content Include="TheMarch\static\scripts\jquery-1.10.2.intellisense.js" />
