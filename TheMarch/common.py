@@ -63,13 +63,18 @@ def load_band_thumbnail():
     list_band = current_db.Band_thumbnail.find().sort("index", ASCENDING)
     for item in list_band:        
         thumbnail_url = "load_band_image/%s" % item["thumbnail"]
+        video_url = item["url"] 
+        if "www.youtube.com" in video_url:
+            split_str = video_url.split('=')
+            video_id = split_str[len(split_str)-1]
+            video_url = 'https://www.youtube.com/embed/' + video_id + '?rel=0&amp;;controls=0&amp;;showinfo=0&amp;start=8'
         band_item = {
                         "_id": str(item["_id"]),
                         "index": item["index"],
                         "thumbnail": thumbnail_url,
                         "thumbnail_name": item["thumbnail"],
                         "name": item["name"],
-                        "url": item["url"] 
+                        "url": video_url
                     }                            
         file_display.append(band_item)
     return file_display

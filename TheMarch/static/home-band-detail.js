@@ -43,7 +43,8 @@
                     html += '<li>'+
                                 '<div class="thumb"><a href="/home/home_band_detail/' + result.list_band[i]._id + '"><img style="height: 60px;object-fit: cover;" src="' + result.list_band[i].thumbnail + '" alt="" /></a></div>' +
                                 '<div class="w-desk">'+
-                                    '<a href="/home/home_band_detail/' + result.list_band[i]._id + '">' + result.list_band[i].band_name + '</a>    ' + result.list_band[i].created_date + '</div>' +
+                                    '<a href="/home/home_band_detail/' + result.list_band[i]._id + '">' + result.list_band[i].band_name + '</a>' +
+                                     //+result.list_band[i].created_date + '</div>'+
                             '</li>';
                 }
                 $('#list_same_band').html(html);
