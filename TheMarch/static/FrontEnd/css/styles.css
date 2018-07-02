@@ -310,6 +310,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .teaser-slider .item img {
+  padding-top: 90px; /*Giang edit 02/07/2018*/
   position: absolute;
   margin: auto;
   top: 0;
@@ -327,7 +328,7 @@ h1, h2, h3, h4, h5, h6 {
   background-repeat: no-repeat;
   text-shadow: none;
   top: 50%;
-  margin-top: -37px;
+  /*margin-top: -37px;*/ /*Giang edit 02/07/2018*/
   padding-top: 25px;
 }
 
@@ -2264,7 +2265,7 @@ footer:after {
   /* 5. Teaser Slider 1200px
   -------------------------------------*/
   .teaser-slider .item {
-    height: 550px;
+    height: 340px; /*Giang edit 02/07/2018*/
   }
   .teaser-slider-ph {
     height: 545px;
@@ -2578,6 +2579,7 @@ footer:after {
   .content {
     padding-top: 110px;
     padding-bottom: 70px;
+    margin-top: -95px; /*Giang edit 02/07/2018*/
   }
   .content h2 {
     font-size: 32px;
@@ -2994,7 +2996,7 @@ footer:after {
   /* 5. Teaser Slider 768px
   -------------------------------------*/
   .teaser-slider .item {
-    height: 430px;
+    height: 340px;
   }
   .teaser-slider-ph {
     height: 425px;
