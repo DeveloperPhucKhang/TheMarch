@@ -204,7 +204,7 @@
                             <a class="scroll-to" href="/home/detail_event/{{sub._id}}">Xem thêm...</a>
                         </p>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 pull-left">
                         <div class="content-img-box">
                             <img style="object-fit: cover;max-height:350px" class="img-responsive content-img" src="/{{sub.thumbnail}}" alt="Content Image Left" />
                         </div>
@@ -213,27 +213,6 @@
                 {% endif %}
                 {% endfor %}
 
-
-                <!--Content Image Left start-->
-                <!--<div class="row content-img-left">
-                  <div class="col-md-6 pull-right">
-                    <h2>Tour xuyên Việt</h2>
-
-                    <h3>Chúng tôi tổ chức event trên mọi miền đất nước.<br/></h3>
-
-                    <p>Nằm ngay mặt tiền đường Trần Quang Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn, <span class="label label-default">The March Coffee</span> tạo ấn tượng ban đầu không hề giống một quán café. Nằm ngay mặt tiền đường Trần Quang
-                      Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn<span class="my-tooltip" data-toggle="tooltip" title="" data-original-title="This is an demo tooltip!">Hover over me!</span></p>
-                    <p>
-                      <a class="scroll-to" href="#sc-reviews">Xem thêm...</a>
-                    </p>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="content-img-box">
-                      <img class="img-responsive content-img" src="/static/FrontEnd/img/content-img-left.jpg" alt="Content Image Left" />
-                    </div>
-                  </div>
-                </div>-->
-                <!--Content Image Left end-->
                 <div id="content-slider" class="carousel slide" data-ride="carousel">
 
                     <div class="row">
@@ -721,13 +700,13 @@
                                     <div class="col-md-6">
                                         <div class="room-tabs-gallery">
                                             <div class="room-tabs-gallery-thumbnails">
-                                                <!--{% for sub in list_room_thumbnail %}
-                                                {% if sub.room_type == '1' %}-->
+                                                {% for sub in list_room_thumbnail %}
+                                                {% if sub.room_type == '1' %}
                                                 <a class="room-tabs-gallery-thumb" href="#object1">
                                                     <img class="img-responsive" src="{{sub.thumbnail}}" alt="Gallery Thumbnail" title="The Image Title1" />
                                                 </a>                                                
-                                                <!--{% endif %}
-                                                {% endfor %}-->
+                                                {% endif %}
+                                                {% endfor %}
                                                 <!--<a class="room-tabs-gallery-thumb" href="#object1">
                                                     <img class="img-responsive" src="/static/FrontEnd/img/room1-demo2.jpg" alt="Gallery Thumbnail" title="The Image Title1" />
                                                 </a>

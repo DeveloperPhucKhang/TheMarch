@@ -36,3 +36,9 @@
 .page-content {
     padding: 50px 0;
 }
+
+.text-uppercase {
+    text-transform: none;
+    letter-spacing: 0px;
+    color: #685e27;
+}
