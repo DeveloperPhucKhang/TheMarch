@@ -768,6 +768,7 @@
     <Content Include="requirements.txt" />
     <Content Include="TheMarch\static\add-band-detail.js" />
     <Content Include="TheMarch\static\add-event.js" />
+    <Content Include="TheMarch\static\admin-music-room.js" />
     <Content Include="TheMarch\static\admin.js" />
     <Content Include="TheMarch\static\AdminTemplate\ampleadmin-dark\bootstrap\CHANGELOG.md" />
     <Content Include="TheMarch\static\AdminTemplate\ampleadmin-dark\bootstrap\dist\css\bootstrap-theme.css" />
@@ -4856,6 +4857,7 @@
     <Content Include="TheMarch\templates\Admin\layout.html" />
     <Content Include="TheMarch\templates\Admin\login-page.html" />
     <Content Include="TheMarch\templates\Admin\login.html" />
+    <Content Include="TheMarch\templates\Admin\music-room.html" />
     <Content Include="TheMarch\templates\Admin\navbar.html" />
     <Content Include="TheMarch\templates\Admin\sidebar.html" />
     <Content Include="TheMarch\templates\contact.html" />

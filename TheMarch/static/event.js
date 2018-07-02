@@ -156,7 +156,7 @@ $(document).ready(function () {
         $('#event_table tbody').on('click', '.edit-button', function () {
             var data = table.row($(this).parents('tr')).data();
             var event_id = data[0];
-            window.location.href = '/admin/detail_band_page/' + event_id;
+            window.location.href = '/admin/detail_event/' + event_id;
         }),
 
         $('#event_table_length').append(add_button_html);

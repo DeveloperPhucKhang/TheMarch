@@ -1,0 +1,195 @@
+{% extends "Admin/layout.html" %}
+{% block title %}Quản lý hình banner{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Quản lý hình banner</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
+            <!--<button id="add_banner" class="fcbtn btn btn-info btn-outline btn-1c pull-right">Thêm banner</button>-->
+            <button style="margin-right: 1%;" id="refesh_band" class="fcbtn btn btn-info btn-outline btn-1c pull-right">Tải lại</button>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- .row -->
+    <!--Thumbnail of video-->
+    <div id="thumbnail_video" class="row">
+        <div class="col-sm-4" index="{{band_data[0].index}}">
+            <div class="white-box">
+                <form class="form-horizontal" data-toggle="validator">
+                    <button onclick="save_band_info('{{band_data[0]._id}}','{{band_data[0].index}}')" style="float:right;width: auto;" class="btn btn-block btn-default">Lưu</button>
+                    <h3 class="box-title">Hình thumbnail của video</h3>
+                    <div class="input-group m-b-10">
+                        <span class="input-group-addon" id="basic-addon1">Url video</span>
+                        <input id="txt_url_{{band_data[0].index}}" type="text" value="{{band_data[0].url}}" class="form-control" placeholder="Url" aria-describedby="basic-addon1" required>
+                    </div>
+                </form>
+                <input thumbnail_name="{{band_data[0].thumbnail_name}}" band_id="{{band_data[0]._id}}" type="file" id="{{band_data[0].index}}_band" class="dropify"
+                       data-height="300"
+                       data-default-file="{{band_data[0].thumbnail}}"
+                       data-max-file-size="10M"
+                       data-show-remove="true"
+                       data-allowed-file-extensions="jpg png" />
+            </div>
+        </div>
+    </div>
+    <div id="list_band" class="row">
+        {% for sub in band_data %}
+        {% if loop.index > 1 %}
+        <div class="col-sm-4" index="{{sub.index}}">
+            <div class="white-box">
+                <form class="form-horizontal" data-toggle="validator">
+                    <button onclick="save_band_info('{{sub._id}}','{{sub.index}}')" style="float:right;width: auto;" class="btn btn-block btn-default">Lưu</button>
+                    <h3 class="box-title">Band thứ {{sub.index}}</h3>
+                    <div class="input-group m-b-10">
+                        <span class="input-group-addon" id="basic-addon1">Tên band</span>
+                        <input id="txt_name_{{sub.index}}" type="text" value="{{sub.name}}" class="form-control" placeholder="Tên" aria-describedby="basic-addon1" required>
+                    </div>
+                    <div class="input-group m-b-10">
+                        <span class="input-group-addon" id="basic-addon1">Url band</span>
+                        <input id="txt_url_{{sub.index}}" type="text" value="{{sub.url}}" class="form-control" placeholder="Url" aria-describedby="basic-addon1" required>
+                    </div>
+                </form>
+                <input thumbnail_name="{{sub.thumbnail_name}}" band_id="{{sub._id}}" type="file" id="{{sub.index}}_band" class="dropify"
+                       data-height="300"
+                       data-default-file="{{sub.thumbnail}}"
+                       data-max-file-size="10M"
+                       data-show-remove="true"
+                       data-allowed-file-extensions="jpg png" />
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+
+        <!--<div class="col-sm-4" index="11">
+            <div class="white-box">
+                <h3 class="box-title">Band thứ 2</h3>
+                <label for="1_banner">aaa</label>
+                <input type="file" id="1_banner" class="dropify"
+                       data-height="300"
+                       data-default-file="/static/AdminTemplate/plugins/bower_components/dropify/src/images/test-image-1.jpg"
+                       data-max-file-size="10M"
+                       data-show-remove="true"
+                       data-allowed-file-extensions="jpg png" />
+            </div>
+        </div>
+        <div class="col-sm-4" index="11">
+            <div class="white-box">
+                <h3 class="box-title">Band thứ 3</h3>
+                <label for="1_banner">aaa</label>
+                <input type="file" id="1_banner" class="dropify"
+                       data-height="300"
+                       data-default-file="/static/AdminTemplate/plugins/bower_components/dropify/src/images/test-image-1.jpg"
+                       data-max-file-size="10M"
+                       data-show-remove="true"
+                       data-allowed-file-extensions="jpg png" />
+            </div>
+        </div>
+        <div class="col-sm-4" index="11">
+            <div class="white-box">
+                <h3 class="box-title">Band thứ 4</h3>
+                <label for="1_banner">aaa</label>
+                <input type="file" id="1_banner" class="dropify"
+                       data-height="300"
+                       data-default-file="/static/AdminTemplate/plugins/bower_components/dropify/src/images/test-image-1.jpg"
+                       data-max-file-size="10M"
+                       data-show-remove="true"
+                       data-allowed-file-extensions="jpg png" />
+            </div>
+        </div>
+        <div class="col-sm-4" index="11">
+            <div class="white-box">
+                <h3 class="box-title">Band thứ 5</h3>
+                <label for="1_banner">aaa</label>
+                <input type="file" id="1_banner" class="dropify"
+                       data-height="300"
+                       data-default-file="/static/AdminTemplate/plugins/bower_components/dropify/src/images/test-image-1.jpg"
+                       data-max-file-size="10M"
+                       data-show-remove="true"
+                       data-allowed-file-extensions="jpg png" />
+            </div>
+        </div>
+        <div class="col-sm-4" index="11">
+            <div class="white-box">
+                <h3 class="box-title">Band thứ 6</h3>
+                <label for="1_banner">aaa</label>
+                <input type="file" id="1_banner" class="dropify"
+                       data-height="300"
+                       data-default-file="/static/AdminTemplate/plugins/bower_components/dropify/src/images/test-image-1.jpg"
+                       data-max-file-size="10M"
+                       data-show-remove="true"
+                       data-allowed-file-extensions="jpg png" />
+            </div>
+        </div>-->
+    </div>
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <div class="right-sidebar">
+        <div class="slimscrollright">
+            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+            <div class="r-panel-body">
+                <ul id="themecolors" class="m-t-20">
+                    <li><b>With Light sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                    <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                    <li><a href="javascript:void(0)" data-theme="gray" class="yellow-theme">3</a></li>
+                    <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a></li>
+                    <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                    <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                    <li><b>With Dark sidebar</b></li>
+                    <br />
+                    <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                    <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                    <li><a href="javascript:void(0)" data-theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                    <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme working">10</a></li>
+                    <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                    <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme">12</a></li>
+                </ul>
+                <ul class="m-t-20 all-demos">
+                    <li><b>Choose other demos</b></li>
+                </ul>
+                <ul class="m-t-20 chatonline">
+                    <li><b>Chat option</b></li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<!-- jQuery file upload -->
+<script src="/static/AdminTemplate/plugins/bower_components/dropify/dist/js/dropify.min.js"></script>
+<script src="/static/band_thumnail.js"></script>
+{% endblock %}
