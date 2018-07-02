@@ -701,36 +701,25 @@
                                         <div class="room-tabs-gallery">
                                             <div class="room-tabs-gallery-thumbnails">
                                                 {% for sub in list_room_thumbnail %}
-                                                {% if sub.room_type == '1' %}
+                                                {% if sub.room_type == '1' and sub.thumbnail_name != 'default.jpg' %}
                                                 <a class="room-tabs-gallery-thumb" href="#object1">
                                                     <img class="img-responsive" src="{{sub.thumbnail}}" alt="{{sub.thumbnail_name}}" title="{{sub.thumbnail_name}}" />
                                                 </a>                                                
                                                 {% endif %}
-                                                {% endfor %}
-                                                <!--<a class="room-tabs-gallery-thumb" href="#object1">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room1-demo2.jpg" alt="Gallery Thumbnail" title="The Image Title1" />
-                                                </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object1">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room1-demo1.jpg" alt="Gallery Thumbnail" title="The Image Title2" />
-                                                </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object1">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room1-demo3.jpg" alt="Gallery Thumbnail" title="The Image Title3" />
-                                                </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object1">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room1-demo4.jpg" alt="Gallery Thumbnail" title="The Image Title4" />
-                                                </a>-->
+                                                {% endfor %}                                               
                                             </div>
                                             <div class="room-tabs-gallery-image">
                                                 <a class="room-tabs-gallery-preview-container" href="#">
-                                                    <img style="height: -webkit-fill-available;object-fit: cover;" class="img-responsive room-tabs-gallery-preview" src="/static/FrontEnd/img/room1-demo2.jpg"
-                                                         alt="Image Preview" title="The Image Title" />
+                                                    {% for sub in list_room_thumbnail %}
+                                                    {% if sub.room_type == '1' and sub.index == '1' %}
+                                                    <img style="height: -webkit-fill-available;object-fit: cover;" class="img-responsive room-tabs-gallery-preview"
+                                                         src="{{sub.thumbnail}}" alt="Image Preview" title="The Image Title" />
+                                                    {% endif %}
+                                                    {% endfor %}                                                      
                                                 </a>
 
                                                 <div class="room-tabs-gallery-caption">
                                                     Giá cho thuê: <strong>180,000đ / Giờ</strong>
-                                                    <!--<button class="btn btn-room-check show-inquiry-modal" data-object="The Sea Villa">
-                    <i class="icon-calendar icons"></i> Giờ còn trống?
-                </button>=-->
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
@@ -775,30 +764,26 @@
                                     <div class="col-md-6">
                                         <div class="room-tabs-gallery">
                                             <div class="room-tabs-gallery-thumbnails">
+                                                {% for sub in list_room_thumbnail %}
+                                                {% if sub.room_type == '2' and sub.thumbnail_name != 'default.jpg' %}
                                                 <a class="room-tabs-gallery-thumb" href="#object2">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room2-demo1.jpg" alt="Gallery Thumbnail" title="The Image Title1" />
+                                                    <img class="img-responsive" src="{{sub.thumbnail}}" alt="{{sub.thumbnail_name}}" title="{{sub.thumbnail_name}}" />
                                                 </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object2">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room2-demo2.jpg" alt="Gallery Thumbnail" title="The Image Title2" />
-                                                </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object2">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room2-demo3.jpg" alt="Gallery Thumbnail" title="The Image Title3" />
-                                                </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object2">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room2-demo4.jpg" alt="Gallery Thumbnail" title="The Image Title4" />
-                                                </a>
+                                                {% endif %}
+                                                {% endfor %}                                               
                                             </div>
                                             <div class="room-tabs-gallery-image">
                                                 <a class="room-tabs-gallery-preview-container" href="#">
-                                                    <img class="img-responsive room-tabs-gallery-preview" src="/static/FrontEnd/img/room2-demo1.jpg"
-                                                         alt="Image Preview" title="The Image Title" />
+                                                    {% for sub in list_room_thumbnail %}
+                                                    {% if sub.room_type == '2' and sub.index == '1' %}
+                                                    <img style="height: -webkit-fill-available;object-fit: cover;" class="img-responsive room-tabs-gallery-preview"
+                                                         src="{{sub.thumbnail}}" alt="Image Preview" title="The Image Title" />
+                                                    {% endif %}
+                                                    {% endfor %}                                                  
                                                 </a>
 
                                                 <div class="room-tabs-gallery-caption">
-                                                    Starts from: <strong>$159.00 / Night</strong>
-                                                    <!--<button class="btn btn-room-check show-inquiry-modal" data-object="Guest House">
-                                                                              <i class="icon-calendar icons"></i> Check Availability
-                                                                          </button>-->
+                                                    Giá cho thuê: <strong>180,000đ / Giờ</strong>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
@@ -844,27 +829,26 @@
                                     <div class="col-md-6">
                                         <div class="room-tabs-gallery">
                                             <div class="room-tabs-gallery-thumbnails">
+                                                {% for sub in list_room_thumbnail %}
+                                                {% if sub.room_type == '3' and sub.thumbnail_name != 'default.jpg' %}
                                                 <a class="room-tabs-gallery-thumb" href="#object3">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room3-demo3.jpg" alt="Gallery Thumbnail" title="The Image Title1" />
+                                                    <img class="img-responsive" src="{{sub.thumbnail}}" alt="{{sub.thumbnail_name}}" title="{{sub.thumbnail_name}}" />
                                                 </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object3">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room3-demo2.jpg" alt="Gallery Thumbnail" title="The Image Title2" />
-                                                </a>
-                                                <a class="room-tabs-gallery-thumb" href="#object3">
-                                                    <img class="img-responsive" src="/static/FrontEnd/img/room3-demo1.jpg" alt="Gallery Thumbnail" title="The Image Title3" />
-                                                </a>
+                                                {% endif %}
+                                                {% endfor %}
                                             </div>
                                             <div class="room-tabs-gallery-image">
                                                 <a class="room-tabs-gallery-preview-container" href="#">
-                                                    <img class="img-responsive room-tabs-gallery-preview" src="/static/FrontEnd/img/room3-demo3.jpg"
-                                                         alt="Image Preview" title="The Image Title" />
+                                                    {% for sub in list_room_thumbnail %}
+                                                    {% if sub.room_type == '3' and sub.index == '1' %}
+                                                    <img style="height: -webkit-fill-available;object-fit: cover;" class="img-responsive room-tabs-gallery-preview"
+                                                         src="{{sub.thumbnail}}" alt="Image Preview" title="The Image Title" />
+                                                    {% endif %}
+                                                    {% endfor %}
                                                 </a>
 
                                                 <div class="room-tabs-gallery-caption">
-                                                    Starts from: <strong>$119.00 / Night</strong>
-                                                    <!--<button class="btn btn-room-check show-inquiry-modal" data-object="The Cottage">
-                                                                              <i class="icon-calendar icons"></i> Check Availability
-                                                                          </button>-->
+                                                    Giá cho thuê: <strong>180,000đ / Giờ</strong>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>
@@ -978,14 +962,7 @@
                 <address>Location <i class="icon-pointer"></i>  51 Trần Quang Diệu, Phường 13, Quận 3, Hồ Chí Minh </address>
             </div>
         </section>
-        <!--Location end-->
-        <!--About end-->
-        <!--Counter start-->
-        <!--Counter end-->
-        <!--Rates start-->
-        <!--Rates end-->
-        <!--Services start-->
-        <!--Services end-->
+        <!--Location end-->     
         <!--Partner start-->
         <section class="partners" id="sc-partners" style="padding-top: 0px;">
             <div class="container partners-container">
