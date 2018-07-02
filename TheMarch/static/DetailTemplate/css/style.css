@@ -4551,3 +4551,7 @@ footer:after {
 .attractions .attraction-link a:hover .attraction-caption:after {
   border-bottom-color: #685e27; /*#219eaf to #685e27 Giang 29/06*/
 }
+
+.portfolio-custom:hover .portfolio-hover .portfolio-description{
+  opacity: 1 !important;
+}
