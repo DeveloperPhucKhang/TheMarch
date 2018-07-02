@@ -93,7 +93,8 @@ $(document).ready(function () {
                 },
                 {
                     "targets": 6,
-                    "width": 100,
+                    "visible": false,
+                    "searchable": false
                 },
                 {
                     "targets": 7,
