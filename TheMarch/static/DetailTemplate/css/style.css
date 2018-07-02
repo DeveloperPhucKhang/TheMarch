@@ -4384,3 +4384,170 @@ footer:after {
     margin-right: 7px;
   }
 }
+
+/* 10. Attractions
+-------------------------------------*/
+
+.attractions {
+  padding: 110px 0 85px 0;
+  background-color: #fff;
+}
+
+.attractions h2 {
+  text-align: center;
+  font-size: 48px;
+  font-weight: lighter;
+  margin: 0 0 70px 0;
+  padding: 0;
+  color: #4a4a4a;
+}
+
+.attractions p {
+  font-size: 18px;
+  line-height: 30px;
+  font-weight: 300;
+  margin-bottom: 40px;
+  color: #383838;
+}
+
+.attractions .attraction-video {
+  margin-bottom: 30px;
+  border-bottom: 7px solid #685e27;
+  padding-bottom: 1px;
+}
+
+.attractions .attraction-video .video-preview-img {
+  position: relative;
+}
+
+.attractions .attraction-video .video-preview-img .video-play-button {
+  width: 112px;
+  height: 112px;
+  background-color: #fff;
+  border-radius: 56px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -56px 0 0 -56px;
+  text-align: center;
+  color: #585858;
+  line-height: 112px;
+  font-size: 48px;
+  padding-left: 10px;
+  -webkit-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+
+.attractions .attraction-video:hover .video-play-button {
+  opacity: 0.5;
+}
+
+.attractions .attraction-link {
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.attractions .attraction-link a .attraction-img {
+  position: relative;
+}
+
+.attractions .attraction-link a .attraction-img img {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-link a .attraction-img .attraction-overlay {
+  position: absolute;
+  background-color: rgba(87, 188, 202, 0);
+  border: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  text-align: center;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-link a .attraction-img .attraction-overlay i {
+  font-size: 46px;
+  color: #fff;
+  position: relative;
+  top: calc(40%);
+  /* 50% - 3/4 of icon height */
+  opacity: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-link a .attraction-caption {
+  position: relative;
+  background-color: #685e27;
+  color: #fff;
+  border-top: 1px solid #fff;
+  padding: 15px 20px 0 20px;
+  height: 55px;
+  font-size: 14px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-link a .attraction-caption .attraction-caption-title {
+  float: left;
+  font-weight: 600;
+}
+
+.attractions .attraction-link a .attraction-caption .attraction-distance {
+  float: right;
+}
+
+.attractions .attraction-link a .attraction-caption:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 16px solid transparent;
+  border-right: 16px solid transparent;
+  border-bottom: 16px solid #fff;
+  position: absolute;
+  left: 50%;
+  top: -16px;
+  margin-left: -16px;
+}
+
+.attractions .attraction-link a .attraction-caption:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #685e27;
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  margin-left: -15px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-link a:hover .attraction-img img {
+  -webkit-transform: scale(1.24);
+  -ms-transform: scale(1.24);
+  transform: scale(1.24);
+}
+
+.attractions .attraction-link a:hover .attraction-img .attraction-overlay {
+  background-color:  rgba(104, 94, 39, 0.5); /*rgba(87, 188, 202, 0.7) to rgba(104, 94, 39, 0.5) Giang 22/06*/
+}
+
+.attractions .attraction-link a:hover .attraction-img .attraction-overlay i {
+  opacity: 1;
+}
+
+.attractions .attraction-link a:hover .attraction-caption {
+  background-color: #685e27; /*#219eaf to #685e27 Giang 29/06*/
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-link a:hover .attraction-caption:after {
+  border-bottom-color: #685e27; /*#219eaf to #685e27 Giang 29/06*/
+}
