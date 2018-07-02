@@ -44,7 +44,7 @@
                                         '</div>' +
                                     '<div class="col-md-6">' +
                                             '<div class="attraction-link">' +
-                                                '<a href="/home/detail_event/' + result.list_event_slider[i]._id + '" target="_blank">' +
+                                                '<a href="/home/detail_event/' + result.list_event_slider[i + 1]._id + '" target="_blank">' +
                                                     '<div class="attraction-img">' +
                                                         '<img style="object-fit: cover;max-height:200px" class="img-responsive img-slider" src="' + result.list_event_slider[i + 1].thumbnail + '" alt="" />' +
                                                         '<div class="attraction-overlay">' +
