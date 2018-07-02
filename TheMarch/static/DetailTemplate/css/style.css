@@ -4387,6 +4387,9 @@ footer:after {
     vertical-align: sub;
     margin-right: 7px;
   }
+  #header .container {
+    width: 768px;
+  }
 }
 
 /* 10. Attractions
