@@ -33,7 +33,7 @@
         var drEvent = element.dropify();
         drEvent.on('dropify.beforeClear', function (event, element) {
             if (clear_flg == false) {
-                var result = confirm("Anh có muốn xóa hình band  \"" + element.file.name + "\" không ?");
+                var result = confirm("Anh có muốn xóa hình  \"" + element.file.name + "\" không ?");
                 if (result) {
                     //Logic to delete the item
                     var current_box = $(element)[0].input.parent().parent().parent();
@@ -41,10 +41,10 @@
                     current_input_file = $(element)[0].input;
                     var data = new FormData();
                     data.append('file_name', $(element)[0].input.attr('thumbnail_name'));
-                    data.append('band_index', band_index);
+                    data.append('thumbnail_index', band_index);
                     data.append('thumbnail_id', $(element)[0].input.attr('thumbnail_id'));
                     $.ajax({
-                        url: "/delete_band_thumbnail", //the page containing python script
+                        url: "/delete_room_thumbnail", //the page containing python script
                         type: "DELETE", //request type,
                         data: data,
                         cache: false,
@@ -106,7 +106,7 @@
                     var html = '<div class="col-sm-4" index="' + music_thumbnail_data[i].index + '">' +
                                 '<div class="white-box">' +
                                     '<form class="form-horizontal" data-toggle="validator">' +                                       
-                                        '<h3 class="box-title">Band thứ ' + music_thumbnail_data[i].index + '</h3>' +                                       
+                                        '<h3 class="box-title">Thumbnail thứ ' + music_thumbnail_data[i].index + '</h3>' +                                       
                                     '</form>' +
                                     '<input thumbnail_name="' + music_thumbnail_data[i].thumbnail_name + '" thumbnail_id="' + music_thumbnail_data[i]._id + '" type="file" id="' + music_thumbnail_data[i].index + '_band" class="dropify"' +
                                            'data-height="300"' +
@@ -192,41 +192,41 @@ function upload_thumbnail(current_input) {
     });
 }
 
-////////////
-function save_band_info(id, index) {
-    var name;
-    if (index == '0') {
-        name = 'default.jpg';
-    } else {
-        name = $('#txt_name_' + index).val();
-    }    
-    var url = $('#txt_url_' + index).val();
-    if ($.trim(name) == '' || $.trim(url) == '') {
-        return;
-    }
-    var data = new FormData();
-    data.append('thumbnail_id', id);
-    data.append('name', name);
-    data.append('url', url);
-    $.ajax({
-        url: "/admin/save_band_thumbnail_info", //the page containing python script
-        type: "POST", //request type,
-        data: data,
-        cache: false,
-        processData: false,
-        contentType: false,
-        success: function (result) {
-            result = jQuery.parseJSON(result);
-            if (result.result == 'success') {
-                show_alert('Lưu thành công')
-            }
-            else {
-                show_error('');
-            }
-        },
-        error: function () {
-            console.log("upload error")
-        },
-    });
+//////////////
+//function save_band_info(id, index) {
+//    var name;
+//    if (index == '0') {
+//        name = 'default.jpg';
+//    } else {
+//        name = $('#txt_name_' + index).val();
+//    }    
+//    var url = $('#txt_url_' + index).val();
+//    if ($.trim(name) == '' || $.trim(url) == '') {
+//        return;
+//    }
+//    var data = new FormData();
+//    data.append('thumbnail_id', id);
+//    data.append('name', name);
+//    data.append('url', url);
+//    $.ajax({
+//        url: "/admin/save_band_thumbnail_info", //the page containing python script
+//        type: "POST", //request type,
+//        data: data,
+//        cache: false,
+//        processData: false,
+//        contentType: false,
+//        success: function (result) {
+//            result = jQuery.parseJSON(result);
+//            if (result.result == 'success') {
+//                show_alert('Lưu thành công')
+//            }
+//            else {
+//                show_error('');
+//            }
+//        },
+//        error: function () {
+//            console.log("upload error")
+//        },
+//    });
 
-}
+//}

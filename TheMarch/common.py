@@ -258,7 +258,10 @@ def get_room_type_name(id):
 def load_music_room_thumbnail(room_type):
     file_display = []
     #Get list banner
-    list_thumbnail = current_db.Room_thumbnail.find({'room_type': room_type}).sort("index", ASCENDING)
+    if room_type == '0':
+        list_thumbnail = current_db.Room_thumbnail.find().sort([("room_type",ASCENDING) , ("index",ASCENDING)])
+    else:
+        list_thumbnail = current_db.Room_thumbnail.find({'room_type': room_type}).sort("index", ASCENDING)
     for item in list_thumbnail:        
         thumbnail_url = "/load_room_thumbnail/%s" % item["thumbnail"]       
         music_item = {

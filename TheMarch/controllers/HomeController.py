@@ -27,6 +27,8 @@ def home():
     list_event = common.load_event_data('home')
     #Load band thumbnail
     list_band = common.load_band_thumbnail()
+    #Load band thumbnail
+    list_room_thumbnail = common.load_music_room_thumbnail('0')
     """Renders the home page."""
     return render_template(
         'Home/home.html',
@@ -34,6 +36,7 @@ def home():
         banner = list_banner,
         event = list_event,
         band_thumbnail = list_band,
+        list_room_thumbnail = list_room_thumbnail,
         year=datetime.now().year,
     )
 

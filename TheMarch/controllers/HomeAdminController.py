@@ -509,7 +509,7 @@ def delete_band_thumbnail():
     band_id = request.form['band_id']
     file_path = os.path.join(app.config['ROOT_FOLDER'] + app.config['BAND_IMAGE_FOLDER'], file_name)
     try:
-        if os.path.exists(file_path):
+        if file_name != 'default.jpg' and os.path.exists(file_path):
             os.remove(file_path)            
         #update database
         common.current_db.Band_thumbnail.update({"_id": ObjectId(band_id)}, {"$set": {"thumbnail": 'default.jpg'}})
@@ -850,8 +850,11 @@ def music_room_thumbnail(room_type):
     if current_user.role != 'admin':
         return render_template('Admin/error-permission.html')
     list_thumbnail = common.load_music_room_thumbnail(room_type)
+    room_type_name = common.get_room_type_name(room_type)
     return render_template('Admin/music-room.html',
         music_thumbnail_data = list_thumbnail,
+        room_type_name = room_type_name,
+        room_type = room_type,
         year=datetime.now().year)
 
 @app.route("/refesh_room_thumbnail", methods=['POST'])
@@ -878,18 +881,37 @@ def upload_room_thumbnail():
             old_file_name = request.form['old_file_name']     
             #Delete old band image, database
             if old_file_name != '' and old_file_name != 'default.jpg':            
-                old_file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], old_file_name)
+                old_file_path = os.path.join('TheMarch/' + app.config['ROOM_IMAGE_FOLDER'], old_file_name)
                 if os.path.exists(old_file_path):
                     os.remove(old_file_path)        
             file_name = thumbnail_index + '_' + file_name     
-            file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], file_name)   
+            file_path = os.path.join('TheMarch/' + app.config['ROOM_IMAGE_FOLDER'], file_name)   
             # save file to disk
             files.save(file_path)
-            #Image.open(files).save(file_path)
             # Save database
-            common.current_db.Band_thumbnail.update({"_id": ObjectId(thumbnail_id)}, {"$set": {"thumbnail": file_name}})                
+            common.current_db.Room_thumbnail.update({"_id": ObjectId(thumbnail_id)}, {"$set": {"thumbnail": file_name}})                
             return simplejson.dumps({'result': 'success', 'file_name' : file_name})
         except Exception, e:
             return simplejson.dumps({'result': 'error', 'error_message': str(e) ,'file_name' : 'No file'})
     else:
         return simplejson.dumps({"result": 'success', 'file_name' : 'No file'})    
+
+    
+#############
+# Delete banner
+#############
+@app.route("/delete_room_thumbnail", methods=['DELETE'])
+@login_required
+def delete_room_thumbnail():   
+    file_name = request.form['file_name'] 
+    thumbnail_index = request.form['thumbnail_index']
+    thumbnail_id = request.form['thumbnail_id']
+    file_path = os.path.join(app.config['ROOT_FOLDER'] + app.config['ROOM_IMAGE_FOLDER'], file_name)
+    try:
+        if file_name != 'default.jpg' and os.path.exists(file_path):
+            os.remove(file_path)            
+        #update database
+        common.current_db.Room_thumbnail.update({"_id": ObjectId(thumbnail_id)}, {"$set": {"thumbnail": 'default.jpg'}})
+        return simplejson.dumps({'result': 'success'})        
+    except:
+        return simplejson.dumps({'result': 'error'})
