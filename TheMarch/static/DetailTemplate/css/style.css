@@ -4359,8 +4359,10 @@ footer:after {
     display: inline-block;
     float: none;
   }
-  .menuzord-menu>li>a {
+  .menuzord-menu>li>a,
+  header.sticky .menuzord-menu>li>a {
       padding: 0 4px;
+  }
 }
 @media (max-width: 768px) {
 
