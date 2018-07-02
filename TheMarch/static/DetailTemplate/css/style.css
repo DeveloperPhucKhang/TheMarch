@@ -4361,7 +4361,7 @@ footer:after {
   }
   .menuzord-menu>li>a,
   header.sticky .menuzord-menu>li>a {
-      padding: 0 4px;
+      padding: 0 2px;
   }
 }
 @media (max-width: 768px) {
