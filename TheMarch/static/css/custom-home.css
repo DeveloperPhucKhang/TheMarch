@@ -1,5 +1,5 @@
 .event-short-description {
-    max-height: auto;
+    max-height: 195px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 7;
@@ -25,7 +25,7 @@
 }
 
 .event-short-description {
-    max-height: auto;
+    max-height: 150px;
     overflow: hidden;
     display: inline-block;
     -webkit-line-clamp: 4;
