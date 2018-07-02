@@ -703,7 +703,7 @@
                                                 {% for sub in list_room_thumbnail %}
                                                 {% if sub.room_type == '1' %}
                                                 <a class="room-tabs-gallery-thumb" href="#object1">
-                                                    <img class="img-responsive" src="{{sub.thumbnail}}" alt="Gallery Thumbnail" title="The Image Title1" />
+                                                    <img class="img-responsive" src="{{sub.thumbnail}}" alt="{{sub.thumbnail_name}}" title="{{sub.thumbnail_name}}" />
                                                 </a>                                                
                                                 {% endif %}
                                                 {% endfor %}
