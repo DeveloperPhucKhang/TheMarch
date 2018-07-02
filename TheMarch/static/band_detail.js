@@ -162,7 +162,10 @@ $(document).ready(function () {
         $('#event_table tbody').on('click', '.preview-button', function () {
             var data = table.row($(this).parents('tr')).data();
             var band_id = data[0];
-            window.location.href = '/admin/band_detail_preview/' + band_id;
+            //window.location.href = '/admin/band_detail_preview/' + band_id;
+            url = '/admin/band_detail_preview/' + band_id;            
+            window.open(url, '_blank');
+            window.focus();
         })
 
         if (current_user_role == 'admin' || dataSet.length == 0) {

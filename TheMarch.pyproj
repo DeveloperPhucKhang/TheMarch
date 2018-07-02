@@ -768,6 +768,7 @@
     <Content Include="requirements.txt" />
     <Content Include="TheMarch\static\add-band-detail.js" />
     <Content Include="TheMarch\static\add-event.js" />
+    <Content Include="TheMarch\static\admin-music-room-description.js" />
     <Content Include="TheMarch\static\admin-music-room.js" />
     <Content Include="TheMarch\static\admin.js" />
     <Content Include="TheMarch\static\AdminTemplate\ampleadmin-dark\bootstrap\CHANGELOG.md" />
@@ -3847,6 +3848,7 @@
     <Content Include="TheMarch\static\DetailTemplate\slider-revolution\js\jquery.themepunch.revolution.min.js" />
     <Content Include="TheMarch\static\DetailTemplate\slider-revolution\js\jquery.themepunch.tools.min.js" />
     <Content Include="TheMarch\static\edit-band-detail.js" />
+    <Content Include="TheMarch\static\event-detail-preview.js" />
     <Content Include="TheMarch\static\event.js">
       <SubType>Code</SubType>
     </Content>
@@ -4851,12 +4853,14 @@
     <Content Include="TheMarch\templates\Admin\detail-event.html" />
     <Content Include="TheMarch\templates\Admin\edit-band-detail.html" />
     <Content Include="TheMarch\templates\Admin\error-permission.html" />
+    <Content Include="TheMarch\templates\Admin\event-detail-preview.html" />
     <Content Include="TheMarch\templates\Admin\event.html">
       <SubType>Code</SubType>
     </Content>
     <Content Include="TheMarch\templates\Admin\layout.html" />
     <Content Include="TheMarch\templates\Admin\login-page.html" />
     <Content Include="TheMarch\templates\Admin\login.html" />
+    <Content Include="TheMarch\templates\Admin\music-room-description.html" />
     <Content Include="TheMarch\templates\Admin\music-room.html" />
     <Content Include="TheMarch\templates\Admin\navbar.html" />
     <Content Include="TheMarch\templates\Admin\sidebar.html" />

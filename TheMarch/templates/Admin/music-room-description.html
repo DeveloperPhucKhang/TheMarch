@@ -1,0 +1,166 @@
+{% extends "Admin/layout.html" %}
+{% block title %}Quản lí Thông tin phòng tập{% endblock %}
+{% block head %}
+{{super()}}
+<link href="/static/css/event.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Thông tin chi tiết của phòng {{room_type_name}}</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- .row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <input id="room_id" type="hidden" value="{{room_info._id}}" />
+                <h3 class="box-title m-b-40" style="display: inline-block;">Thông tin mô tả phòng {{room_type_name}}</h3>
+                <form class="form-horizontal" data-toggle="validator">
+                    <div class="form-group">
+                        <label class="col-md-12">Phần mô tả phòng hiển thị trên trang chủ</label>
+                        <div class="col-md-12">
+                            <textarea class="form-control" id="short_description" rows="10" required>{{room_info.description}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 1</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_1" value="{{room_info.option_1}}"  class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 2</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_2"  value="{{room_info.option_2}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 3</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_3"  value="{{room_info.option_3}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 4</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_4"  value="{{room_info.option_4}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 5</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_5"  value="{{room_info.option_5}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 6</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_6"  value="{{room_info.option_6}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 7</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_7"  value="{{room_info.option_7}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 8</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_8"  value="{{room_info.option_8}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 9</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_9"  value="{{room_info.option_9}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-12" for="title">Option 10</label>
+                        <div class="col-md-12">
+                            <input type="text" id="option_10"  value="{{room_info.option_10}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" style="width: 70px;margin-left: 2%;" class="btn btn-success waves-effect waves-light m-r-10">Lưu</button>                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.row -->
+    <!-- ============================================================== -->
+    <!-- .right-sidebar -->
+    <div class="right-sidebar">
+        <div class="slimscrollright">
+            <div class="rpanel-title"> Service Panel <span><i class="ti-close right-side-toggle"></i></span> </div>
+            <div class="r-panel-body">
+                <ul id="themecolors" class="m-t-20">
+                    <li><b>With Light sidebar</b></li>
+                    <li><a href="javascript:void(0)" data-theme="default" class="default-theme">1</a></li>
+                    <li><a href="javascript:void(0)" data-theme="green" class="green-theme">2</a></li>
+                    <li><a href="javascript:void(0)" data-theme="gray" class="yellow-theme">3</a></li>
+                    <li><a href="javascript:void(0)" data-theme="blue" class="blue-theme">4</a></li>
+                    <li><a href="javascript:void(0)" data-theme="purple" class="purple-theme">5</a></li>
+                    <li><a href="javascript:void(0)" data-theme="megna" class="megna-theme">6</a></li>
+                    <li><b>With Dark sidebar</b></li>
+                    <br />
+                    <li><a href="javascript:void(0)" data-theme="default-dark" class="default-dark-theme">7</a></li>
+                    <li><a href="javascript:void(0)" data-theme="green-dark" class="green-dark-theme">8</a></li>
+                    <li><a href="javascript:void(0)" data-theme="gray-dark" class="yellow-dark-theme">9</a></li>
+                    <li><a href="javascript:void(0)" data-theme="blue-dark" class="blue-dark-theme working">10</a></li>
+                    <li><a href="javascript:void(0)" data-theme="purple-dark" class="purple-dark-theme">11</a></li>
+                    <li><a href="javascript:void(0)" data-theme="megna-dark" class="megna-dark-theme">12</a></li>
+                </ul>
+                <ul class="m-t-20 all-demos">
+                    <li><b>Choose other demos</b></li>
+                </ul>
+                <ul class="m-t-20 chatonline">
+                    <li><b>Chat option</b></li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"> <span>Varun Dhavan <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/genu.jpg" alt="user-img" class="img-circle"> <span>Genelia Deshmukh <small class="text-warning">Away</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/ritesh.jpg" alt="user-img" class="img-circle"> <span>Ritesh Deshmukh <small class="text-danger">Busy</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/arijit.jpg" alt="user-img" class="img-circle"> <span>Arijit Sinh <small class="text-muted">Offline</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/govinda.jpg" alt="user-img" class="img-circle"> <span>Govinda Star <small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/hritik.jpg" alt="user-img" class="img-circle"> <span>John Abraham<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/john.jpg" alt="user-img" class="img-circle"> <span>Hritik Roshan<small class="text-success">online</small></span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><img src="/static/AdminTemplate/plugins/images/users/pawandeep.jpg" alt="user-img" class="img-circle"> <span>Pwandeep rajan <small class="text-success">online</small></span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Right sidebar -->
+    <!-- ============================================================== -->
+</div>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="/static/AdminTemplate/ampleadmin-dark/js/validator.js"></script>
+<!--Style Switcher -->
+<script src="/static/admin-music-room-description.js"></script>
+{% endblock %}

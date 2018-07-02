@@ -87,19 +87,6 @@
                         <!-- <li><a class="scroll-to" href="#sc-reviews">COFFEE</a></li> -->
                         <li><a class="scroll-to" href="#sc-rooms">PHÒNG TẬP</a></li>
                         <li><a class="scroll-to" href="#sc-contact">LIÊN HỆ</a></li>
-                        <li>
-                            <!--Language-Select start
-                                      <div class="language-select">
-                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                              <img src="img/flags/United-Kingdom.png" alt="English"/> English <i class="fa fa-sort"></i>
-                                          </a>
-                                          <ul class="dropdown-menu dropdown-menu-language-select" role="menu">
-                                              <li><a href="#"><img src="img/flags/Germany.png" alt="German"/> German</a></li>
-                                              <li><a href="#"><img src="img/flags/France.png" alt="Franch"/> Franch</a></li>
-                                          </ul>
-                                      </div>
-                                      Language-Select end-->
-                        </li>
                     </ul>
                     <!-- Nav-Links end -->
                 </div>
@@ -143,24 +130,6 @@
     <!--Teaser Slider end-->
     <!--Start content before Slider-->
     <div class="content-after-slider">
-
-
-        <!--Call to Action start
-        <section class="call-to-action container" id="sc-call-to-action">
-            <div class="row">
-                <div class="col-md-4 col-md-offset-4">
-                    <div class="call-to-action-box text-center">
-                        <div class="call-to-action-triangle"></div>
-                        <button class="btn btn-color1 call-to-action-button show-inquiry-modal">
-                            <i class="icon-calendar icons"></i> Check Availability
-                        </button>
-                        <a class="call-to-action-phone" href="tel:+13174562564">Hotline +49 (0) 60 71 / 430 800</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        Call to Action end-->
-        <!--style="text-align: center; margin-bottom:50px;-->
         <!--Content start EVENT-->
         <section class="content" id="sc-content">
             <div class="container">
@@ -212,12 +181,9 @@
                 </div>
                 {% endif %}
                 {% endfor %}
-
                 <div id="content-slider" class="carousel slide" data-ride="carousel">
-
                     <div class="row">
                         <div class="col-md-6">
-
                         </div>
                         <div class="col-md-6 review-controls">
 
@@ -688,8 +654,8 @@
                         <!--Room Tabs Nav start -->
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" class="active"><a href="#object1" aria-controls="object1" role="tab" data-toggle="tab">XL Room</a></li>
-                            <li role="presentation"><a href="#object2" aria-controls="object2" role="tab" data-toggle="tab">SM Room</a></li>
-                            <li role="presentation"><a href="#object3" aria-controls="object3" role="tab" data-toggle="tab">Streaming Room</a></li>
+                            <!--<li role="presentation"><a href="#object2" aria-controls="object2" role="tab" data-toggle="tab">SM Room</a></li>
+                            <li role="presentation"><a href="#object3" aria-controls="object3" role="tab" data-toggle="tab">Streaming Room</a></li>-->
                         </ul>
                         <!--Room Tabs Nav end -->
                         <!-- Tabs start -->
@@ -704,18 +670,18 @@
                                                 {% if sub.room_type == '1' and sub.thumbnail_name != 'default.jpg' %}
                                                 <a class="room-tabs-gallery-thumb" href="#object1">
                                                     <img class="img-responsive" src="{{sub.thumbnail}}" alt="{{sub.thumbnail_name}}" title="{{sub.thumbnail_name}}" />
-                                                </a>                                                
+                                                </a>
                                                 {% endif %}
-                                                {% endfor %}                                               
+                                                {% endfor %}
                                             </div>
                                             <div class="room-tabs-gallery-image">
                                                 <a class="room-tabs-gallery-preview-container" href="#">
                                                     {% for sub in list_room_thumbnail %}
                                                     {% if sub.room_type == '1' and sub.index == '1' %}
-                                                    <img style="height: -webkit-fill-available;object-fit: cover;" class="img-responsive room-tabs-gallery-preview"
+                                                    <img style="height:-webkit-fill-available;object-fit: cover;" class="img-responsive room-tabs-gallery-preview"
                                                          src="{{sub.thumbnail}}" alt="Image Preview" title="The Image Title" />
                                                     {% endif %}
-                                                    {% endfor %}                                                      
+                                                    {% endfor %}
                                                 </a>
 
                                                 <div class="room-tabs-gallery-caption">
@@ -728,29 +694,49 @@
                                     <div class="col-md-6 room-tabs-description">
                                         <h3>XL Room - Phòng tập full-band</h3>
 
-                                        <p>
-                                            Nằm ngay mặt tiền đường Trần Quang Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn, The March Coffee tạo ấn tượng ban đầu không hề giống một quán café. Ngay phía trước cửa, những gam màu nổi bật, bắt mắt đánh vào mắt người
-                                            đi đường sự chú ý, nhưng bên trong lại là kiểu ánh sáng dịu nhẹ, màu vàng âm áp so với với bên ngoài.
+                                        <p style="max-height: 215px;">
+                                            {{list_room_description[0].description}}
                                         </p>
 
-                                        <p>Nằm ngay mặt tiền đường Trần Quang Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn, The March Coffee tạo ấn tượng ban đầu không hề giống một quán café.</p>
+                                        <!--<p>Nằm ngay mặt tiền đường Trần Quang Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn, The March Coffee tạo ấn tượng ban đầu không hề giống một quán café.</p>-->
 
-                                        <div class="row">
+                                        <div style="margin-top: 5%;" class="row">
                                             <div class="col-md-6 col-sm-6">
                                                 <ul class="list-group room-tabs-checklist left">
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> 1 Drum set</li>
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> 4 PAs</li>
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> 3 Electric Guitar Tube Amplifiers</li>
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> 1 Bass Guitar Tube Amplifiers</li>
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> 4 Vocal Microphones</li>
+                                                    {% if list_room_description[0].option_1 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_1}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_2 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_2}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_3 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_3}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_4 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_4}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_5 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_5}}</li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
                                             <div class="col-md-6 col-sm-6">
                                                 <ul class="list-group room-tabs-checklist right">
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> Sử dụng làm Photo Studio</li>
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> Nhạc cụ sẵn cho thuê</li>
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> Nước uống tự chọn</li>
-                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i> Free WIFI</li>
+                                                    {% if list_room_description[0].option_6 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_6}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_7 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_7}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_8 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_8}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_9 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_9}}</li>
+                                                    {% endif %}
+                                                    {% if list_room_description[0].option_10 != '' %}
+                                                    <li class="list-group-item"><i class="fa fa-check-square-o"></i>{{list_room_description[0].option_10}}</li>
+                                                    {% endif %}
                                                 </ul>
                                             </div>
                                         </div>
@@ -770,7 +756,7 @@
                                                     <img class="img-responsive" src="{{sub.thumbnail}}" alt="{{sub.thumbnail_name}}" title="{{sub.thumbnail_name}}" />
                                                 </a>
                                                 {% endif %}
-                                                {% endfor %}                                               
+                                                {% endfor %}
                                             </div>
                                             <div class="room-tabs-gallery-image">
                                                 <a class="room-tabs-gallery-preview-container" href="#">
@@ -779,7 +765,7 @@
                                                     <img style="height: -webkit-fill-available;object-fit: cover;" class="img-responsive room-tabs-gallery-preview"
                                                          src="{{sub.thumbnail}}" alt="Image Preview" title="The Image Title" />
                                                     {% endif %}
-                                                    {% endfor %}                                                  
+                                                    {% endfor %}
                                                 </a>
 
                                                 <div class="room-tabs-gallery-caption">
@@ -962,7 +948,7 @@
                 <address>Location <i class="icon-pointer"></i>  51 Trần Quang Diệu, Phường 13, Quận 3, Hồ Chí Minh </address>
             </div>
         </section>
-        <!--Location end-->     
+        <!--Location end-->
         <!--Partner start-->
         <section class="partners" id="sc-partners" style="padding-top: 0px;">
             <div class="container partners-container">

@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+
+    <!--favicon icon-->
+    <link rel="icon" type="image/png" href="../../static/DetailTemplate/img/favicon.png">
+
+    <title>The March - Tên Sự Kiện</title>
+
+    <!--common style-->
+
+
+    <link href='http://fonts.googleapis.com/css?family=Abel|Source+Sans+Pro:400,300,300italic,400italic,600,600italic,700,700italic,900,900italic,200italic,200' rel='stylesheet' type='text/css'>
+    <link href="../../static/DetailTemplate/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/magnific-popup.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/shortcodes/shortcodes.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/owl.carousel.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/owl.theme.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/style.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/style-responsive.css" rel="stylesheet">
+    <link href="../../static/DetailTemplate/css/default-theme.css" rel="stylesheet">
+
+    <link href="../../static/DetailTemplate/css/blog.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/custom-home.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <![endif]-->
+</head>
+
+<body>
+
+    <!--  preloader start -->
+    <div id="tb-preloader">
+        <div class="tb-preloader-wave"></div>
+    </div>
+    <!-- preloader end -->
+
+
+    <div class="wrapper">
+
+        <!--header start-->
+        <header id="header" class="">
+
+            <div class="header-sticky light-header  ">
+
+                <div class="container">
+                    <div id="massive-menu" class="menuzord" style="border-bottom: 5px solid #685e27">
+
+                        <!--logo start-->
+                        <a href="index.html" class="logo-brand">
+                            <img class="retina" src="../../static/DetailTemplate/img/logo.png" alt="" />
+                        </a>
+                        <!--logo end-->
+                        <!--mega menu start-->
+                        <ul class="menuzord-menu pull-right">
+
+                            <li class="active">
+                                <a href="#">TẤT CẢ</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">DJ & EDM</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">POP</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">ROCK</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">COUNTRY</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">R&B</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">RAP</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">LATIN</a>
+                            </li>
+
+                            <li class="">
+                                <a href="#">KHÁC</a>
+                            </li>
+                        </ul>
+                        <!--mega menu end-->
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!--header end-->
+        <!--page title start-->
+        <section class="page-title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <input id="event_id" type="hidden" value="{{event_detail._id}}" />
+                        <h4 class="text-uppercase">{{event_detail.event_type}}</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--page title end-->
+        <!--body content start-->
+        <section class="body-content ">
+
+            <div class="page-content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <!--classic image post-->
+                            <div class="blog-classic">
+                                <div class="blog-post">
+                                    <div class="full-width">
+                                        <img src="/{{event_detail.thumbnail_detail}}" alt="" />
+                                    </div>
+                                    <h3 class="text-uppercase">{{event_detail.title}}</h3>
+                                    <ul class="post-meta">
+                                        <li><i class="fa fa-calendar"></i><a href="#"{{event_detail.created_date}}></a></li>
+                                    </ul>
+                                    <div id="content_detail"></div>
+                                    
+                                </div>
+                            </div>
+                            <!--classic image post-->
+                        </div>
+                        <div class="col-md-4">
+                            <div class="widget">
+                                <div class="heading-title-alt text-left heading-border-bottom">
+                                    <h6 class="text-uppercase">Sự Kiện Gần Đây</h6>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <!--body content end-->
+        <!--Address start-->
+        <section class="address" id="sc-address">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2><img src="../../static/DetailTemplate/img/address-logo.png" alt="Logo" /></h2>
+                        <address>51 Trần Quang Diệu, Phường 13, Quận 3, Hồ Chí Minh</address>
+                        <p class="address-info">Nếu có bất kỳ câu hỏi hay thông tin thắc mắc, vui lòng liên hệ với chúng tôi:</p>
+                        <ul class="phones">
+                            <li><i class="fa fa-phone"></i> +84 (0) 93 977 7987</li>
+                            <li><i class="fa fa-mobile"></i> +84 (0) 93 977 7987</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--Address end-->
+        <!--Footer start-->
+        <footer class="footer" id="sc-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="footer-copyright">
+                            &copy; 2018 The March Co.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="footer-social-media">
+                            <li><a href="#"><i class="fa fa-twitter fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-google-plus fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook fa-fw"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!--Footer end-->
+    </div>
+
+
+    <!-- Placed js at the end of the document so the pages load faster -->
+    <script src="../../static/DetailTemplate/js/jquery-1.10.2.min.js"></script>
+    <script src="../../static/DetailTemplate/js/bootstrap.min.js"></script>
+    <script src="../../static/DetailTemplate/js/menuzord.js"></script>
+    <script src="../../static/DetailTemplate/js/jquery.flexslider-min.js"></script>
+    <script src="../../static/DetailTemplate/js/owl.carousel.min.js"></script>
+    <script src="../../static/DetailTemplate/js/jquery.isotope.js"></script>
+    <script src="../../static/DetailTemplate/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../static/DetailTemplate/js/smooth.js"></script>
+    <script src="../../static/DetailTemplate/js/wow.min.js"></script>
+
+    <script src="../../static/DetailTemplate/js/imagesloaded.js"></script>
+    <!--common scripts-->
+    <script src="../../static/DetailTemplate/js/scripts.js?6"></script>
+    <script src="/static/event-detail-preview.js"></script>
+</body>
+
+</html>

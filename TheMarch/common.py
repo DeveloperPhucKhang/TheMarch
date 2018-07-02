@@ -275,3 +275,48 @@ def load_music_room_thumbnail(room_type):
                     }                            
         file_display.append(music_item)
     return file_display
+
+def load_room_description(room_type):
+     # Load room description data
+    room = current_db.Room_description.find_one({'room_type': room_type})
+    item = None;
+    if room != None:
+        item = {
+                    "_id": str(room["_id"]),
+                    "room_type": room["room_type"],
+                    "description": room["description"],
+                    "option_1": room["option_1"],
+                    "option_2": room["option_2"],
+                    "option_3": room["option_3"] ,
+                    "option_4": room["option_4"] ,
+                    "option_5": room["option_5"] ,
+                    "option_6": room["option_6"] ,
+                    "option_7": room["option_7"],
+                    "option_8": room["option_8"],
+                    "option_9": room["option_9"],
+                    "option_10": room["option_10"],                    
+            }
+    return item  
+
+def load_music_room_description():
+    room_description = []
+    #Get list banner
+    list_description = current_db.Room_description.find().sort("room_type",ASCENDING)
+    for item in list_description:                      
+        description = {
+                        "_id": str(item["_id"]),
+                        "room_type": item["room_type"],
+                        "description": item["description"],
+                        "option_1": item["option_1"],
+                        "option_2": item["option_2"],
+                        "option_3": item["option_3"] ,
+                        "option_4": item["option_4"] ,
+                        "option_5": item["option_5"] ,
+                        "option_6": item["option_6"] ,
+                        "option_7": item["option_7"],
+                        "option_8": item["option_8"],
+                        "option_9": item["option_9"],
+                        "option_10": item["option_10"],       
+                    }                            
+        room_description.append(description)
+    return room_description

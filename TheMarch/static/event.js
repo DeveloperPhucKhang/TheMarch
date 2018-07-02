@@ -160,6 +160,16 @@ $(document).ready(function () {
             window.location.href = '/admin/detail_event/' + event_id;
         }),
 
+        //edit event
+        $('#event_table tbody').on('click', '.preview-button', function () {
+            var data = table.row($(this).parents('tr')).data();
+            var event_id = data[0];
+            url = '/admin/event_detail_preview/' + event_id;
+            //window.location.href = '/admin/event_detail_preview/' + event_id;
+            window.open(url, '_blank');
+            window.focus();
+        })
+
         $('#event_table_length').append(add_button_html);
         $('#add_event').on("click", function () {
             window.location.href = '/admin/add_event';

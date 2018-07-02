@@ -842,6 +842,26 @@ def band_detail_preview(band_id):
     ) 
 
 #############
+# Detail Event preview page
+#############
+@app.route("/admin/event_detail_preview/<string:eventid>", methods=['GET'])
+#@login_required
+def event_detail_preview(eventid):
+    try:
+        item = common.load_event_detail_data(eventid)  
+        return render_template(
+            'Admin/event-detail-preview.html', 
+            event_detail = item,       
+            year=datetime.now().year,
+        )
+    except Exception, e:
+        return render_template(
+            'Home/event-detail-preview.html', 
+            event_detail = {},
+            year=datetime.now().year,
+        )
+
+#############
 # music room view
 #############
 @app.route("/admin/music_room_thumbnail/<string:room_type>", methods=['GET'])
@@ -915,3 +935,60 @@ def delete_room_thumbnail():
         return simplejson.dumps({'result': 'success'})        
     except:
         return simplejson.dumps({'result': 'error'})
+
+#############
+# Detail Event controller
+#############
+@app.route("/admin/room_description/<string:room_type>", methods=['GET'])
+@login_required
+def room_description(room_type):        
+    # Load detail data
+    if current_user.role != 'admin':
+            return render_template('Admin/error-permission.html')
+    try:     
+        item = common.load_room_description(room_type)  
+        room_type_name = common.get_room_type_name(room_type)
+        return render_template('Admin/music-room-description.html', 
+            room_info = item,    
+            room_type_name = room_type_name,   
+            year=datetime.now().year)
+    except Exception, e:
+        return render_template('Admin/music-room-description.html', 
+            room_info = {},
+            year=datetime.now().year)
+
+
+@app.route("/update_room_description", methods=['POST'])
+@login_required
+def update_room_description():  
+    try:
+        room_id = request.form['room_id']
+        room_description = request.form['room_description']
+        option_1 = request.form['option_1']
+        option_2 = request.form['option_2']
+        option_3 = request.form['option_3']
+        option_4 = request.form['option_4']
+        option_5 = request.form['option_5']
+        option_6 = request.form['option_6']
+        option_7 = request.form['option_7']
+        option_8 = request.form['option_8']
+        option_9 = request.form['option_9']
+        option_10 = request.form['option_10']
+        update_room = {
+                        "description": room_description,
+                        "option_1": option_1.strip(),
+                        "option_2": option_2.strip(),
+                        "option_3": option_3.strip(),
+                        "option_4": option_4.strip(),
+                        "option_5": option_5.strip(),
+                        "option_6": option_6.strip(),
+                        "option_7": option_7.strip(),
+                        "option_8": option_8.strip(),
+                        "option_9": option_9.strip(),
+                        "option_10": option_10.strip(),                        
+                    }
+        common.current_db.Room_description.update({"_id": ObjectId(room_id)}, {"$set": update_room})     
+        return simplejson.dumps({"result": 'success'}) 
+    except Exception, e:
+        print 'error' + str(e)
+        return simplejson.dumps({"result": 'error'}) 
