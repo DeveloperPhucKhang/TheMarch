@@ -25,7 +25,7 @@
 }
 
 .event-short-description {
-    max-height: 150px;
+    max-height: auto;
     overflow: hidden;
     display: inline-block;
     -webkit-line-clamp: 4;
