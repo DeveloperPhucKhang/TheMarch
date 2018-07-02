@@ -83,7 +83,7 @@ def load_event_data(location):
     list_event = []
     #Get list event
     if location == 'home':
-        list_event_db = current_db.Event.find({'is_important': 'true', 'is_approve': 'true'}, 
+        list_event_db = current_db.Event.find({'is_important': 'true'}, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,
                     'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1}).sort("created_date", DESCENDING).limit(2) 
         if list_event_db.count() == 0:

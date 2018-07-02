@@ -86,7 +86,7 @@ def list_event_recently():
     list_event = []
     try:
         event_id = request.form['event_id']
-        list_event_recently = common.current_db.Event.find({'is_approve': 'true', "_id": { '$ne': ObjectId(event_id) } }, 
+        list_event_recently = common.current_db.Event.find({"_id": { '$ne': ObjectId(event_id) } }, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
                     'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING).limit(3)
         for item in list_event_recently:                
@@ -116,15 +116,15 @@ def list_event_slider():
         event_id_1 = request.form['event_id_1']
         event_id_2 = request.form['event_id_2']
         if event_id_1 != 'undefined' and event_id_2 != 'undefined':
-            list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$nin': [ObjectId(event_id_1), ObjectId(event_id_2)] } }, 
+            list_event_slider = common.current_db.Event.find({"_id": { '$nin': [ObjectId(event_id_1), ObjectId(event_id_2)] } }, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
                     'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
         elif  event_id_1 == 'undefined':
-            list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$ne':  ObjectId(event_id_2) } }, 
+            list_event_slider = common.current_db.Event.find({"_id": { '$ne':  ObjectId(event_id_2) } }, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
                     'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
         else:
-            list_event_slider = common.current_db.Event.find({'is_approve': 'true', "_id": { '$ne': ObjectId(event_id_1) } }, 
+            list_event_slider = common.current_db.Event.find({"_id": { '$ne': ObjectId(event_id_1) } }, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
                     'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING)
         for item in list_event_slider:                

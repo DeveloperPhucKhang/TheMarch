@@ -295,7 +295,7 @@ def add_event_db():
         created_date = '{0}/{1}/{2}'.format(created_date.year, created_date.month, created_date.day)
         created_by = 'admin'
         is_important = request.form['is_important']
-        is_approve = 'false'
+        is_approve = 'true'
         if is_empty_thumbnail == 'false':
             #save thumbnail to server
             files = request.files['thumbnail_file']
