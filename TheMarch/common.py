@@ -13,7 +13,7 @@ app.config['BANNER_IMAGE_FOLDER'] = 'dataset/banner/'
 app.config['COFFEE_IMAGE_FOLDER'] = 'dataset/coffee/'
 app.config['EVENT_IMAGE_FOLDER'] = 'dataset/event/'
 app.config['BAND_IMAGE_FOLDER'] = 'dataset/band/'
-app.config['GYM_IMAGE_FOLDER'] = 'dataset/gym/'
+app.config['ROOM_IMAGE_FOLDER'] = 'dataset/room/'
 app.config['EVENT_THUMBNAIL_FOLDER'] = 'dataset/event/'
 
 IGNORED_FILES = set(['.gitignore'])
@@ -246,3 +246,29 @@ def get_band_type_name(id):
         8: "KHÁC",
     }
     return band_type_list.get(int(id), "KHÁC")
+
+def get_room_type_name(id):
+    band_type_list = {
+        1: "XL Room",
+        2: "SM Room",
+        3: "Streaming Room",       
+    }
+    return band_type_list.get(int(id), "KHÁC")
+
+def load_music_room_thumbnail(room_type):
+    file_display = []
+    #Get list banner
+    list_thumbnail = current_db.Room_thumbnail.find({'room_type': room_type}).sort("index", ASCENDING)
+    for item in list_thumbnail:        
+        thumbnail_url = "/load_room_thumbnail/%s" % item["thumbnail"]       
+        music_item = {
+                        "_id": str(item["_id"]),
+                        "room_type": item["room_type"],
+                        "index": item["index"],
+                        "thumbnail": thumbnail_url,
+                        "thumbnail_name": item["thumbnail"],
+                        "name": item["name"],
+                        "room_type_name": get_room_type_name(item["room_type"])
+                    }                            
+        file_display.append(music_item)
+    return file_display

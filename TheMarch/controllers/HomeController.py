@@ -158,7 +158,12 @@ def load_event_thumbnail(filename):
 @app.route('/load_band_image/<string:filename>', methods=['GET'])
 @app.route('/admin/load_band_image/<string:filename>', methods=['GET'])
 def load_band_image(filename):
-    return send_from_directory(app.config['BAND_IMAGE_FOLDER'], filename=filename)      
+    return send_from_directory(app.config['BAND_IMAGE_FOLDER'], filename=filename)    
+
+@app.route('/load_room_thumbnail/<string:filename>', methods=['GET'])
+@app.route('/admin/load_room_thumbnail/<string:filename>', methods=['GET'])
+def load_room_thumbnail(filename):
+    return send_from_directory(app.config['ROOM_IMAGE_FOLDER'], filename=filename)    
 
 #############
 # Events Home page

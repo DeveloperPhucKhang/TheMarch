@@ -35,7 +35,7 @@
         var short_description = $('#short_description').val();
         var description = $('.summernote').code();
         //var description = $('.summernote').summernote('code');
-        var is_important =$('#is_important').is(":checked");
+        //var is_important =$('#is_important').is(":checked");
         if ($.trim(band_name) == '' || $.trim(title) == '' || $.trim(short_description) == '') {
             return;
         }
@@ -49,7 +49,7 @@
         data.append('thumbnail_file_detail', thumbnail_file_detail);
         data.append('short_description', short_description);
         data.append('description', description);
-        data.append('is_important', is_important);
+        data.append('is_important', true);
         $.ajax({
             url: "/add_band_detail_db", //the page containing python script
             type: "POST", //request type,

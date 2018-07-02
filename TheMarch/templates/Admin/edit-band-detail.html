@@ -31,14 +31,14 @@
                         <i class="ti-arrow-circle-down"></i> Đã xét duyệt <span class="caret"></span>
                     </button>
                     <ul role="menu" class="dropdown-menu animated flipInX">                        
-                        <li><a href="#" onclick="approve_band_detail(false)" >Chưa xét duyệt</a></li>
+                        <li><a href="#" id="cbk_approve" value="true" onclick="approve_band_detail(false)" >Chưa xét duyệt</a></li>
                     </ul>
                     {% else%}
                     <button aria-expanded="false" data-toggle="dropdown" class="btn btn-danger dropdown-toggle waves-effect waves-light" type="button">
                          Chưa xét duyệt <span class="caret"></span>
                     </button>
                     <ul role="menu" class="dropdown-menu animated flipInX">
-                        <li><a href="#" onclick="approve_band_detail(true)">Xét duyệt</a></li>                        
+                        <li><a href="#" id="cbk_approve" value="false" onclick="approve_band_detail(true)">Xét duyệt</a></li>                        
                     </ul>
                     {% endif%}                    
                 </div>
@@ -77,7 +77,7 @@
                             <textarea class="form-control" id="short_description" rows="5" required>{{band_detail.short_description}}</textarea>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <div class="checkbox checkbox-success" style="padding-left:35px;">
                             {% if band_detail.is_important ==  'true'%}
                             <input id="is_important" type="checkbox" checked>
@@ -87,7 +87,7 @@
 
                             <label for="is_important"> Đánh dấu là sự kiện nổi bật để hiện thị lên trang chủ</label>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label class="col-md-6">Hình của sự kiện hiện tại đang hiển thị lên trang chủ</label>
                         <label class="col-md-6">Hình của sự kiện hiện tại đang hiển thị lên trang detail</label>

@@ -25,7 +25,7 @@
     load_dropify();
 
     $('input[type="file"]').change(function () {
-        upload_band_thumbnail(this);
+        upload_thumbnail(this);
     });
 
     function initial_event_clear(element) {
@@ -42,7 +42,7 @@
                     var data = new FormData();
                     data.append('file_name', $(element)[0].input.attr('thumbnail_name'));
                     data.append('band_index', band_index);
-                    data.append('band_id', $(element)[0].input.attr('band_id'));
+                    data.append('thumbnail_id', $(element)[0].input.attr('thumbnail_id'));
                     $.ajax({
                         url: "/delete_band_thumbnail", //the page containing python script
                         type: "DELETE", //request type,
@@ -86,67 +86,42 @@
 
     initial_event_clear($('.dropify'));
 
-    $('#refesh_band').on('click', function () {
+    $('#refesh').on('click', function () {
+        var room_type = $('#room_type').val();
+        var data = new FormData();
+        data.append('room_type', room_type);
         $.ajax({
-            url: "/refesh_band_thumbnail", //the page containing python script
-            type: "GET", //request type,            
+            url: "/refesh_room_thumbnail", //the page containing python script
+            type: "POST", //request type,            
+            data, data,
             cache: false,
             processData: false,
             contentType: false,
             success: function (result) {
                 show_alert('Load thành công!');
                 result = jQuery.parseJSON(result);
-                var list_band = result.list_band;
-                $("#thumbnail_video").html("");
-                var html = '<div class="col-sm-4" index="11">'+
-                                '<div class="white-box">'+
-                                    '<form class="form-horizontal" data-toggle="validator">'+
-                                        '<button onclick="save_band_info(\'' + list_band[0]._id + '\',\'' + list_band[0].index + '\')" style="float:right;width: auto;" class="btn btn-block btn-default">Lưu</button>' +
-                                        '<h3 class="box-title">Hình thumbnail của video</h3>'+
-                                        '<div class="input-group m-b-10">'+
-                                            '<span class="input-group-addon" id="basic-addon1">Url video</span>'+
-                                            '<input id="txt_url_'+list_band[0].index+'" type="text" value="'+list_band[0].url+'" class="form-control" placeholder="Url" aria-describedby="basic-addon1" required>'+
-                                        '</div>'+
-                                    '</form>'+
-                                    '<input thumbnail_name="' + list_band[0].thumbnail_name + '" band_id="' + list_band[0]._id + '" type="file" id="' + list_band[0].index + '_band" class="dropify"' +
-                                           'data-height="300"'+
-                                           'data-default-file="'+list_band[0].thumbnail+'"'+
-                                           'data-max-file-size="10M"'+
-                                           'data-show-remove="true"'+
-                                           'data-allowed-file-extensions="jpg png" />'+
-                                '</div>'+
-                            '</div>';
-                $("#thumbnail_video").html(html);
-                $("#list_band").html("");
-                for (var i = 1; i < list_band.length; i++) {
-                    var html = '<div class="col-sm-4" index="' + list_band[i].index + '">' +
+                var music_thumbnail_data = result.music_thumbnail_data;
+                $("#list_thumbnail").html("");
+                for (var i = 0; i < music_thumbnail_data.length; i++) {
+                    var html = '<div class="col-sm-4" index="' + music_thumbnail_data[i].index + '">' +
                                 '<div class="white-box">' +
-                                    '<form class="form-horizontal" data-toggle="validator">' +
-                                        '<button onclick="save_band_info(\'' + list_band[i]._id + '\',\'' + list_band[i].index + '\')" style="float:right;width: auto;" class="btn btn-block btn-default">Lưu</button>' +
-                                        '<h3 class="box-title">Band thứ ' + list_band[i].index + '</h3>' +
-                                        '<div class="input-group m-b-10">'+
-                                            '<span class="input-group-addon" id="basic-addon1">Tên band</span>'+
-                                            '<input id="txt_name_' + list_band[i].index + '" type="text" value="' + list_band[i].name + '" class="form-control" placeholder="Tên" aria-describedby="basic-addon1" required>' +
-                                        '</div>'+
-                                        '<div class="input-group m-b-10">' +
-                                            '<span class="input-group-addon" id="basic-addon1">Url band</span>' +
-                                            '<input id="txt_url_' + list_band[i].index + '" type="text" value="' + list_band[i].url + '" class="form-control" placeholder="Url" aria-describedby="basic-addon1" required>' +
-                                        '</div>' +
+                                    '<form class="form-horizontal" data-toggle="validator">' +                                       
+                                        '<h3 class="box-title">Band thứ ' + music_thumbnail_data[i].index + '</h3>' +                                       
                                     '</form>' +
-                                    '<input thumbnail_name="' + list_band[i].thumbnail_name + '" band_id="' + list_band[i]._id + '" type="file" id="' + list_band[i].index + '_band" class="dropify"' +
+                                    '<input thumbnail_name="' + music_thumbnail_data[i].thumbnail_name + '" thumbnail_id="' + music_thumbnail_data[i]._id + '" type="file" id="' + music_thumbnail_data[i].index + '_band" class="dropify"' +
                                            'data-height="300"' +
-                                           'data-default-file="' + list_band[i].thumbnail + '"' +
+                                           'data-default-file="' + music_thumbnail_data[i].thumbnail + '"' +
                                            'data-max-file-size="10M"' +
                                            'data-show-remove="true"' +
                                            'data-allowed-file-extensions="jpg png" />' +
                                 '</div>' +
                             '</div>';
-                    $("#list_band").append(html);
+                    $("#list_thumbnail").append(html);
                 }
                 load_dropify();
                 initial_event_clear($('.dropify'));
                 $('input[type="file"]').change(function () {
-                    upload_band_thumbnail(this);
+                    upload_thumbnail(this);
                 });
                 $('form').bind('submit', function (e) {
                     e.preventDefault();
@@ -185,17 +160,17 @@ function show_error(message) {
     });
 }
 
-function upload_band_thumbnail(current_input) { 
+function upload_thumbnail(current_input) {
     var old_file_name = $(current_input).attr('thumbnail_name');
     var band_index = $(current_input).parent().parent().parent().attr('index');
     var data = new FormData();
-    data.append('band_id', $(current_input).attr('band_id'));
+    data.append('thumbnail_id', $(current_input).attr('thumbnail_id'));
     data.append('file', $(current_input)[0].files[0]);
     data.append('old_file_name', old_file_name);
-    data.append('band_index', band_index);
+    data.append('thumbnail_index', band_index);
     current_input_file = current_input;
     $.ajax({
-        url: "/admin/upload_band_thumbnail", //the page containing python script
+        url: "/admin/upload_room_thumbnail", //the page containing python script
         type: "POST", //request type,
         data: data,
         cache: false,
@@ -230,7 +205,7 @@ function save_band_info(id, index) {
         return;
     }
     var data = new FormData();
-    data.append('band_id', id);
+    data.append('thumbnail_id', id);
     data.append('name', name);
     data.append('url', url);
     $.ajax({

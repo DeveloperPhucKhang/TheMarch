@@ -443,7 +443,7 @@ def band_thumbnail():
     list_band = common.load_band_thumbnail()
     return render_template('Admin/band-thumbnail.html',
         band_data = list_band,
-        year=datetime.now().year,)
+        year=datetime.now().year)
 
 #############
 # Save band thumbnail info
@@ -742,6 +742,7 @@ def update_band_detail_db():
         description = request.form['description']
         short_description = request.form['short_description']
         is_important = request.form['is_important']        
+        is_approve = request.form['is_approve']
         if is_empty_thumbnail == 'false':
             #delete old thumnail
             #Delete old thumnail image, database
@@ -781,7 +782,7 @@ def update_band_detail_db():
                         "short_description": short_description,
                         "description": description,
                         "is_important": is_important,
-                        "is_approve": 'false',
+                        "is_approve": is_approve,
                     }
         common.current_db.Band_detail.update({"_id": ObjectId(band_id)}, {"$set": update_event})     
         return simplejson.dumps({"result": 'success'}) 
@@ -839,3 +840,56 @@ def band_detail_preview(band_id):
         #list_band_detail = list_item, 
         year=datetime.now().year,
     ) 
+
+#############
+# music room view
+#############
+@app.route("/admin/music_room_thumbnail/<string:room_type>", methods=['GET'])
+@login_required
+def music_room_thumbnail(room_type):    
+    if current_user.role != 'admin':
+        return render_template('Admin/error-permission.html')
+    list_thumbnail = common.load_music_room_thumbnail(room_type)
+    return render_template('Admin/music-room.html',
+        music_thumbnail_data = list_thumbnail,
+        year=datetime.now().year)
+
+@app.route("/refesh_room_thumbnail", methods=['POST'])
+@login_required
+def refesh_room_thumbnail():
+    room_type = request.form['room_type']
+    list_thumbnail = common.load_music_room_thumbnail(room_type)                
+    return simplejson.dumps({'music_thumbnail_data': list_thumbnail})
+
+
+#############
+# Upload band thumbnail
+#############
+@app.route("/admin/upload_room_thumbnail", methods=['POST'])
+@login_required
+def upload_room_thumbnail():    
+    files = request.files['file']
+    if files:     
+        try:     
+            file_name = secure_filename(files.filename)
+            file_name = common.gen_file_name(file_name,'TheMarch/' + app.config['ROOM_IMAGE_FOLDER'])
+            thumbnail_id = request.form['thumbnail_id']
+            thumbnail_index = request.form['thumbnail_index']
+            old_file_name = request.form['old_file_name']     
+            #Delete old band image, database
+            if old_file_name != '' and old_file_name != 'default.jpg':            
+                old_file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], old_file_name)
+                if os.path.exists(old_file_path):
+                    os.remove(old_file_path)        
+            file_name = thumbnail_index + '_' + file_name     
+            file_path = os.path.join('TheMarch/' + app.config['BAND_IMAGE_FOLDER'], file_name)   
+            # save file to disk
+            files.save(file_path)
+            #Image.open(files).save(file_path)
+            # Save database
+            common.current_db.Band_thumbnail.update({"_id": ObjectId(thumbnail_id)}, {"$set": {"thumbnail": file_name}})                
+            return simplejson.dumps({'result': 'success', 'file_name' : file_name})
+        except Exception, e:
+            return simplejson.dumps({'result': 'error', 'error_message': str(e) ,'file_name' : 'No file'})
+    else:
+        return simplejson.dumps({"result": 'success', 'file_name' : 'No file'})    
