@@ -489,3 +489,8 @@ comments-list
     -moz-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
+
+/*Giang edit 02/07/2018*/
+.blog-post img {
+    width: 100%;
+}
