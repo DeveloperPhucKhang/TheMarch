@@ -1,5 +1,5 @@
 .event-short-description {
-    max-height: 190px;
+    /* max-height: 190px; */
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 7;
