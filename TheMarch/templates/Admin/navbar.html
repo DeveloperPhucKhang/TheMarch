@@ -125,7 +125,13 @@
                 <ul class="dropdown-menu dropdown-user animated flipInY">
                     <li>
                         <div class="dw-user-box">
-                            <div class="u-img"><img src="/static/AdminTemplate/plugins/images/users/admin.jpg" alt="user" /></div>
+                            <div class="u-img">
+                              {% if current_user.role ==  'admin'%}
+                              <img src="/static/AdminTemplate/plugins/images/users/admin.jpg" alt="user" />
+                              {% else%}
+                              <img src="/static/AdminTemplate/plugins/images/users/user.jpg" alt="user" />
+                              {% endif%}
+                            </div>
                             <div class="u-text">
                                 <h4>{{current_user.name}}</h4>
                                 <p class="text-muted">{{current_user.user_name}}</p>
