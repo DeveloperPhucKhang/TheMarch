@@ -44,22 +44,22 @@
                 <form class="form-horizontal" data-toggle="validator">
                     <button onclick="save_band_info('{{sub._id}}','{{sub.index}}')" style="float:right;width: auto;" class="btn btn-block btn-default">Lưu</button>
                     <h3 class="box-title">Band thứ {{sub.index}}</h3>
-                    {% if loop.index == 0 %}
+                    {% if loop.index == 2 %}
                     <label>Kích thước: 554x208</label>
                     {% endif %}
-                    {% if loop.index == 1 %}
-                    <label>Kích thước: 262x226</label>
-                    {% endif %}
-                    {% if loop.index == 2 %}
-                    <label>Kích thước: 262x226</label>
-                    {% endif %}
                     {% if loop.index == 3 %}
-                    <label>Kích thước: 262x520</label>
+                    <label>Kích thước: 262x226</label>
                     {% endif %}
                     {% if loop.index == 4 %}
-                    <label>Kích thước: 262x208</label>
+                    <label>Kích thước: 262x226</label>
                     {% endif %}
                     {% if loop.index == 5 %}
+                    <label>Kích thước: 262x520</label>
+                    {% endif %}
+                    {% if loop.index == 6 %}
+                    <label>Kích thước: 262x208</label>
+                    {% endif %}
+                    {% if loop.index == 7 %}
                     <label>Kích thước: 262x226</label>
                     {% endif %}
                     <div class="input-group m-b-10">
