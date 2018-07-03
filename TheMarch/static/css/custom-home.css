@@ -1,5 +1,4 @@
 .event-short-description {
-    max-height: 195px;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 7;
@@ -25,7 +24,6 @@
 }
 
 .event-short-description {
-    max-height: 150px;
     overflow: hidden;
     display: inline-block;
     -webkit-line-clamp: 4;
@@ -42,4 +40,24 @@
     letter-spacing: 0px;
     color: #685e27;
     line-height: 1.6;
+}
+
+
+@media (max-width: 1200px) {
+  .event-short-description {
+      max-height: 195px;
+  }
+
+}
+
+@media (max-width: 992px) {
+  .event-short-description {
+      max-height: 195px;
+  }
+}
+
+@media (max-width: 768px) {
+  .event-short-description {
+      max-height: 160px;
+  }
 }
