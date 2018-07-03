@@ -62,6 +62,7 @@
         var short_description = $('#short_description').val();
         var is_approve = $('#cbk_approve').attr('value');
         var description = $('.summernote').code();
+        var score = $('#score').val();
         //var is_important =$('#is_important').is(":checked");
         if ($.trim(band_name) == '' || $.trim(title) == '' || $.trim(short_description) == '') {
             return;
@@ -81,6 +82,7 @@
         data.append('description', description);
         data.append('is_important', true);
         data.append('is_approve', is_approve);
+        data.append('score', score);
         $.ajax({
             url: "/update_band_detail_db", //the page containing python script
             type: "POST", //request type,

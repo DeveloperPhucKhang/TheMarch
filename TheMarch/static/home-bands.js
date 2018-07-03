@@ -10,7 +10,6 @@
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
                 load_menu_all(result);
-                //load_other_menu(result);
             }
             else {
                 show_error('');
@@ -49,26 +48,26 @@ function load_menu_all(result) {
     $('#all_menu').html(html);
 }
 
-function load_other_menu(result) {    
-    for (var i = 1; i <= 8; i++) {
-        var html = '';
-        var current_array = result.list_band.filter(x => x.band_type === i.toString());
-        if (current_array.length > 0) {
-            html += '<li class=""><a href="#">' + get_band_type(current_array[0].band_type) + '</a><ul class="dropdown">';
-            for (var z = 0; z < current_array.length; z++) {
-                html += '<li><a href="#">' + current_array[z].band_name + '</a></li>';
-            }
-            html += '</ul></li>';
+//function load_other_menu(result) {    
+//    for (var i = 1; i <= 8; i++) {
+//        var html = '';
+//        var current_array = result.list_band.filter(x => x.band_type === i.toString());
+//        if (current_array.length > 0) {
+//            html += '<li class=""><a href="#">' + get_band_type(current_array[0].band_type) + '</a><ul class="dropdown">';
+//            for (var z = 0; z < current_array.length; z++) {
+//                html += '<li><a href="#">' + current_array[z].band_name + '</a></li>';
+//            }
+//            html += '</ul></li>';
             
-        } else {
-            html += '<li class=""><a href="#">DJ & EDM</a>' +
-                                '<ul class="dropdown">' +
-                                '</ul>' +
-                            '</li>';
-        }
-        $('#bands_menu').append(html);
-    }
-}
+//        } else {
+//            html += '<li class=""><a href="#">DJ & EDM</a>' +
+//                                '<ul class="dropdown">' +
+//                                '</ul>' +
+//                            '</li>';
+//        }
+//        $('#bands_menu').append(html);
+//    }
+//}
 
 
 function get_band_type(band_type) {

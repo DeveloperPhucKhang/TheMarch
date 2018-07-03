@@ -7,7 +7,7 @@
 <link href="/static/AdminTemplate/plugins/bower_components/summernote/dist/summernote.css" rel="stylesheet" />
 {% endblock %}
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid">    
     <div class="row bg-title">
         <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
             <h4 class="page-title">Thêm bài viết cho band nhạc</h4>
@@ -30,27 +30,26 @@
                             <input type="text" id="band_name" class="form-control" required>
                         </div>
                     </div>
-                    <!--<div class="form-group">
-                        <label class="col-md-12">Loại ban nhạc</label>
-                        <div class="col-md-12">
-                            <input type="text" id="band_type" class="form-control" required>
-                        </div>
-                    </div>-->
-                    <div class="form-group">
+                    <div class="form-group col-md-6 p-l-0">
                         <label class="col-sm-12">Loại ban nhạc</label>
                         <div class="col-sm-12">
                             <select id="band_type" class="form-control">
                                 <option value="1">DJ & EDM</option>
-                                <option value="2">POP</option>
-                                <option value="3">ROCK</option>
-                                <option value="4">COUNTRY</option>
-                                <option value="5">R&B</option>
-                                <option value="6">RAP</option>
-                                <option value="7">LATIN</option>
-                                <option value="8">KHÁC</option>
+                                <option value="2">Full Band</option>
+                                <option value="3">Rock</option>
+                                <option value="4">Acoustic</option>
+                                <option value="5">Khác</option>
                             </select>
                         </div>
                     </div>
+                    {% if current_user.role == 'admin' %}
+                    <div class="form-group col-md-6 p-l-0">
+                        <label class="col-md-12">Điểm xếp hạng</label>
+                        <div class="col-md-12">
+                            <input type="number" id="score" class="form-control">
+                        </div>
+                    </div>
+                    {% endif %}
                     <div class="form-group">
                         <label class="col-md-12" for="title">Tiêu đề bài viết</label>
                         <div class="col-md-12">

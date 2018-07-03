@@ -21,12 +21,7 @@
     <link href="../../static/DetailTemplate/css/style-responsive.css" rel="stylesheet">
     <link href="../../static/DetailTemplate/css/default-theme.css" rel="stylesheet">
     <link href="../../static/DetailTemplate/css/blog.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/css/custom-home.css">
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="../../static/DetailTemplate/js/html5shiv.js"></script>
-    <script src="../../static/DetailTemplate/js/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="/static/css/custom-home.css">   
     {% endblock %}
 </head>
 
@@ -126,35 +121,17 @@
                                     <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
                                     {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
                                 </ul>
                             </li>
 
                             <li class="">
-                                <a href="/bands_page/2">POP</a>
+                                <a href="/bands_page/2">Full Band</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '2' %}
                                     <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
-                                    {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
+                                    {% endfor %}                               
                                 </ul>
                             </li>
 
@@ -165,118 +142,31 @@
                                     {% if sub.band_type == '3' %}
                                     <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
-                                    {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
+                                    {% endfor %}                                
                                 </ul>
                             </li>
 
                             <li class="">
-                                <a href="/bands_page/4">COUNTRY</a>
+                                <a href="/bands_page/4">Acoustic</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '4' %}
                                     <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
-                                    {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
+                                    {% endfor %}                                  
                                 </ul>
                             </li>
 
                             <li class="">
-                                <a href="/bands_page/5">R&B</a>
+                                <a href="/bands_page/5">Khác</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
                                     {% if sub.band_type == '5' %}
                                     <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
                                     {% endif %}
-                                    {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
+                                    {% endfor %}                                
                                 </ul>
-                            </li>
-
-                            <li class="">
-                                <a href="/bands_page/6">RAP</a>
-                                <ul class="dropdown">
-                                    {% for sub in list_band_detail %}
-                                    {% if sub.band_type == '6' %}
-                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
-                                    {% endif %}
-                                    {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
-                                </ul>
-                            </li>
-
-                            <li class="">
-                                <a href="/bands_page/7">LATIN</a>
-                                <ul class="dropdown">
-                                    {% for sub in list_band_detail %}
-                                    {% if sub.band_type == '7' %}
-                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
-                                    {% endif %}
-                                    {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
-                                </ul>
-                            </li>
-
-                            <li class="">
-                                <a href="/bands_page/8">KHÁC</a>
-                                <ul class="dropdown">
-                                    {% for sub in list_band_detail %}
-                                    {% if sub.band_type == '8' %}
-                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
-                                    {% endif %}
-                                    {% endfor %}
-                                    <!--<li><a href="#">Avicii</a></li>
-                                    <li><a href="#">Deadmau5</a></li>
-                                    <li><a href="#">Skrillex  </a></li>
-                                    <li><a href="#">David Guetta</a></li>
-                                    <li><a href="#">Calvin Harris</a></li>
-                                    <li><a href="#">Tiësto</a></li>
-                                    <li><a href="mp-index-app-landing.html">Martin Garrix</a> </li>
-                                    <li><a href="mp-index-parallax.html">Diplo</a> </li>
-                                    <li><a href="mp-index-coming-soon.html">Steve Aoki</a> </li>-->
-                                </ul>
-                            </li>
+                            </li>                         
                         </ul>
                         <!--mega menu end-->
 

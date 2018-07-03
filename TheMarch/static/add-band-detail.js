@@ -34,6 +34,7 @@
         }
         var short_description = $('#short_description').val();
         var description = $('.summernote').code();
+        var score = $('#score').val();
         //var description = $('.summernote').summernote('code');
         //var is_important =$('#is_important').is(":checked");
         if ($.trim(band_name) == '' || $.trim(title) == '' || $.trim(short_description) == '') {
@@ -50,6 +51,7 @@
         data.append('short_description', short_description);
         data.append('description', description);
         data.append('is_important', true);
+        data.append('score', score);
         $.ajax({
             url: "/add_band_detail_db", //the page containing python script
             type: "POST", //request type,
@@ -63,11 +65,11 @@
                     window.location.href = '/admin/band_detail';
                 }
                 else {
-                    show_error('');
+                    show_warning('');
                 }
             },
             error: function () {
-                show_error('');
+                show_warning('');
             },
         });
         

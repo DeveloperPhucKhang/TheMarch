@@ -30,7 +30,8 @@ $(document).ready(function () {
                             band_type,
                             result.list_band[i].created_date,
                             is_important,
-                            is_approve
+                            is_approve,
+                            result.list_band[i].score
                         ]);
                     }
                     init_datatable(data);
@@ -62,6 +63,7 @@ $(document).ready(function () {
                 { title: "Ngày viết" },
                 { title: "Hiển thị trang chủ" },
                 { title: "Tình trạng" },
+                { title: "Điểm xếp hạng" },
                 { title: "Quản lí" }
             ],
             "order": [[1, "desc"]],
@@ -86,14 +88,18 @@ $(document).ready(function () {
                 },
                 {
                     "targets": 4,
-                    "width": 200,
+                    "width": 170,
                 },
                 {
                     "targets": 5,
-                    "width": 150,
+                    "width": 130,
                 },
                 {
                     "targets": 6,
+                    "width": 110,
+                },
+                {
+                    "targets": 7,
                     "width": 170,
                 },
             ]
@@ -127,14 +133,6 @@ $(document).ready(function () {
                     success: function (result) {
                         result = jQuery.parseJSON(result);
                         if (result.result == 'success') {
-                            //swal({
-                            //    title: "Xóa thành công",
-                            //    type: "success",
-                            //    timer: 2000,
-                            //    showConfirmButton: true,
-                            //    closeOnConfirm: true
-                            //});
-                            // Reload table
                             show_alert('Xóa thành công!');
                             table.destroy();                            
                             $('#event_table').empty();
@@ -162,7 +160,6 @@ $(document).ready(function () {
         $('#event_table tbody').on('click', '.preview-button', function () {
             var data = table.row($(this).parents('tr')).data();
             var band_id = data[0];
-            //window.location.href = '/admin/band_detail_preview/' + band_id;
             url = '/admin/band_detail_preview/' + band_id;            
             window.open(url, '_blank');
             window.focus();
@@ -205,26 +202,17 @@ function get_band_type(band_type) {
             band_type_name = 'DJ & EDM';
             break;
         case '2':
-            band_type_name = 'POP';
+            band_type_name = 'Full Band';
             break;
         case '3':
-            band_type_name = 'ROCK';
+            band_type_name = 'Rock';
             break;
         case '4':
-            band_type_name = 'COUNTRY';
+            band_type_name = 'Acoustic';
             break;
         case '5':
-            band_type_name = 'R&B';
-            break;
-        case '6':
-            band_type_name = 'RAP';
-            break;
-        case '7':
-            band_type_name = 'LATIN';
-            break;
-        case '8':
-            band_type_name = 'KHÁC';
-            break;
+            band_type_name = 'Khác';
+            break;   
     }
     return band_type_name;
 

@@ -648,8 +648,13 @@ def add_band_detail_db():
         short_description = request.form['short_description']
         created_date = datetime.now()
         created_date = '{0}/{1}/{2}'.format(created_date.year, created_date.month, created_date.day)
-        created_by = 'admin'
+        created_by = current_user.user_name
         is_important = request.form['is_important']
+        score = request.form['score']
+        if score == 'undefined' or score.strip() == "":
+            score = 0
+        else:
+            score = int(score)
         is_approve = 'false'
         if is_empty_thumbnail == 'false':
             #save thumbnail to server
@@ -681,9 +686,12 @@ def add_band_detail_db():
                         "is_important": is_important,
                         "is_approve": is_approve,
                         "created_date": created_date,
-                        "created_by": created_by
+                        "created_by": created_by,
+                        "score": score
                     }
-        common.current_db.Band_detail.insert(new_event)   
+        common.current_db.Band_detail.insert(new_event)
+        #update band name in user table
+        common.current_db.User.update({"_id": ObjectId(current_user.id)}, {"$set": {"name": band_name}})       
         return simplejson.dumps({"result": 'success'}) 
     except Exception, e:
         print 'error' + str(e)
@@ -741,8 +749,13 @@ def update_band_detail_db():
         is_empty_thumbnail_detail = request.form['is_empty_thumbnail_detail']        
         description = request.form['description']
         short_description = request.form['short_description']
-        is_important = request.form['is_important']        
+        is_important = request.form['is_important'] 
+        score = request.form['score']       
         is_approve = request.form['is_approve']
+        if score == 'undefined' or score.strip() == "":
+            score = 0
+        else:
+            score = int(score)
         if is_empty_thumbnail == 'false':
             #delete old thumnail
             #Delete old thumnail image, database
@@ -773,18 +786,39 @@ def update_band_detail_db():
             # save file to disk
             files.save(file_path)
             thumbnail_detail = file_name
-        update_event = {
-                        "band_name": band_name,
-                        "band_type": band_type,
-                        "title": title,
-                        "thumbnail": thumbnail,
-                        "thumbnail_detail": thumbnail_detail,
-                        "short_description": short_description,
-                        "description": description,
-                        "is_important": is_important,
-                        "is_approve": is_approve,
-                    }
-        common.current_db.Band_detail.update({"_id": ObjectId(band_id)}, {"$set": update_event})     
+        # Check current user
+        if current_user.role == 'admin':
+            update_event = {
+                            "band_name": band_name,
+                            "band_type": band_type,
+                            "title": title,
+                            "thumbnail": thumbnail,
+                            "thumbnail_detail": thumbnail_detail,
+                            "short_description": short_description,
+                            "description": description,
+                            "is_important": is_important,
+                            "is_approve": is_approve,
+                            "score": score
+                        }
+        else:
+            update_event = {
+                            "band_name": band_name,
+                            "band_type": band_type,
+                            "title": title,
+                            "thumbnail": thumbnail,
+                            "thumbnail_detail": thumbnail_detail,
+                            "short_description": short_description,
+                            "description": description,
+                            "is_important": is_important,
+                            "is_approve": is_approve
+                        }
+        common.current_db.Band_detail.update({"_id": ObjectId(band_id)}, {"$set": update_event})
+        #Get userid of band
+        band = common.current_db.Band_detail.find_one({"_id": ObjectId(band_id)})
+        if band != None:
+            band_id = str(band["userId"])
+            #update band name in user table
+            common.current_db.User.update({"_id": ObjectId(band_id)}, {"$set": {"name": band_name}})     
         return simplejson.dumps({"result": 'success'}) 
     except Exception, e:
         print 'error' + str(e)
