@@ -45,14 +45,14 @@
 
 @media (max-width: 1200px) {
   .event-short-description {
-      max-height: 195px;
+      max-height: none;
   }
 
 }
 
 @media (max-width: 992px) {
   .event-short-description {
-      max-height: 195px;
+      max-height: 160px;
   }
 }
 
