@@ -23,7 +23,7 @@
     new WOW().init();
 
     $(document).ready(function () {
-        
+
         /* ---------------------------------------------
          retina fix
          --------------------------------------------- */
@@ -607,8 +607,40 @@
             }
         });
 
+        /* ---------------------------------------------
+         FIX HOVER ON IPHONE
+         --------------------------------------------- */
+         $('.portfolio-item').hover(function(){
+           var itemHovers = $(this).find('.portfolio-hover');
+           if(itemHovers.length > 0){
+             $(itemHovers[0]).css('opacity',1);
+           }
 
+           var itemDescriptions = $(this).find('.portfolio-description');
+           if(itemDescriptions.length > 0){
+             $(itemDescriptions[0]).css('opacity',1);
+           }
 
+           var itemActions = $(this).find('.action-btn');
+           if(itemActions.length > 0){
+             $(itemActions[0]).css('opacity',1);
+           }
+         }, function(){
+           var itemHovers = $(this).find('.portfolio-hover');
+           if(itemHovers.length > 0){
+             $(itemHovers[0]).css('opacity','');
+           }
+
+           var itemDescriptions = $(this).find('.portfolio-description');
+           if(itemDescriptions.length > 0){
+             $(itemDescriptions[0]).css('opacity','');
+           }
+
+           var itemActions = $(this).find('.action-btn');
+           if(itemActions.length > 0){
+             $(itemActions[0]).css('opacity','');
+           }
+         });
     });
 
 })(jQuery);
