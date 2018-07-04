@@ -43,6 +43,9 @@
     <Compile Include="TheMarch\controllers\HomeController.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TheMarch\controllers\MailController.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TheMarch\controllers\UserController.py">
       <SubType>Code</SubType>
     </Compile>

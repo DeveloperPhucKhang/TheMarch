@@ -137,7 +137,7 @@ function send_mail_contact() {
                 $('.summernote').code(result.description.description);
             }
             else {
-                show_error('');
+                alert(result.message)
             }
         },
         error: function () {
