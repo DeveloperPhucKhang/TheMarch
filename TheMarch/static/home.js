@@ -134,7 +134,7 @@ function send_mail_contact() {
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
-                $('.summernote').code(result.description.description);
+                show_alert('Gửi liên hệ thành công!');
             }
             else {
                 alert(result.message)

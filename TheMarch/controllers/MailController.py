@@ -26,48 +26,40 @@ def send_mail_contact():
     mail = request.form['mail']
     phone = request.form['phone']
     address = request.form['address']
-    mail_content = request.form['mail_content']
-    
-    me = "themarchsite@gmail.com"
-    you = "duypv@outlook.com"
-    try:   
-        #credentials = get_credentials()
-        #http = credentials.authorize(httplib2.Http())
-        #service = discovery.build('gmail', 'v1', http=http)
-        #msg_body = "test message"
-        #message = CreateMessage(me, you, "Status report of opened tickets", msg_body)
-        #SendMessage(service, "me", message)
-
-
-
-   
-    #msg = MIMEMultipart('alternative')
-    #msg['Subject'] = "Test mail"
-    #msg['From'] = me
-    #msg['To'] = you
-    #text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttps://www.python.org"
-    #html = """\
-    #<html>
-    #  <head></head>
-    #  <body>
-    #    <p>Hi!<br>
-    #       How are you?<br>
-    #       Here is the <a href="https://www.python.org">link</a> you wanted.
-    #    </p>
-    #  </body>
-    #</html>
-    #"""
-      
-    #    part1 = MIMEText(text, 'plain')
-    #    part2 = MIMEText(html, 'html')
-    #    #msg.attach(part1)
-    #    msg.attach(part2)
-    #    s = smtplib.SMTP('localhost')
-    #    s.sendmail(me, you, msg.as_string())
-    #    s.quit()
-        server = smtplib.SMTP('localhost')
+    mail_content = request.form['mail_content']    
+    from_addr = "themarchsite@gmail.com"
+    to_addr = "duypv@outlook.com"
+    try:       
+        msg = MIMEMultipart('alternative')
+        msg['Subject'] = "Comment t? The March website"
+        msg['From'] = from_addr
+        msg['To'] = to_addr
+        text = "Hi!\nHow are you?\nHere is the link you wanted:\nhttps://www.python.org"
+        html = """\
+        <html>
+          <head>Thông tin ng??i comment</head>
+          <body>
+            <p>Tên: {name}<br>
+            Email: {mail}<br>
+            Phone: {phone}<br>
+            ??a ch?: {address}<br>
+            ??a ch?: {address}<br>
+            N?i dung: </p><br>
+            <textarea rows="5">{mail_content}</textarea></br>
+          </body>
+        </html>
+        """
+        new_message = html.format(name=name,mail=mail,phone=phone,address=address,mail_content=mail_content)        
+        #part1 = MIMEText(text, 'plain')
+        part2 = MIMEText(new_message, 'html')
+        #msg.attach(part1)
+        msg.attach(part2)
+        server = smtplib.SMTP(host='smtp.gmail.com', port=587)
+        server.starttls()
+        server.login(from_addr,'Admin@123')
+        #server = smtplib.SMTP('localhost')
         server.set_debuglevel(1)
-        server.sendmail(me, you, 'asdasdasd')
+        server.sendmail(from_addr, to_addr, msg.as_string())
         server.quit()
     except Exception, e:
         return simplejson.dumps({"result": 'error',"message":str(e)})    
