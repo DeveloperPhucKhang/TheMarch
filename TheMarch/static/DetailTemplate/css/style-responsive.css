@@ -166,7 +166,7 @@ Table of contents
         /* line-height: 2.55; */
     }
     .menuzord-responsive .showhide {
-        margin: 50px;
+        margin: 10px;
     }
     .menuzord-responsive .menuzord-menu {
         width: 100%;
@@ -684,9 +684,6 @@ Table of contents
         font-size: 20px;
     }
 
-    .menuzord-responsive .showhide {
-        margin: 50px;
-    }
 }
 
 
@@ -725,10 +722,6 @@ Table of contents
         margin-top: 0;
         padding-left: 0;
         padding-top: 0;
-    }
-
-    .menuzord-responsive .showhide {
-        margin: 100px;
     }
 
 }
@@ -814,10 +807,6 @@ Table of contents
     .count-down.round .c-grid,
     .count-down-alt.round .c-grid  {
         border-radius: 0px !important;
-    }
-
-    .menuzord-responsive .showhide {
-        margin: 100px;
     }
 
 }
