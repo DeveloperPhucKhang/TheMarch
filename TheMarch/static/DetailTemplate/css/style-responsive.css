@@ -166,7 +166,7 @@ Table of contents
         /* line-height: 2.55; */
     }
     .menuzord-responsive .showhide {
-        margin: 10px;
+        margin: 50px;
     }
     .menuzord-responsive .menuzord-menu {
         width: 100%;
@@ -684,6 +684,9 @@ Table of contents
         font-size: 20px;
     }
 
+    .menuzord-responsive .showhide {
+        margin: 50px;
+    }
 }
 
 
@@ -724,6 +727,9 @@ Table of contents
         padding-top: 0;
     }
 
+    .menuzord-responsive .showhide {
+        margin: 100px;
+    }
 
 }
 
@@ -810,6 +816,8 @@ Table of contents
         border-radius: 0px !important;
     }
 
-
+    .menuzord-responsive .showhide {
+        margin: 100px;
+    }
 
 }
