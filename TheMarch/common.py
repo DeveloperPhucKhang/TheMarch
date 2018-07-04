@@ -155,26 +155,29 @@ def load_band_data(current_user):
     if current_user.role == 'admin':
         list_band_db = current_db.Band_detail.find({}, 
                 {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
-                'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1}).sort("created_date", DESCENDING)
+                'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1, "userId":1}).sort("created_date", DESCENDING)
     else:
         list_band_db = current_db.Band_detail.find({"userId": ObjectId(current_user.id)}, 
                 {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
-                'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1}).sort("created_date", DESCENDING)
-    for item in list_band_db:                
+                'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1, "userId":1}).sort("created_date", DESCENDING)
+    for item in list_band_db:
+        #Get user name of band
+        user = current_db.User.find_one({"_id": item["userId"]}, 
+                {'user': 1})                        
         sub_item = {
                     "_id": str(item["_id"]),
                     "band_name": item["band_name"],
                     "title": item["title"],
                     "thumbnail": "load_band_image/%s" % item["thumbnail"],
-                    "short_description": item["short_description"] ,
-                    #"description": item["description"] ,
+                    "short_description": item["short_description"] ,                    
                     "created_by": item["created_by"] ,
                     "created_date": item["created_date"] ,
                     "is_important": item["is_important"] ,
                     "is_approve": item["is_approve"],
                     "thumbnail_detail": item["thumbnail_detail"],
                     "band_type": item["band_type"],
-                    "score": item["score"]
+                    "score": item["score"],
+                    "user_name": user["user"]
                 }                                          
         list_band.append(sub_item)
     return list_band

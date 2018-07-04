@@ -450,20 +450,20 @@
                                 <div class="col-md-5 col-md-offset-1 col-sm-5 col-sm-offset-1">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                                        <input type="text" name="newsletter-name" class="form-control" placeholder="Tên cá nhân/công ty">
+                                        <input id="txt_contact_name" type="text" name="newsletter-name" class="form-control" placeholder="Tên cá nhân/công ty">
                                     </div>
                                 </div>
                                 <div class="col-md-5 col-sm-5">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                                        <input type="text" name="newsletter-email" class="form-control" placeholder="Địa chỉ email">
+                                        <input id="txt_contact_mail" type="text" name="newsletter-email" class="form-control" placeholder="Địa chỉ email">
                                     </div>
                                 </div>
                             </div>
 
                             <div class="newsletter-box-submit">
                                 <div class="newsletter-box-button">
-                                    <input type="submit" class="btn btn-color1 btn-block" value="Nhận mail chi tiết" />
+                                    <input id="btn_contact" onclick="send_mail_contact()" class="btn btn-color1 btn-block" value="Nhận mail chi tiết" />
                                 </div>
                                 <div class="newsletter-box-socialmedia">
                                     <h4>Follow us:</h4>
@@ -1038,7 +1038,7 @@
                     <div class="row">
                         <div class="col-md-6 col-md-offset-6">
                             <p class="contact-form-info">*Để gửi được tin nhắn, tất cả thông tin cần được điền chính xác</p>
-                            <button onclick="send_mail_contact()" class="btn btn-color1 btn-contact-form">Gửi tin nhắn<i class="fa fa-angle-right"></i></button>
+                            <button id="btn_mail_message" onclick="send_mail_message()" class="btn btn-color1 btn-contact-form">Gửi tin nhắn<i class="fa fa-angle-right"></i></button>
                         </div>
                     </div>
                 </form>

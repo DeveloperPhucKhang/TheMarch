@@ -94,7 +94,7 @@ def list_event_recently():
         event_id = request.form['event_id']
         list_event_recently = common.current_db.Event.find({"_id": { '$ne': ObjectId(event_id) } }, 
                     {'_id': 1,'event_type': 1,'title': 1,'thumbnail': 1,
-                    'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING).limit(3)
+                    'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING).limit(5)
         for item in list_event_recently:                
             item = {
                     "_id": str(item["_id"]),

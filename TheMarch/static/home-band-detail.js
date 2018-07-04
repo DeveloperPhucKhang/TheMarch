@@ -38,6 +38,9 @@
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
+                if (result.list_band.length > 0) {
+                    $('#box_same_band').show();
+                }
                 var html = '';
                 for (var i = 0; i < result.list_band.length; i++) {
                     html += '<li>'+

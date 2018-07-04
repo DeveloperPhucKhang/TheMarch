@@ -27,6 +27,7 @@ $(document).ready(function () {
                         data.push([
                             result.list_band[i]._id,
                             result.list_band[i].band_name,
+                            result.list_band[i].user_name,
                             band_type,
                             result.list_band[i].created_date,
                             is_important,
@@ -59,7 +60,8 @@ $(document).ready(function () {
             columns: [
                 { id: "id" },
                 { title: "Tên band" },
-                { title: "Loại band nhạc" },
+                { title: "Username" },
+                { title: "Loại nhạc" },
                 { title: "Ngày viết" },
                 { title: "Hiển thị trang chủ" },
                 { title: "Tình trạng" },
@@ -80,26 +82,34 @@ $(document).ready(function () {
                 },
                 {
                     "targets": 1,
-                    "width": 220,
+                    "width": 200,
+                },
+                {
+                    "targets": 2,
+                    "width": 100,
                 },
                 {
                     "targets": 3,
-                    "width": 150,
+                    "width": 100,
                 },
                 {
                     "targets": 4,
-                    "width": 170,
+                    "width": 90,
                 },
                 {
                     "targets": 5,
-                    "width": 130,
+                    "width": 150,
                 },
                 {
                     "targets": 6,
-                    "width": 110,
+                    "width": 130,
                 },
                 {
                     "targets": 7,
+                    "width": 140,
+                },
+                {
+                    "targets": 8,
                     "width": 170,
                 },
             ]
