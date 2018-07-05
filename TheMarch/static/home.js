@@ -158,7 +158,8 @@ function send_mail_message() {
                 show_alert('Gửi tin nhắn thành công!');
             }
             else {
-                show_error('Gửi tin nhắn không thành công! Xin hãy thử lại!');
+                //show_error('Gửi tin nhắn không thành công! Xin hãy thử lại!');
+                show_error(result.message);
             }
         },
         error: function () {
