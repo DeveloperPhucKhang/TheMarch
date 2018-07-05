@@ -48,7 +48,7 @@ def send_mail_message():
                 Email:      """ +str(mail).decode('utf-8')+ """<br>
                 Phone:      """ +str(phone).decode('utf-8')+ """<br>
                 Địa chỉ:    """ +str(address).decode('utf-8')+ """<br>
-                Nội dung:   """ +str(mail_content).decode('utf-8')+ """<br>           
+                Nội dung:   """ +str(mail_content).encode('utf-8').strip()+ """<br>           
             </p>
           </body>
         </html>
