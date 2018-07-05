@@ -48,12 +48,12 @@ def send_mail_message():
                 Email:      """ +str(mail).decode('utf-8')+ """<br>
                 Phone:      """ +str(phone).decode('utf-8')+ """<br>
                 Địa chỉ:    """ +str(address).decode('utf-8')+ """<br>
-                Nội dung:   """ +str(mail_content).encode('utf-8').strip()+ """<br>           
+                Nội dung:   """ +str(mail_content).decode('utf-8')+ """<br>           
             </p>
           </body>
         </html>
         """                    
-        part2 = MIMEText(html, 'html')        
+        part2 = MIMEText(html.encode('utf-8'), 'html', 'utf-8')        
         msg.attach(part2)
         server = smtplib.SMTP(host='smtp.gmail.com', port=587)
         server.starttls()
