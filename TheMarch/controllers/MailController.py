@@ -2,7 +2,7 @@
 """
 Routes and views for the flask application.
 """
-
+import sys
 from datetime import datetime
 from flask import render_template, send_from_directory, request
 from TheMarch import app
@@ -16,6 +16,8 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.header import Header
 
+reload(sys)
+sys.setdefaultencoding('utf-8')
 #Mail info
 from_addr = "themarchsite@gmail.com"
 from_addr_pass = 'Admin@123'
