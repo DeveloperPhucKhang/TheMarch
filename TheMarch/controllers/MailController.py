@@ -44,11 +44,11 @@ def send_mail_message():
         <html>
           <head>Thông tin người comment từ trang The march: </head>
           <body>
-            <p>Tên:         """ +str(name)+ """<br>
-                Email:      """ +str(mail)+ """<br>
-                Phone:      """ +str(phone)+ """<br>
-                Địa chỉ:    """ +str(address)+ """<br>
-                Nội dung:   """ +str(mail_content)+ """<br>                
+            <p>Tên:         """ +str(name).decode('utf-8')+ """<br>
+                Email:      """ +str(mail).decode('utf-8')+ """<br>
+                Phone:      """ +str(phone).decode('utf-8')+ """<br>
+                Địa chỉ:    """ +str(address).decode('utf-8')+ """<br>
+                Nội dung:   """ +str(mail_content).decode('utf-8')+ """<br>                
             </p>
           </body>
         </html>
