@@ -36,24 +36,24 @@ def send_mail_message():
     
     try:       
         msg = MIMEMultipart('alternative')
-        #msg['Subject'] = Header("Tin nhắn từ The March website", 'utf-8')
-        #msg['From'] = from_addr
-        #msg['To'] = to_addr
-        #msg['CC'] = ', '.join(cc)
-        #msg['BCC'] = ', '.join(bcc)        
-        #html = """\
-        #<html>
-        #  <head>Thông tin người comment từ trang The march: </head>
-        #  <body>
-        #    <p>Tên:         """ +str(name)+ """<br>
-        #        Email:      """ +str(mail)+ """<br>
-        #        Phone:      """ +str(phone)+ """<br>
-        #        Địa chỉ:    """ +str(address)+ """<br>
-        #        Nội dung:   """ +str(mail_content)+ """<br>           
-        #    </p>
-        #  </body>
-        #</html>
-        #"""                    
+        msg['Subject'] = Header("Tin nhắn từ The March website", 'utf-8')
+        msg['From'] = from_addr
+        msg['To'] = to_addr
+        msg['CC'] = ', '.join(cc)
+        msg['BCC'] = ', '.join(bcc)        
+        html = """\
+        <html>
+          <head>Thông tin người comment từ trang The march: </head>
+          <body>
+            <p>Tên:         """ +str(name)+ """<br>
+                Email:      """ +str(mail)+ """<br>
+                Phone:      """ +str(phone)+ """<br>
+                Địa chỉ:    """ +str(address)+ """<br>
+                Nội dung:   """ +str(mail_content)+ """<br>           
+            </p>
+          </body>
+        </html>
+        """                    
         #part2 = MIMEText(html, 'html', 'utf-8')        
         #msg.attach(part2)
         #server = smtplib.SMTP(host='smtp.gmail.com', port=587)
