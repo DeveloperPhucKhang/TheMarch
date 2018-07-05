@@ -108,7 +108,11 @@ function send_mail_message() {
     $('#btn_mail_message').blur();
     // Validate email
     var filter = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-    if (mail == "") {
+    if ($.trim(name) == "") {
+        show_error('Xin hãy nhập tên!');
+        return;
+    }
+    if ($.trim(mail) == "") {
         show_error('Xin hãy nhập email!');
         return;
     }
@@ -116,11 +120,15 @@ function send_mail_message() {
         show_error('Email không đúng!');
         return;
     }
-    if (phone == "") {
+    if ($.trim(phone) == "") {
         show_error('Xin hãy nhập số điện thoại!');
         return;
     }
-    if (mail_content == "") {
+    if ($.trim(address) == "") {
+        show_error('Xin hãy nhập địa chỉ!');
+        return;
+    }
+    if ($.trim(mail_content) == "") {
         show_error('Xin hãy nhập nội dung tin nhắn!');
         return;
     }
@@ -198,7 +206,7 @@ function send_mail_contact() {
             $('#btn_contact').prop('disabled', false);
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
-                show_alert('Bạn đã gửi thông tin tới The March');
+                show_alert('Bạn đã gửi yêu cầu báo giá đến March Live Music!');
             }
             else {
                 show_error('Gửi thông tin không thành công! Xin hãy thử lại!');

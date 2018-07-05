@@ -20,8 +20,8 @@ from_addr = "themarchsite@gmail.com"
 from_addr_pass = 'Admin@123'
 to_addr = "duypv@outlook.com"
 cc = ['duypv250592@gmail.com']
-#bcc = ['nguyenhuuhoanggiang@gmail.com']
-bcc = []
+bcc = ['nguyenhuuhoanggiang@gmail.com']
+#bcc = []
 to_addrs = [to_addr] + cc + bcc
 
 @app.route("/send_mail_message", methods=['POST'])
