@@ -14,6 +14,7 @@ from operator import itemgetter, attrgetter
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from email.header import Header
 
 #Mail info
 from_addr = "themarchsite@gmail.com"
@@ -35,7 +36,7 @@ def send_mail_message():
     
     try:       
         msg = MIMEMultipart('alternative')
-        msg['Subject'] = "Tin nhắn từ The March website".decode('utf-8')
+        msg['Subject'] = Header("Tin nhắn từ The March website", 'utf-8')
         msg['From'] = from_addr
         msg['To'] = to_addr
         msg['CC'] = ', '.join(cc)
@@ -54,13 +55,13 @@ def send_mail_message():
         </html>
         """                    
         part2 = MIMEText(html.encode('utf-8'), 'html', 'utf-8')        
-        msg.attach(part2)
-        server = smtplib.SMTP(host='smtp.gmail.com', port=587)
-        server.starttls()
-        server.login(from_addr,from_addr_pass)        
-        server.set_debuglevel(1)
-        server.sendmail(from_addr, to_addrs, msg.as_string())
-        server.quit()
+        #msg.attach(part2)
+        #server = smtplib.SMTP(host='smtp.gmail.com', port=587)
+        #server.starttls()
+        #server.login(from_addr,from_addr_pass)        
+        #server.set_debuglevel(1)
+        #server.sendmail(from_addr, to_addrs, msg.as_string())
+        #server.quit()
     except Exception, e:
         return simplejson.dumps({"result": 'error',"message":str(e)})    
     return simplejson.dumps({"result": 'success'})
