@@ -491,6 +491,7 @@ comments-list
 }
 
 /*Giang edit 02/07/2018*/
+.blog-post iframe,
 .blog-post img {
     width: 100%;
 }
