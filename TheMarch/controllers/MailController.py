@@ -45,7 +45,7 @@ def send_mail_message():
         <html>
           <head>Thông tin người comment từ trang The march: </head>
           <body>
-            <p>Tên:         """ +str(name).encode('utf-8')+ """<br>
+            <p>Tên:         """ +str(name).decode('utf-8')+ """<br>
             """
         #        Email:      """ +str(mail)+ """<br>
         #        Phone:      """ +str(phone)+ """<br>
