@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .btn-color1:focus {
-  background-color: #219eaf;
+  background-color: #685e27; /*#219eaf to #685e27 Giang 07/05*/
   color: #fff;
 }
 
@@ -599,7 +599,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .room-tabs .room-tabs-gallery .room-tabs-gallery-caption .btn-room-check:hover {
-  background-color: #219eaf;
+  background-color: #685e27; /*#219eaf to #685e27 Giang 07/05*/
   color: #fff;
 }
 
