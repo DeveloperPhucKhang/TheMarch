@@ -54,7 +54,7 @@ def send_mail_message():
           </body>
         </html>
         """                    
-        part2 = MIMEText(html.encode('utf-8'), 'html', 'utf-8')        
+        part2 = MIMEText(html, 'html', 'utf-8')        
         #msg.attach(part2)
         #server = smtplib.SMTP(host='smtp.gmail.com', port=587)
         #server.starttls()
