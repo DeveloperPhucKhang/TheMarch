@@ -48,23 +48,22 @@ def send_mail_message():
           <head>Thông tin người comment từ trang The march: </head>
           <body>
             <p>Tên:         """ +str(name)+ """<br>
-            """
-        #        Email:      """ +str(mail)+ """<br>
-        #        Phone:      """ +str(phone)+ """<br>
-        #        Địa chỉ:    """ +str(address)+ """<br>
-        #        Nội dung:   """ +str(mail_content)+ """<br>           
-        #    </p>
-        #  </body>
-        #</html>
-        #"""                    
-        #part2 = MIMEText(html, 'html', 'utf-8')        
-        #msg.attach(part2)
-        #server = smtplib.SMTP(host='smtp.gmail.com', port=587)
-        #server.starttls()
-        #server.login(from_addr,from_addr_pass)        
-        #server.set_debuglevel(1)
-        #server.sendmail(from_addr, to_addrs, msg.as_string())
-        #server.quit()
+                Email:      """ +str(mail)+ """<br>
+                Phone:      """ +str(phone)+ """<br>
+                Địa chỉ:    """ +str(address)+ """<br>
+                Nội dung:   """ +str(mail_content)+ """<br>           
+            </p>
+          </body>
+        </html>
+        """                    
+        part2 = MIMEText(html, 'html', 'utf-8')        
+        msg.attach(part2)
+        server = smtplib.SMTP(host='smtp.gmail.com', port=587)
+        server.starttls()
+        server.login(from_addr,from_addr_pass)        
+        server.set_debuglevel(1)
+        server.sendmail(from_addr, to_addrs, msg.as_string())
+        server.quit()
     except Exception, e:
         return simplejson.dumps({"result": 'error',"message":str(e)})    
     return simplejson.dumps({"result": 'success'})
