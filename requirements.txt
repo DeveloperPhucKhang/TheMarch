@@ -7,7 +7,7 @@ click==6.7
 itsdangerous==0.24
 Jinja2==2.10
 MarkupSafe==1.0
-pipenv==2018.5.18
+
 virtualenv==16.0.0
 virtualenv-clone==0.3.0
 Werkzeug==0.14.1
