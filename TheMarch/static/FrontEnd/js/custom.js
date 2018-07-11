@@ -6,8 +6,8 @@
 
     // Location Address
     //-------------------------------------------------------------------------------
-    var companyName = 'Accomodation Landing Page';
-    var address = '51 Trần Quang Diệu, Phường 13, Quận 3, Hồ Chí Minh '; // Enter your Address
+    var companyName = 'March Live Music';
+    var address = '247A/6 Huỳnh Văn, p12, phú nhuận, Hồ Chí Minh '; // Enter your Address
 
 
     // Navigation Close on Click
