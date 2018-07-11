@@ -1,0 +1,8 @@
+.requirements.txt.swp
+TheMarch/__init__.pyc
+TheMarch/common.pyc
+TheMarch/controllers/HomeAdminController.pyc
+TheMarch/controllers/HomeController.pyc
+TheMarch/controllers/MailController.pyc
+TheMarch/controllers/UserController.pyc
+TheMarch/controllers/__init__.pyc
