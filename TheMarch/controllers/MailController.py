@@ -21,10 +21,11 @@ sys.setdefaultencoding('utf-8')
 #Mail info
 from_addr = "themarchsite@gmail.com"
 from_addr_pass = 'Admin@123'
-to_addr = "duypv@outlook.com"
-cc = ['duypv250592@gmail.com']
-bcc = ['nguyenhuuhoanggiang@gmail.com']
-#bcc = []
+to_addr = "livemusic.marchcom@gmail.com"
+#cc = ['duypv250592@gmail.com']
+#bcc = ['nguyenhuuhoanggiang@gmail.com']
+cc = []
+bcc = []
 to_addrs = [to_addr] + cc + bcc
 
 @app.route("/send_mail_message", methods=['POST'])
