@@ -100,6 +100,7 @@
                         '<div class="white-box">' +
                             //'<button onclick="remove_banner(this)" style="float:right" type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i> </button>' +
                             '<h3 class="box-title">Mẫu banner</h3>' +
+                            '<label>Kích thước: 1700x1110</label>' +
                             '<label style="display:none" for="' + 0 + '_banner"></label>' +
                             '<input type="file" id="' + 0 + '_banner" class="dropify"' +
                                     'data-height="300"' +
