@@ -208,16 +208,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .top-navbar {
   background-color: #fff;
-  min-height: 100px;
+  min-height: 90px;
   padding: 0 10px;
   border-bottom: 5px solid #685e27;
   /*Doi mau tu  #685e27 => #685e27 */
   z-index: 15;
 }
 
+/* Edit ngay 22/07/2018
 .top-navbar .navbar-brand {
   margin-top: 6px;
 }
+*/
 
 .top-navbar .navbar-default {
   border: none;
@@ -225,7 +227,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .top-navbar .navbar-default .navbar-nav {
-  margin-top: 25px;
+  margin-top: 15px;
   margin-right: 0;
 }
 
@@ -251,7 +253,7 @@ h1, h2, h3, h4, h5, h6 {
   /*Doi mau tu  #685e27 => #685e27 */
   position: absolute;
   left: 50%;
-  bottom: -22px;
+  bottom: -20px;
   margin-left: -5px;
 }
 
