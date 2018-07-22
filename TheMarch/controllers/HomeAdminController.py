@@ -61,7 +61,9 @@ def admin():
 @login_manager.user_loader
 def load_user(user_id):
     loged_user = common.current_db.User.find_one({"_id": ObjectId(user_id)})
-    currentUser = User(user_id, loged_user.get('user'), loged_user.get('password'), loged_user.get('role'), loged_user.get('name'))
+    currentUser = None
+    if loged_user != None:
+        currentUser = User(user_id, loged_user.get('user'), loged_user.get('password'), loged_user.get('role'), loged_user.get('name'))
     return currentUser
 
 #############
