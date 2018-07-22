@@ -1,0 +1,54 @@
+{% extends "Admin/layout.html" %}
+{% block title %}Quản lí Thông tin mô tả chung của phòng tập{% endblock %}
+{% block head %}
+{{super()}}
+<link href="/static/css/event.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row bg-title">
+        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+            <h4 class="page-title">Thông tin mô tả chung của phòng tập</h4>
+        </div>
+        <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+            <button class="right-side-toggle waves-effect waves-light btn-info btn-circle pull-right m-l-20"><i class="ti-settings text-white"></i></button>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- .row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="white-box">
+                <input id="general_id" type="hidden" value="{{room_info._id}}" />
+                <h3 class="box-title m-b-40" style="display: inline-block;">Thông tin mô tả chung</h3>
+                <form class="form-horizontal" data-toggle="validator">
+                    <div class="form-group">
+                        <label class="col-md-12">Description 1</label>
+                        <div class="col-md-12">
+                            <textarea maxlength="380" class="form-control" id="description_1" rows="5" required>{{room_info.description_1}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-12">Description 1</label>
+                        <div class="col-md-12">
+                            <textarea maxlength="380" class="form-control" id="description_2" rows="5" required>{{room_info.description_2}}</textarea>
+                        </div>
+                    </div>                    
+                    <div class="form-group">
+                        <button type="submit" style="width: 70px;margin-left: 2%;" class="btn btn-success waves-effect waves-light m-r-10">Lưu</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.row -->
+    <!-- ============================================================== -->    
+</div>
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="/static/AdminTemplate/ampleadmin-dark/js/validator.js"></script>
+<!--Style Switcher -->
+<script src="/static/admin-music-room-general.js"></script>
+{% endblock %}
