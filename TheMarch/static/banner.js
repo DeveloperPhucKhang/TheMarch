@@ -95,6 +95,10 @@
             swal("Đã thêm khung ảnh!");
             return;
         }
+        if ($('#list_banner').find('.col-sm-3').length == 8) {
+            swal("Số banner tối đa là 8!");
+            return;
+        }
         //var index = $('#list_banner').find('.col-sm-3').length + 1;
         var html = '<div class="col-sm-3" index="' + 0 + '">' +
                         '<div class="white-box">' +
