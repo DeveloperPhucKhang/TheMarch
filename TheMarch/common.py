@@ -2,6 +2,9 @@
 from pymongo import MongoClient,ASCENDING, DESCENDING
 from bson.objectid import ObjectId
 import os
+from decimal import Decimal
+import locale
+
 from TheMarch import app
 
 current_db = []
@@ -17,6 +20,8 @@ app.config['ROOM_IMAGE_FOLDER'] = 'dataset/room/'
 app.config['EVENT_THUMBNAIL_FOLDER'] = 'dataset/event/'
 
 IGNORED_FILES = set(['.gitignore'])
+
+locale.setlocale( locale.LC_ALL, '' )
 
 class banner_info:
   def __init__(self,name , url, index):
@@ -289,6 +294,7 @@ def load_room_description(room_type):
                     "_id": str(room["_id"]),
                     "room_type": room["room_type"],
                     "description": room["description"],
+                    "price": room["price"],
                     "option_1": room["option_1"],
                     "option_2": room["option_2"],
                     "option_3": room["option_3"] ,
@@ -311,6 +317,7 @@ def load_music_room_description():
                         "_id": str(item["_id"]),
                         "room_type": item["room_type"],
                         "description": item["description"],
+                        "price": '{:,.0f}'.format( int(item["price"])),
                         "option_1": item["option_1"],
                         "option_2": item["option_2"],
                         "option_3": item["option_3"] ,
@@ -324,3 +331,16 @@ def load_music_room_description():
                     }                            
         room_description.append(description)
     return room_description
+
+
+def load_room_general():
+     # Load room general data
+    room = current_db.Room_general_description.find_one()
+    item = None;
+    if room != None:
+        item = {
+                    "_id": str(room["_id"]),
+                    "description_1": room["description_1"],
+                    "description_2": room["description_2"],               
+            }
+    return item  

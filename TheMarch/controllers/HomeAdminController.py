@@ -222,7 +222,7 @@ def event():
     if current_user.role != 'admin':
         return render_template('Admin/error-permission.html')
     return render_template('Admin/event.html',        
-        year=datetime.now().year,)
+        year=datetime.now().year)
 
 #############
 # Add Event controller
@@ -1000,6 +1000,7 @@ def update_room_description():
     try:
         room_id = request.form['room_id']
         room_description = request.form['room_description']
+        price = request.form['price']
         option_1 = request.form['option_1']
         option_2 = request.form['option_2']
         option_3 = request.form['option_3']
@@ -1012,6 +1013,7 @@ def update_room_description():
         option_10 = request.form['option_10']
         update_room = {
                         "description": room_description,
+                        "price": price,
                         "option_1": option_1.strip(),
                         "option_2": option_2.strip(),
                         "option_3": option_3.strip(),
@@ -1028,3 +1030,42 @@ def update_room_description():
     except Exception, e:
         print 'error' + str(e)
         return simplejson.dumps({"result": 'error'}) 
+
+
+#############
+# Music room generak description
+#############
+@app.route("/admin/room_general", methods=['GET'])
+@login_required
+def room_general():        
+    # Load detail data
+    if current_user.role != 'admin':
+            return render_template('Admin/error-permission.html')
+    try:     
+        room_general_item = common.load_room_general()          
+        return render_template('Admin/music-room-general.html', 
+            room_info = room_general_item,              
+            year=datetime.now().year)
+    except Exception, e:
+        return render_template('Admin/music-room-general.html', 
+            room_info = None,
+            year=datetime.now().year)
+
+
+@app.route("/update_room_general", methods=['POST'])
+@login_required
+def update_room_general():  
+    try:
+        general_id = request.form['general_id']
+        description_1 = request.form['description_1']
+        description_2 = request.form['description_2']        
+        update_room = {
+                        "description_1": description_1,
+                        "description_2": description_2,                             
+                    }
+        common.current_db.Room_general_description.update({"_id": ObjectId(general_id)}, {"$set": update_room})     
+        return simplejson.dumps({"result": 'success'}) 
+    except Exception, e:
+        print 'error' + str(e)
+        return simplejson.dumps({"result": 'error'}) 
+

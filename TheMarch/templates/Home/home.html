@@ -630,19 +630,12 @@
                     </div>
                     <div class="col-md-12">
                         <div class="row room-tabs-info">
-                            <div class="div col-md-6">
-                                <img src="/static/FrontEnd/img/tripadvisor.gif" alt="Tripadvisor" class="mr15 mt10" />
-
-                                <p>
-                                    Nằm ngay mặt tiền đường Trần Quang Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn, The March Coffee tạo ấn tượng ban đầu không hề giống một quán café. Ngay phía trước cửa, những gam màu nổi bật, bắt mắt đánh vào mắt người
-                                    đi đường sự chú ý, nhưng bên trong lại là kiểu ánh sáng dịu nhẹ, màu vàng âm áp so với với bên ngoài.
-                                </p>
+                            <div class="div col-md-6" style="height:150px;">
+                                <img src="/static/FrontEnd/img/tripadvisor.gif" alt="Tripadvisor" class="mr15 mt10" />                                
+                                <p>{{list_room_general_description.description_1}}</p>
                             </div>
-                            <div class="div col-md-6">
-                                <p>
-                                    Nằm ngay mặt tiền đường Trần Quang Diệu, một trong những khu vui chơi ăn uống sầm uất ở Sài Gòn, The March Coffee tạo ấn tượng ban đầu không hề giống một quán café. Ngay phía trước cửa, những gam màu nổi bật, bắt mắt đánh vào mắt người
-                                    đi đường sự chú ý, nhưng bên trong lại là kiểu ánh sáng dịu nhẹ, màu vàng âm áp so với với bên ngoài.
-                                </p>
+                            <div class="div col-md-6" style="height:150px;">                                
+                                <p>{{list_room_general_description.description_2}}</p>
                             </div>
                         </div>
                     </div>
@@ -681,7 +674,7 @@
                                                 </a>
 
                                                 <div class="room-tabs-gallery-caption">
-                                                    Giá cho thuê: <strong>180,000đ / Giờ</strong>
+                                                    Giá cho thuê: <strong>{{list_room_description[0].price}}đ / Giờ</strong>
                                                 </div>
                                             </div>
                                             <div class="clearfix"></div>

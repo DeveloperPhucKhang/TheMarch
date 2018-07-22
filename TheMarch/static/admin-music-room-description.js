@@ -9,6 +9,7 @@
         e.preventDefault();
         var room_id = $('#room_id').val();        
         var room_description = $('#short_description').val();
+        var price = $('#price').val();
         var option_1 = $('#option_1').val();
         var option_2 = $('#option_2').val();
         var option_3 = $('#option_3').val();
@@ -26,6 +27,7 @@
         var data = new FormData();
         data.append('room_id', room_id);
         data.append('room_description', room_description);
+        data.append('price', price);
         data.append('option_1', option_1);
         data.append('option_2', option_2);
         data.append('option_3', option_3);

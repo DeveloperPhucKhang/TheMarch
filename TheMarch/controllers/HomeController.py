@@ -31,6 +31,8 @@ def home():
     list_room_thumbnail = common.load_music_room_thumbnail('0')
     #Load room description
     list_room_description = common.load_music_room_description()
+    #Load room general description
+    list_room_general_description = common.load_room_general()
     """Renders the home page."""
     return render_template(
         'Home/home.html',
@@ -40,6 +42,7 @@ def home():
         band_thumbnail = list_band,
         list_room_thumbnail = list_room_thumbnail,
         list_room_description = list_room_description,
+        list_room_general_description = list_room_general_description,
         year=datetime.now().year,
     )
 
