@@ -41,7 +41,7 @@
                     var current_box = $(element)[0].input.parent().parent().parent();
                     var banner_number = current_box.attr('index');
                     current_input_file = $(element)[0].input;
-                    var file_name = $(element)[0].input.parent().parent().find('label').text();
+                    var file_name = $(element)[0].input.parent().parent().find('label:eq(1)').text();
                     var data = new FormData();
                     data.append('file_name', file_name);
                     data.append('banner_number', banner_number);
@@ -58,6 +58,7 @@
                                 clear_flg = true;
                                 clear_banner(current_input_file);
                                 current_input_file.attr('data-default-file', '');
+                                show_alert('Xóa thành công!');
                             }
                             else {
                                 show_error(current_input_file);
@@ -133,6 +134,7 @@
                             '<div class="white-box">' +
                                 //'<button onclick="remove_banner(this)" style="float:right" type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i> </button>' +
                                 '<h3 class="box-title">Mẫu banner</h3>' +
+                                '<label>Kích thước: 1700x1110</label>' +
                                 '<label style="display:none" for="' + list_banner[i].index + '_banner">' + list_banner[i].name + '</label>' +
                                 '<input type="file" id="' + list_banner[i].index + '_banner" class="dropify"' +
                                         'data-height="300"' +
@@ -149,6 +151,7 @@
                 $('input[type="file"]').change(function () {
                     upload_banner(this);
                 });
+                show_alert('Tải lại thành công!');
             },
             error: function () {
                 show_error('');
@@ -177,6 +180,7 @@ function delete_banner_server(file_name, element) {
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
                 current_input_file.offsetParent().parent().parent().remove();
+                show_alert('Xóa thành công!');
             }
             else {
                 show_error(current_input_file);
@@ -254,7 +258,8 @@ function upload_banner(current_input) {
         success: function (result) {
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
-                $(current_input_file).parent().parent().find('label').html(result.file_name);
+                $(current_input_file).parent().parent().find('label:eq(1)').html(result.file_name);
+                show_alert('Upload thành công!');
             }
             else {
                 show_error(current_input_file);

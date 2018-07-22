@@ -163,23 +163,24 @@ def load_band_data(current_user):
     for item in list_band_db:
         #Get user name of band
         user = current_db.User.find_one({"_id": item["userId"]}, 
-                {'user': 1})                        
-        sub_item = {
-                    "_id": str(item["_id"]),
-                    "band_name": item["band_name"],
-                    "title": item["title"],
-                    "thumbnail": "load_band_image/%s" % item["thumbnail"],
-                    "short_description": item["short_description"] ,                    
-                    "created_by": item["created_by"] ,
-                    "created_date": item["created_date"] ,
-                    "is_important": item["is_important"] ,
-                    "is_approve": item["is_approve"],
-                    "thumbnail_detail": item["thumbnail_detail"],
-                    "band_type": item["band_type"],
-                    "score": item["score"],
-                    "user_name": user["user"]
-                }                                          
-        list_band.append(sub_item)
+                {'user': 1})           
+        if user != None:             
+            sub_item = {
+                        "_id": str(item["_id"]),
+                        "band_name": item["band_name"],
+                        "title": item["title"],
+                        "thumbnail": "load_band_image/%s" % item["thumbnail"],
+                        "short_description": item["short_description"] ,                    
+                        "created_by": item["created_by"] ,
+                        "created_date": item["created_date"] ,
+                        "is_important": item["is_important"] ,
+                        "is_approve": item["is_approve"],
+                        "thumbnail_detail": item["thumbnail_detail"],
+                        "band_type": item["band_type"],
+                        "score": item["score"],
+                        "user_name": user["user"]
+                    }                                          
+            list_band.append(sub_item)
     return list_band
 
 def load_band_detail_data(bandid):

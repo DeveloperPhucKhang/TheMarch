@@ -102,7 +102,8 @@
                                 '<div class="white-box">'+
                                     '<form class="form-horizontal" data-toggle="validator">'+
                                         '<button onclick="save_band_info(\'' + list_band[0]._id + '\',\'' + list_band[0].index + '\')" style="float:right;width: auto;" class="btn btn-block btn-default">Lưu</button>' +
-                                        '<h3 class="box-title">Hình thumbnail của video</h3>'+
+                                        '<h3 class="box-title">Hình thumbnail của video</h3>' +
+                                        '<label>Kích thước: 1138x518</label>' +
                                         '<div class="input-group m-b-10">'+
                                             '<span class="input-group-addon" id="basic-addon1">Url video</span>'+
                                             '<input id="txt_url_'+list_band[0].index+'" type="text" value="'+list_band[0].url+'" class="form-control" placeholder="Url" aria-describedby="basic-addon1" required>'+
