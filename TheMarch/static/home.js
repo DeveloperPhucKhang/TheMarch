@@ -3,7 +3,7 @@
     var data = {
         "token": "5b55dca894c06b03b20109ac",
         "TokenClient": [
-            "5b55dca894c06b03b20109ac"
+            "551481"
         ],
         "ConfigCod": true,
         "ConfigReturnData": true,
@@ -33,7 +33,7 @@
             "Return": true,
             "Returned": true,
             "Storing": true,
-            "WaitingToFinish": true
+            "WaitingToFinish": true 
         }
     }
     $.ajax({
