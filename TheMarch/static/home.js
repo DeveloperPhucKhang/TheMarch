@@ -1,56 +1,5 @@
 ﻿$(document).ready(function () {
 
-    var data = {
-        "token": "5b55dca894c06b03b20109ac",
-        "TokenClient": [
-            "551481"
-        ],
-        "ConfigCod": true,
-        "ConfigReturnData": true,
-        "URLCallback": "https://hook.serverapi.host/realtimelog",
-        "ConfigField": {
-            "CoDAmount": true,
-            "CurrentWarehouseName": true,
-            "CustomerID": true,
-            "CustomerName": true,
-            "CustomerPhone": true,
-            "Note": true,
-            "OrderCode": true,
-            "ServiceName": true,
-            "ShippingOrderCosts": true,
-            "Weight": true,
-            "ExternalCode": true,
-            "ReturnInfo": true
-        },
-        "ConfigStatus": {
-            "Cancel": true,
-            "Delivered": true,
-            "Delivering": true,
-            "Finish": true,
-            "LostOrder": true,
-            "Picking": true,
-            "ReadyToPick": true,
-            "Return": true,
-            "Returned": true,
-            "Storing": true,
-            "WaitingToFinish": true 
-        }
-    }
-    $.ajax({
-        url: "https://console.ghn.vn/api/v1/apiv3/SetConfigClient", //the page containing python script
-        type: "POST", //request type,
-        data: data,
-        cache: false,
-        processData: false,
-        contentType: false,
-        success: function (result) {
-            show_error('');
-
-        },
-        error: function (result) {
-        show_error('');
-    },
-    })
     // Load description of event
     var data = new FormData();
     data.append('event_id_1', $('#event_id_1').val());

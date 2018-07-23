@@ -771,6 +771,7 @@
     <Content Include="requirements.txt" />
     <Content Include="TheMarch\static\add-band-detail.js" />
     <Content Include="TheMarch\static\add-event.js" />
+    <Content Include="TheMarch\static\admin-band-general-description.js" />
     <Content Include="TheMarch\static\admin-music-room-description.js" />
     <Content Include="TheMarch\static\admin-music-room-general.js" />
     <Content Include="TheMarch\static\admin-music-room.js" />
@@ -4850,6 +4851,7 @@
     <Content Include="TheMarch\templates\Admin\add-band-detail.html" />
     <Content Include="TheMarch\templates\Admin\add-event.html" />
     <Content Include="TheMarch\templates\Admin\band-detail-preview.html" />
+    <Content Include="TheMarch\templates\Admin\band-general-description.html" />
     <Content Include="TheMarch\templates\Admin\band-thumbnail.html" />
     <Content Include="TheMarch\templates\Admin\band-user.html" />
     <Content Include="TheMarch\templates\Admin\band_detail.html" />

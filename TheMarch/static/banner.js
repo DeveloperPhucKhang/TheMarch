@@ -95,10 +95,10 @@
             swal("Đã thêm khung ảnh!");
             return;
         }
-        if ($('#list_banner').find('.col-sm-3').length == 8) {
-            swal("Số banner tối đa là 8!");
-            return;
-        }
+        //if ($('#list_banner').find('.col-sm-3').length == 8) {
+        //    swal("Số banner tối đa là 8!");
+        //    return;
+        //}
         //var index = $('#list_banner').find('.col-sm-3').length + 1;
         var html = '<div class="col-sm-3" index="' + 0 + '">' +
                         '<div class="white-box">' +
@@ -121,6 +121,7 @@
         load_dropify();
         initial_event_clear($('#list_banner').find('.col-sm-3').last().find('input[type="file"]'));
         window.scrollTo(0, document.querySelector(".container-fluid").scrollHeight);
+        $('#add_banner').blur();
     });
 
     $('#refesh_banner').on('click', function () {
@@ -162,6 +163,7 @@
                 show_error('');
             },
         });
+        $('#refesh_banner').blur();
     });
 });
 var current_input_file;
@@ -225,9 +227,6 @@ function clear_banner(current_input) {
 }
 
 function show_error(current_input) {
-    //var event = current_input.dropify();
-    //event = event.data('dropify')
-    //event.showError('minWidth');
     swal({
         title: "Lỗi!",
         text: "Xảy ra lỗi trong quá trình trao đổi dữ liệu!",

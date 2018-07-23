@@ -344,3 +344,15 @@ def load_room_general():
                     "description_2": room["description_2"],               
             }
     return item  
+
+
+def load_band_general():
+     # Load room general data
+    band = current_db.Band_general_description.find_one()
+    item = None;
+    if band != None:
+        item = {
+                    "_id": str(band["_id"]),
+                    "description": band["description"],                             
+            }
+    return item  

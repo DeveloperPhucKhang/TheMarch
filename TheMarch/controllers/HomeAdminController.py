@@ -1069,3 +1069,41 @@ def update_room_general():
         print 'error' + str(e)
         return simplejson.dumps({"result": 'error'}) 
 
+
+#############
+# Band general description
+#############
+@app.route("/admin/band_general", methods=['GET'])
+@login_required
+def band_general():        
+    # Load detail data
+    if current_user.role != 'admin':
+            return render_template('Admin/error-permission.html')
+    try:     
+        band_general_item = common.load_band_general()          
+        return render_template('Admin/band-general-description.html', 
+            band_info = band_general_item,              
+            year=datetime.now().year)
+    except Exception, e:
+        return render_template('Admin/band-general-description.html', 
+            room_info = None,
+            year=datetime.now().year)
+
+
+@app.route("/update_band_general", methods=['POST'])
+@login_required
+def update_band_general():  
+    try:
+        general_id = request.form['general_id']
+        description = request.form['description']              
+        update_band = {
+                        "description": description                                                  
+                    }
+        common.current_db.Band_general_description.update({"_id": ObjectId(general_id)}, {"$set": update_band})     
+        return simplejson.dumps({"result": 'success'}) 
+    except Exception, e:
+        print 'error' + str(e)
+        return simplejson.dumps({"result": 'error'}) 
+
+
+
