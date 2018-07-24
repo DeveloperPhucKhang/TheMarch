@@ -36,7 +36,7 @@
                                                         '</div>' +
                                                     '</div>' +
                                                     '<div class="attraction-caption">' +
-                                                        '<div class="attraction-caption-title">' + result.list_event_slider[i].event_type + '</div>' +
+                                                        '<div class="attraction-caption-title event-name">' + result.list_event_slider[i].event_type + '</div>' +
                                                         '<div class="attraction-distance">' + result.list_event_slider[i].created_date + '</div>' +
                                                     '</div>' +
                                                 '</a>' +
@@ -52,7 +52,7 @@
                                                         '</div>' +
                                                     '</div>' +
                                                     '<div class="attraction-caption">' +
-                                                        '<div class="attraction-caption-title">' + result.list_event_slider[i + 1].event_type + '</div>' +
+                                                        '<div class="attraction-caption-title event-name">' + result.list_event_slider[i + 1].event_type + '</div>' +
                                                         '<div class="attraction-distance">' + result.list_event_slider[i + 1].created_date + '</div>' +
                                                     '</div>' +
                                                 '</a>' +
