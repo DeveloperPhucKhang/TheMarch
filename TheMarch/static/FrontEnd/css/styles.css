@@ -475,12 +475,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .features .feature:hover {
-  border-bottom-color: #fdeb03;
+  border-bottom-color: rgba(104, 94, 39, 0.5);
 }
 
 .features .feature:hover .feature-icon {
-  border-color: #fdeb03;
-  color: #fdeb03;
+  border-color: rgba(104, 94, 39, 0.5);
+  color: rgba(104, 94, 39, 0.5);
 }
 
 .features .feature:hover .feature-icon i {
@@ -490,7 +490,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .features .feature:hover .feature-icon:after {
-  border-bottom-color: #fdeb03;
+  border-bottom-color: rgba(104, 94, 39, 0.5);
 }
 
 /* 8. Room Tabs
@@ -891,6 +891,142 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom-color: #685e27; /*#219eaf to #685e27 Giang 29/06*/
 }
 
+.attractions .attraction-box {
+  position: relative;
+  /*background-color: #eaf5f7;*/ /* Giang remove Background-color */
+  padding: 60px 15px;
+  /* min-height: 300px; */
+}
+
+.attractions .attraction-box .attraction-box-icon {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  top: -55px;
+  left: 50%;
+  margin-left: -55px;
+  background-color: #fff;
+  border: 2px solid #685e27;
+  border-radius: 55px;
+  text-align: center;
+  font-size: 50px;
+  color: #685e27;
+  line-height: 110px;
+}
+
+.attractions .attraction-box h3 {
+  font-weight: 300;
+  font-size: 24px;
+  margin-bottom: 35px;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.attractions .attraction-box h3 span {
+  font-weight: 400;
+  color: #685e27;
+}
+
+.attractions .attraction-box .input-group {
+  background-color: #fff;
+  padding: 10px 2px;
+  height: 58px;
+}
+
+.attractions .attraction-box .input-group .input-group-addon {
+  background-color: #fff;
+  color: #685e27;
+  border: none;
+  font-size: 24px;
+  border-right: 1px solid #685e27;
+}
+
+.attractions .attraction-box .input-group .form-control {
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.attractions .attraction-box .attraction-box-submit {
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-button .btn {
+  height: 50px;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 6px 12px;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-button:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #685e27;
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  margin-left: -15px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-button:hover:after {
+  border-bottom-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-socialmedia {
+  margin-top: 20px;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-socialmedia h4 {
+  font-size: 18px;
+  font-weight: 300;
+  float: left;
+  padding-left: 5px;
+  margin-top: 10px;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-socialmedia ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float: right;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-socialmedia ul li {
+  float: left;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-socialmedia ul li a {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #685e27;
+  text-align: center;
+  line-height: 40px;
+  color: #685e27;
+  display: block;
+  font-size: 19px;
+  border-radius: 20px;
+  margin: 0 5px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.attractions .attraction-box .attraction-box-submit .attraction-box-socialmedia ul li a:hover {
+  border-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+  color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+}
 /* 11. Newsletter
 -------------------------------------*/
 
@@ -1090,7 +1226,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .reviews .carousel-control:hover {
-  background-color: #fff000;
+  background-color: rgba(104, 94, 39, 0.5);
 }
 
 .reviews .carousel-inner {
@@ -1290,7 +1426,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .rates .rate-box .rate-action button:hover {
-  background-color: #fff000;
+  background-color: rgba(104, 94, 39, 0.5);
 }
 
 .rates .rate-box:last-of-type {
@@ -1489,7 +1625,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .content .carousel-control:hover {
-  background-color: #fff000;
+  background-color: rgba(104, 94, 39, 0.5);
 }
 
 .content .carousel-inner {
@@ -1606,6 +1742,142 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom-color: #685e27; /*#219eaf to #685e27 Giang 22/06*/
 }
 
+.content .content-box {
+  position: relative;
+  /*background-color: #eaf5f7;*/ /* Giang remove Background-color */
+  padding: 60px 15px;
+  /* min-height: 300px; */
+}
+
+.content .content-box .content-box-icon {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  top: -55px;
+  left: 50%;
+  margin-left: -55px;
+  background-color: #fff;
+  border: 2px solid #685e27;
+  border-radius: 55px;
+  text-align: center;
+  font-size: 50px;
+  color: #685e27;
+  line-height: 110px;
+}
+
+.content .content-box h3 {
+  font-weight: 300;
+  font-size: 24px;
+  margin-bottom: 35px;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+.content .content-box h3 span {
+  font-weight: 400;
+  color: #685e27;
+}
+
+.content .content-box .input-group {
+  background-color: #fff;
+  padding: 10px 2px;
+  height: 58px;
+}
+
+.content .content-box .input-group .input-group-addon {
+  background-color: #fff;
+  color: #685e27;
+  border: none;
+  font-size: 24px;
+  border-right: 1px solid #685e27;
+}
+
+.content .content-box .input-group .form-control {
+  background-color: #fff;
+  border: none;
+  box-shadow: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.content .content-box .content-box-submit {
+  width: 300px;
+  position: absolute;
+  left: 50%;
+  margin-left: -150px;
+}
+
+.content .content-box .content-box-submit .content-box-button .btn {
+  height: 50px;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 6px 12px;
+}
+
+.content .content-box .content-box-submit .content-box-button:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #685e27;
+  position: absolute;
+  left: 50%;
+  top: -15px;
+  margin-left: -15px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.content .content-box .content-box-submit .content-box-button:hover:after {
+  border-bottom-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+}
+
+.content .content-box .content-box-submit .content-box-socialmedia {
+  margin-top: 20px;
+}
+
+.content .content-box .content-box-submit .content-box-socialmedia h4 {
+  font-size: 18px;
+  font-weight: 300;
+  float: left;
+  padding-left: 5px;
+  margin-top: 10px;
+}
+
+.content .content-box .content-box-submit .content-box-socialmedia ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  float: right;
+}
+
+.content .content-box .content-box-submit .content-box-socialmedia ul li {
+  float: left;
+}
+
+.content .content-box .content-box-submit .content-box-socialmedia ul li a {
+  width: 40px;
+  height: 40px;
+  border: 2px solid #685e27;
+  text-align: center;
+  line-height: 40px;
+  color: #685e27;
+  display: block;
+  font-size: 19px;
+  border-radius: 20px;
+  margin: 0 5px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+.content .content-box .content-box-submit .content-box-socialmedia ul li a:hover {
+  border-color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+  color: #685e27b5; /*#219eaf to #685e27b5 Giang 22/06*/
+}
 /* 18. Partners
 -------------------------------------*/
 
