@@ -312,8 +312,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .teaser-slider .item img {
-  padding-top: 90px; /*Giang edit 02/07/2018*/
-  position: absolute;
+  /* padding-top: 90px;  */
+  /* position: absolute; */
   margin: auto;
   top: 0;
   left: 0;
@@ -3532,6 +3532,17 @@ footer:after {
   .location .location-address {
     font-size: 12px;
     font-weight: 600;
+  }
+
+  .teaser-slider .item img {
+    padding-top: 90px;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
   }
 }
 
