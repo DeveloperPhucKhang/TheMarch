@@ -147,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .img-responsive-logo {
-    width: 60px;
+    width: 57px;
 }
 
 .modal-open {
@@ -205,10 +205,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* 4. Top Navbar
 -------------------------------------*/
-
+.navbar-brand {
+    float: left;
+    height: 65px;
+    padding: 10px 0px;
+    font-size: 18px;
+    line-height: 19px;
+}
 .top-navbar {
+    height: 77px;
     background-color: #fff;
-    min-height: 90px;
+    /* min-height: 90px; */
     padding: 0 10px;
     border-bottom: 5px solid #685e27;
     /*Doi mau tu  #685e27 => #685e27 */
@@ -227,15 +234,17 @@ h1, h2, h3, h4, h5, h6 {
     }
 
         .top-navbar .navbar-default .navbar-nav {
-            margin-top: 15px;
+            margin-top: 0;
             margin-right: 0;
         }
 
             .top-navbar .navbar-default .navbar-nav a {
+                padding-top: 27px;
                 color: #4a4a4a;
             }
 
             .top-navbar .navbar-default .navbar-nav .active > a {
+                padding-top: 27px;
                 background-color: #ffffff;
                 font-size: 16px;
                 color: #685e27;
@@ -253,7 +262,7 @@ h1, h2, h3, h4, h5, h6 {
                     /*Doi mau tu  #685e27 => #685e27 */
                     position: absolute;
                     left: 50%;
-                    bottom: -20px;
+                    bottom: -10px;
                     margin-left: -5px;
                 }
 
@@ -3053,7 +3062,7 @@ footer {
         }
 
         .top-navbar .navbar-default .navbar-toggle {
-            margin-top: 30px;
+            margin-top: 20px;
             margin-right: 0;
         }
 
@@ -3405,6 +3414,9 @@ footer {
 /* Small devices (768px and down) */
 
 @media (max-width: 768px) {
+
+
+
     /* 5. Teaser Slider 768px
   -------------------------------------*/
     .teaser-slider .item {
@@ -3668,6 +3680,7 @@ footer {
 /* Extra Small devices (480px and down) */
 
 @media (max-width: 480px) {
+
     /* 5. Teaser Slider 480px
   -------------------------------------*/
     /* 19. Contact 480px
@@ -3819,6 +3832,11 @@ footer {
 /* 26. Change default Nav Breakpoint */
 
 @media (max-width: 992px) {
+  
+  .img-responsive-logo {
+      width: 50px;
+      margin-left: 10px;
+  }
     .navbar-header {
         float: none;
     }
