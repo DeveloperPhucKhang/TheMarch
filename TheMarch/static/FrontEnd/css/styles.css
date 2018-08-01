@@ -2925,7 +2925,7 @@ footer {
     .content {
         padding-top: 110px;
         padding-bottom: 70px;
-        margin-top: -95px; /*Giang edit 02/07/2018*/
+        margin-top: -100px; /*Giang edit 02/07/2018*/
     }
 
         .content h2 {
@@ -3728,7 +3728,7 @@ footer {
     }
 
     .teaser-slider .item img {
-        padding-top: 90px;
+        padding-top: 61px;
         position: absolute;
         margin: auto;
         top: 0;
@@ -3832,7 +3832,7 @@ footer {
 /* 26. Change default Nav Breakpoint */
 
 @media (max-width: 992px) {
-  
+
   .img-responsive-logo {
       width: 50px;
       margin-left: 10px;
