@@ -78,13 +78,13 @@ def detail_event_home(eventid):
     try:
         item = common.load_event_detail_data(eventid)  
         return render_template(
-            'Home/event-detail.html', 
+            'Home/Events/event-detail.html', 
             event_detail = item,       
             year=datetime.now().year,
         )
     except Exception, e:
         return render_template(
-            'Home/event-detail.html', 
+            'Home/Events/event-detail.html', 
             event_detail = {},
             year=datetime.now().year,
         )
@@ -186,7 +186,7 @@ def events_page():
     #Load event
     list_event = common.load_event_data('admin')
     return render_template(
-        'Home/events.html',
+        'Home/Events/events.html',
         list_event = list_event,
         year=datetime.now().year,
     )
@@ -200,7 +200,7 @@ def bands_page(menu):
     list_band_detail = common.load_band_by_menu('all')  
     list_band_menu = common.load_band_by_menu(menu)  
     return render_template(
-        'Home/bands.html',
+        'Home/Bands/bands.html',
         list_band_detail = list_band_detail,
         list_band_menu = list_band_menu,    
         year=datetime.now().year,
@@ -226,7 +226,7 @@ def home_band_detail(band_id):
     item = common.load_band_detail_data(band_id)  
     list_item = common.load_band_by_menu('all') 
     return render_template(
-        'Home/band-detail.html',
+        'Home/Bands/band-detail.html',
         band_detail_data = item,   
         list_band_detail = list_item, 
         year=datetime.now().year,

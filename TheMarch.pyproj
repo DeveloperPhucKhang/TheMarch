@@ -61,6 +61,7 @@
   <ItemGroup>
     <Folder Include="TheMarch\" />
     <Folder Include="TheMarch\controllers\" />
+    <Folder Include="TheMarch\controllers\Home\" />
     <Folder Include="TheMarch\models\" />
     <Folder Include="TheMarch\static\AdminTemplate\" />
     <Folder Include="TheMarch\static\AdminTemplate\ampleadmin-dark\" />
@@ -759,13 +760,25 @@
     <Folder Include="TheMarch\static\FrontEnd\img\flags\" />
     <Folder Include="TheMarch\static\FrontEnd\img\ico\" />
     <Folder Include="TheMarch\static\FrontEnd\js\" />
+    <Folder Include="TheMarch\static\js\Home\" />
+    <Folder Include="TheMarch\static\js\Home\Bands\" />
+    <Folder Include="TheMarch\static\js\" />
+    <Folder Include="TheMarch\static\js\Home\Events\" />
     <Folder Include="TheMarch\templates\Admin\" />
+    <Folder Include="TheMarch\templates\Admin\Bands\" />
+    <Folder Include="TheMarch\templates\Admin\Events\" />
+    <Folder Include="TheMarch\templates\Admin\Banner\" />
+    <Folder Include="TheMarch\templates\Admin\Login\" />
+    <Folder Include="TheMarch\templates\Admin\Room\" />
+    <Folder Include="TheMarch\templates\Admin\User\" />
     <Folder Include="TheMarch\templates\Home\" />
     <Folder Include="TheMarch\static\" />
     <Folder Include="TheMarch\static\content\" />
     <Folder Include="TheMarch\static\fonts\" />
     <Folder Include="TheMarch\static\scripts\" />
     <Folder Include="TheMarch\templates\" />
+    <Folder Include="TheMarch\templates\Home\Bands\" />
+    <Folder Include="TheMarch\templates\Home\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="requirements.txt" />
@@ -4827,10 +4840,10 @@
     <Content Include="TheMarch\static\banner.js">
       <SubType>Code</SubType>
     </Content>
-    <Content Include="TheMarch\static\home-band-detail.js" />
-    <Content Include="TheMarch\static\home-bands.js" />
-    <Content Include="TheMarch\static\home-detail-event.js" />
-    <Content Include="TheMarch\static\home.js" />
+    <Content Include="TheMarch\static\js\Home\Bands\home-band-detail.js" />
+    <Content Include="TheMarch\static\js\Home\Bands\home-bands.js" />
+    <Content Include="TheMarch\static\js\Home\Events\home-detail-event.js" />
+    <Content Include="TheMarch\static\js\Home\home.js" />
     <Content Include="TheMarch\static\login-page.js" />
     <Content Include="TheMarch\static\scripts\bootstrap.js" />
     <Content Include="TheMarch\static\scripts\bootstrap.min.js" />
@@ -4848,36 +4861,36 @@
     <Content Include="TheMarch\static\scripts\respond.min.js" />
     <Content Include="TheMarch\static\scripts\_references.js" />
     <Content Include="TheMarch\templates\about.html" />
-    <Content Include="TheMarch\templates\Admin\add-band-detail.html" />
-    <Content Include="TheMarch\templates\Admin\add-event.html" />
-    <Content Include="TheMarch\templates\Admin\band-detail-preview.html" />
-    <Content Include="TheMarch\templates\Admin\band-general-description.html" />
-    <Content Include="TheMarch\templates\Admin\band-thumbnail.html" />
-    <Content Include="TheMarch\templates\Admin\band-user.html" />
-    <Content Include="TheMarch\templates\Admin\band_detail.html" />
-    <Content Include="TheMarch\templates\Admin\banner.html" />
-    <Content Include="TheMarch\templates\Admin\detail-event.html" />
-    <Content Include="TheMarch\templates\Admin\edit-band-detail.html" />
+    <Content Include="TheMarch\templates\Admin\Bands\add-band-detail.html" />
+    <Content Include="TheMarch\templates\Admin\Events\add-event.html" />
+    <Content Include="TheMarch\templates\Admin\Bands\band-detail-preview.html" />
+    <Content Include="TheMarch\templates\Admin\Bands\band-general-description.html" />
+    <Content Include="TheMarch\templates\Admin\Bands\band-thumbnail.html" />
+    <Content Include="TheMarch\templates\Admin\User\band-user.html" />
+    <Content Include="TheMarch\templates\Admin\Bands\band-detail.html" />
+    <Content Include="TheMarch\templates\Admin\Banner\banner.html" />
+    <Content Include="TheMarch\templates\Admin\Events\detail-event.html" />
+    <Content Include="TheMarch\templates\Admin\Bands\edit-band-detail.html" />
     <Content Include="TheMarch\templates\Admin\error-permission.html" />
-    <Content Include="TheMarch\templates\Admin\event-detail-preview.html" />
-    <Content Include="TheMarch\templates\Admin\event.html">
+    <Content Include="TheMarch\templates\Admin\Events\event-detail-preview.html" />
+    <Content Include="TheMarch\templates\Admin\Events\event.html">
       <SubType>Code</SubType>
     </Content>
     <Content Include="TheMarch\templates\Admin\layout.html" />
-    <Content Include="TheMarch\templates\Admin\login-page.html" />
-    <Content Include="TheMarch\templates\Admin\login.html" />
-    <Content Include="TheMarch\templates\Admin\music-room-description.html" />
-    <Content Include="TheMarch\templates\Admin\music-room-general.html" />
-    <Content Include="TheMarch\templates\Admin\music-room.html" />
+    <Content Include="TheMarch\templates\Admin\Login\login-page.html" />
+    <Content Include="TheMarch\templates\Admin\Login\login.html" />
+    <Content Include="TheMarch\templates\Admin\Room\music-room-description.html" />
+    <Content Include="TheMarch\templates\Admin\Room\music-room-general.html" />
+    <Content Include="TheMarch\templates\Admin\Room\music-room.html" />
     <Content Include="TheMarch\templates\Admin\navbar.html" />
     <Content Include="TheMarch\templates\Admin\sidebar.html" />
     <Content Include="TheMarch\templates\contact.html" />
-    <Content Include="TheMarch\templates\Home\band-detail.html" />
-    <Content Include="TheMarch\templates\Home\bands-layout.html" />
-    <Content Include="TheMarch\templates\Home\bands.html" />
-    <Content Include="TheMarch\templates\Home\event-detail.html" />
-    <Content Include="TheMarch\templates\Home\events-layout.html" />
-    <Content Include="TheMarch\templates\Home\events.html" />
+    <Content Include="TheMarch\templates\Home\Bands\band-detail.html" />
+    <Content Include="TheMarch\templates\Home\Bands\bands-layout.html" />
+    <Content Include="TheMarch\templates\Home\Bands\bands.html" />
+    <Content Include="TheMarch\templates\Home\Events\event-detail.html" />
+    <Content Include="TheMarch\templates\Home\Events\events-layout.html" />
+    <Content Include="TheMarch\templates\Home\Events\events.html" />
     <Content Include="TheMarch\templates\Home\home.html" />
     <Content Include="TheMarch\templates\index.html" />
     <Content Include="TheMarch\templates\layout.html" />

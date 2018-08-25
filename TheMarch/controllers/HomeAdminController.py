@@ -71,14 +71,14 @@ def load_user(user_id):
 #############
 @login_manager.unauthorized_handler
 def unauthorized():        
-    return render_template('Admin/login-page.html')    
+    return render_template('Admin/Login/login-page.html')    
 
 #############
 #Login
 #############
 @app.route('/login', methods=['GET'])
 def login_page():
-    return render_template('Admin/login.html', form = LoginForm())
+    return render_template('Admin/Login/login.html', form = LoginForm())
 
 #############
 #Login
@@ -202,7 +202,7 @@ def banner():
     if current_user.role != 'admin':
         return render_template('Admin/error-permission.html')
     list_banner = common.load_banner_image()
-    return render_template('Admin/banner.html',
+    return render_template('Admin/Banner/banner.html',
         banner_data = list_banner,
         #current_user = current_user,
         year=datetime.now().year,)
@@ -221,7 +221,7 @@ def refesh_banner():
 def event():        
     if current_user.role != 'admin':
         return render_template('Admin/error-permission.html')
-    return render_template('Admin/event.html',        
+    return render_template('Admin/Events/event.html',        
         year=datetime.now().year)
 
 #############
@@ -232,7 +232,7 @@ def event():
 def add_event():
     if current_user.role != 'admin':
         return render_template('Admin/error-permission.html')    
-    return render_template('Admin/add-event.html',        
+    return render_template('Admin/Events/add-event.html',        
         year=datetime.now().year,)
 
 #############
@@ -246,11 +246,11 @@ def detail_event(eventid):
             return render_template('Admin/error-permission.html')
     try:     
         item = common.load_event_detail_data(eventid)  
-        return render_template('Admin/detail-event.html', 
+        return render_template('Admin/Events/detail-event.html', 
             event_detail = item,       
             year=datetime.now().year,)
     except Exception, e:
-        return render_template('Admin/detail-event.html',
+        return render_template('Admin/Events/detail-event.html',
             event_detail = [],
             year=datetime.now().year)
 
@@ -443,7 +443,7 @@ def band_thumbnail():
     if current_user.role != 'admin':
         return render_template('Admin/error-permission.html')
     list_band = common.load_band_thumbnail()
-    return render_template('Admin/band-thumbnail.html',
+    return render_template('Admin/Bands/band-thumbnail.html',
         band_data = list_band,
         year=datetime.now().year)
 
@@ -527,7 +527,7 @@ def delete_band_thumbnail():
 def band_user():
     if current_user.role != 'admin':
             return render_template('Admin/error-permission.html')    
-    return render_template('Admin/band-user.html',
+    return render_template('Admin/User/band-user.html',
         year=datetime.now().year)
 
 #############
@@ -606,7 +606,7 @@ def delete_band_user():
 @app.route("/admin/band_detail", methods=['GET'])
 @login_required
 def band_detail():        
-    return render_template('Admin/band_detail.html',        
+    return render_template('Admin/Bands/band-detail.html',        
         year=datetime.now().year)
 
 #############
@@ -632,7 +632,7 @@ def add_band_detail():
         list_band_db = common.current_db.Band_detail.find({"userId": ObjectId(current_user.id)})
         if list_band_db.count() > 0:
             return render_template('Admin/error-permission.html')
-    return render_template('Admin/add-band-detail.html',        
+    return render_template('Admin/Bands/add-band-detail.html',        
         year=datetime.now().year,)
 
 @app.route("/add_band_detail_db", methods=['POST'])
@@ -708,11 +708,11 @@ def detail_band_page(eventid):
     # Load detail data
     try:     
         item = common.load_band_detail_data(eventid)  
-        return render_template('Admin/edit-band-detail.html', 
+        return render_template('Admin/Bands/edit-band-detail.html', 
             band_detail = item,       
             year=datetime.now().year)
     except Exception, e:
-        return render_template('Admin/edit-band-detail.html',
+        return render_template('Admin/Bands/edit-band-detail.html',
             band_detail = [],
             year=datetime.now().year)
 
@@ -871,7 +871,7 @@ def band_detail_preview(band_id):
     item = common.load_band_detail_data(band_id)  
     #list_item = common.load_band_by_menu('all') 
     return render_template(
-        'Admin/band-detail-preview.html',
+        'Admin/Bands/band-detail-preview.html',
         band_detail_data = item,   
         #list_band_detail = list_item, 
         year=datetime.now().year,
@@ -886,13 +886,13 @@ def event_detail_preview(eventid):
     try:
         item = common.load_event_detail_data(eventid)  
         return render_template(
-            'Admin/event-detail-preview.html', 
+            'Admin/Events/event-detail-preview.html', 
             event_detail = item,       
             year=datetime.now().year,
         )
     except Exception, e:
         return render_template(
-            'Home/event-detail-preview.html', 
+            'Home/Events/event-detail-preview.html', 
             event_detail = {},
             year=datetime.now().year,
         )
@@ -907,7 +907,7 @@ def music_room_thumbnail(room_type):
         return render_template('Admin/error-permission.html')
     list_thumbnail = common.load_music_room_thumbnail(room_type)
     room_type_name = common.get_room_type_name(room_type)
-    return render_template('Admin/music-room.html',
+    return render_template('Admin/Room/music-room.html',
         music_thumbnail_data = list_thumbnail,
         room_type_name = room_type_name,
         room_type = room_type,
@@ -984,12 +984,12 @@ def room_description(room_type):
     try:     
         item = common.load_room_description(room_type)  
         room_type_name = common.get_room_type_name(room_type)
-        return render_template('Admin/music-room-description.html', 
+        return render_template('Admin/Room/music-room-description.html', 
             room_info = item,    
             room_type_name = room_type_name,   
             year=datetime.now().year)
     except Exception, e:
-        return render_template('Admin/music-room-description.html', 
+        return render_template('Admin/Room/music-room-description.html', 
             room_info = {},
             year=datetime.now().year)
 
@@ -1043,11 +1043,11 @@ def room_general():
             return render_template('Admin/error-permission.html')
     try:     
         room_general_item = common.load_room_general()          
-        return render_template('Admin/music-room-general.html', 
+        return render_template('Admin/Room/music-room-general.html', 
             room_info = room_general_item,              
             year=datetime.now().year)
     except Exception, e:
-        return render_template('Admin/music-room-general.html', 
+        return render_template('Admin/Room/music-room-general.html', 
             room_info = None,
             year=datetime.now().year)
 
@@ -1081,11 +1081,11 @@ def band_general():
             return render_template('Admin/error-permission.html')
     try:     
         band_general_item = common.load_band_general()          
-        return render_template('Admin/band-general-description.html', 
+        return render_template('Admin/Bands/band-general-description.html', 
             band_info = band_general_item,              
             year=datetime.now().year)
     except Exception, e:
-        return render_template('Admin/band-general-description.html', 
+        return render_template('Admin/Bands/band-general-description.html', 
             room_info = None,
             year=datetime.now().year)
 

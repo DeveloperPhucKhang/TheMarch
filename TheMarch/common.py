@@ -18,7 +18,7 @@ app.config['EVENT_IMAGE_FOLDER'] = 'dataset/event/'
 app.config['BAND_IMAGE_FOLDER'] = 'dataset/band/'
 app.config['ROOM_IMAGE_FOLDER'] = 'dataset/room/'
 app.config['EVENT_THUMBNAIL_FOLDER'] = 'dataset/event/'
-
+#March pymongo account: duypv92/Pa$$w0rd1
 IGNORED_FILES = set(['.gitignore'])
 
 locale.setlocale( locale.LC_ALL, '' )
