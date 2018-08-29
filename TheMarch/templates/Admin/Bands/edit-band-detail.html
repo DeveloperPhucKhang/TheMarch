@@ -53,12 +53,10 @@
                     <div class="form-group col-md-6 p-l-0">
                         <label class="col-sm-12">Loại ban nhạc</label>
                         <div class="col-sm-12">
-                            <select id="band_type" class="form-control">
-                                <option value="1">DJ & EDM</option>
-                                <option value="2">FULL BAND</option>
-                                <option value="3">ROCK</option>
-                                <option value="4">ACOUSTIC</option>
-                                <option value="5">KHÁC</option>
+                            <select id="band_category" class="form-control">
+                                {% for category in list_band_category %}
+                                <option value="{{category._id}}">{{category.name}}</option>                              
+                                {% endfor %}
                             </select>
                         </div>
                     </div>

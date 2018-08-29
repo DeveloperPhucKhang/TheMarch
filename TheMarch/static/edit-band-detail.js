@@ -25,7 +25,7 @@
             result = jQuery.parseJSON(result);
             if (result.result == 'success') {
                 $('.summernote').code(result.description.description);
-                $('#band_type').val(result.band_type.band_type);
+                $('#band_category').val(result.band_category.band_category);
             }
             else {
                 show_error('');
@@ -41,7 +41,7 @@
         e.preventDefault();
         var band_id = $('#band_id').val();
         var band_name = $('#band_name').val();
-        var band_type = $('#band_type').val();
+        var band_category = $('#band_category').val();
         var title = $('#title').val();
         var old_thumbnail = $('#old_thumbnail').attr('value');
         var thumbnail = $('#thumbnail')[0].files[0];
@@ -70,7 +70,7 @@
         var data = new FormData();
         data.append('band_id', band_id);
         data.append('band_name', band_name);
-        data.append('band_type', band_type);
+        data.append('band_category', band_category);
         data.append('title', title);
         data.append('old_thumbnail', old_thumbnail);
         data.append('is_empty_thumbnail', is_empty_thumbnail);

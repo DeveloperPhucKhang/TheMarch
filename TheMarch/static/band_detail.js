@@ -23,12 +23,12 @@ $(document).ready(function () {
                         if (result.list_band[i].is_approve == 'true') {
                             is_approve = 'Đã xét duyệt';
                         }
-                        var band_type = get_band_type(result.list_band[i].band_type)
+                        var band_category = result.list_band[i].band_type_name;
                         data.push([
                             result.list_band[i]._id,
                             result.list_band[i].band_name,
                             result.list_band[i].user_name,
-                            band_type,
+                            band_category,
                             result.list_band[i].created_date,
                             is_important,
                             is_approve,
@@ -203,27 +203,4 @@ function show_error(message) {
         confirmButtonText: "OK",
         closeOnConfirm: true
     });
-}
-
-function get_band_type(band_type) {
-    var band_type_name = ''
-    switch (band_type) {
-        case '1':
-            band_type_name = 'DJ & EDM';
-            break;
-        case '2':
-            band_type_name = 'Full Band';
-            break;
-        case '3':
-            band_type_name = 'Rock';
-            break;
-        case '4':
-            band_type_name = 'Acoustic';
-            break;
-        case '5':
-            band_type_name = 'Khác';
-            break;   
-    }
-    return band_type_name;
-
 }

@@ -61,7 +61,6 @@
   <ItemGroup>
     <Folder Include="TheMarch\" />
     <Folder Include="TheMarch\controllers\" />
-    <Folder Include="TheMarch\controllers\Home\" />
     <Folder Include="TheMarch\models\" />
     <Folder Include="TheMarch\static\AdminTemplate\" />
     <Folder Include="TheMarch\static\AdminTemplate\ampleadmin-dark\" />
@@ -769,6 +768,7 @@
     <Folder Include="TheMarch\templates\Admin\Events\" />
     <Folder Include="TheMarch\templates\Admin\Banner\" />
     <Folder Include="TheMarch\templates\Admin\Login\" />
+    <Folder Include="TheMarch\templates\Admin\Category\" />
     <Folder Include="TheMarch\templates\Admin\Room\" />
     <Folder Include="TheMarch\templates\Admin\User\" />
     <Folder Include="TheMarch\templates\Home\" />
@@ -3575,6 +3575,7 @@
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\sonu.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\users\varun.jpg" />
     <Content Include="TheMarch\static\AdminTemplate\plugins\images\weather-bg.jpg" />
+    <Content Include="TheMarch\static\band-category.js" />
     <Content Include="TheMarch\static\band-detail-preview.js" />
     <Content Include="TheMarch\static\band-user.js" />
     <Content Include="TheMarch\static\band_detail.js" />
@@ -4862,6 +4863,7 @@
     <Content Include="TheMarch\static\scripts\_references.js" />
     <Content Include="TheMarch\templates\about.html" />
     <Content Include="TheMarch\templates\Admin\Bands\add-band-detail.html" />
+    <Content Include="TheMarch\templates\Admin\Category\band-category.html" />
     <Content Include="TheMarch\templates\Admin\Events\add-event.html" />
     <Content Include="TheMarch\templates\Admin\Bands\band-detail-preview.html" />
     <Content Include="TheMarch\templates\Admin\Bands\band-general-description.html" />

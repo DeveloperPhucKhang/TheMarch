@@ -46,20 +46,27 @@
 
 
 @media (max-width: 1200px) {
-  .event-short-description {
-      max-height: 157px;
-  }
-
+    .event-short-description {
+        max-height: 157px;
+    }
 }
 
 @media (max-width: 992px) {
-  .event-short-description {
-      max-height: 157px;
-  }
+    .event-short-description {
+        max-height: 157px;
+    }
 }
 
 @media (max-width: 768px) {
-  .event-short-description {
-      max-height: 157px;
-  }
+    .event-short-description {
+        max-height: 157px;
+    }
+}
+
+.menuzord {
+    height: initial;
+}
+
+#bands_menu {
+    max-width: 85%;
 }

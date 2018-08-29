@@ -14,7 +14,7 @@
     $('form').bind('submit', function (e) {
         e.preventDefault();
         var band_name = $('#band_name').val();
-        var band_type = $('#band_type').val();
+        var band_category = $('#band_category').val();
         var title = $('#title').val();
         // thumbnail
         var thumbnail = $('#thumbnail')[0].files[0];
@@ -42,7 +42,7 @@
         }
         var data = new FormData();
         data.append('band_name', band_name);
-        data.append('band_type', band_type);
+        data.append('band_category', band_category);
         data.append('title', title);
         data.append('is_empty_thumbnail', is_empty_thumbnail);
         data.append('thumbnail_file', thumbnail_file);

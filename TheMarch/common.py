@@ -8,6 +8,7 @@ import locale
 from TheMarch import app
 
 current_db = []
+list_band_category = []
 
 app.config['SECRET_KEY'] = 'hard to guess string'
 app.config['SECRET_KEY'] = 'hard to guess string'
@@ -21,7 +22,7 @@ app.config['EVENT_THUMBNAIL_FOLDER'] = 'dataset/event/'
 #March pymongo account: duypv92/Pa$$w0rd1
 IGNORED_FILES = set(['.gitignore'])
 
-locale.setlocale( locale.LC_ALL, '' )
+locale.setlocale(locale.LC_ALL, '')
 
 class banner_info:
   def __init__(self,name , url, index):
@@ -71,7 +72,7 @@ def load_band_thumbnail():
         video_url = item["url"] 
         if "www.youtube.com" in video_url:
             split_str = video_url.split('=')
-            video_id = split_str[len(split_str)-1]
+            video_id = split_str[len(split_str) - 1]
             video_url = 'https://www.youtube.com/embed/' + video_id + '?rel=0&amp;;controls=0&amp;;showinfo=0&amp;start=8'
         band_item = {
                         "_id": str(item["_id"]),
@@ -120,7 +121,7 @@ def load_event_detail_data(eventid):
                 {'_id': 1,'event_type': 1,'title': 1,
                 'thumbnail': 1,'short_description': 1,'created_by': 1,
                 'created_date': 1,'is_important': 1, 'is_approve': 1,'thumbnail_detail': 1 })
-    item = None;
+    item = None
     if event != None:
         item = {
                 "_id": str(event["_id"]),
@@ -159,11 +160,11 @@ def load_band_data(current_user):
     #Get list band
     if current_user.role == 'admin':
         list_band_db = current_db.Band_detail.find({}, 
-                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
+                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_category":1,
                 'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1, "userId":1}).sort("created_date", DESCENDING)
     else:
         list_band_db = current_db.Band_detail.find({"userId": ObjectId(current_user.id)}, 
-                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
+                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_category":1,
                 'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1, "userId":1}).sort("created_date", DESCENDING)
     for item in list_band_db:
         #Get user name of band
@@ -181,7 +182,8 @@ def load_band_data(current_user):
                         "is_important": item["is_important"] ,
                         "is_approve": item["is_approve"],
                         "thumbnail_detail": item["thumbnail_detail"],
-                        "band_type": item["band_type"],
+                        "band_category": str(item["band_category"]),
+                        "band_type_name": get_band_category_name(str(item["band_category"])),
                         "score": item["score"],
                         "user_name": user["user"]
                     }                                          
@@ -191,9 +193,9 @@ def load_band_data(current_user):
 def load_band_detail_data(bandid):
     # Load detail data
     band = current_db.Band_detail.find_one({"_id": ObjectId(bandid)}, 
-                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
+                {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_category":1,
                 'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1})
-    item = None;
+    item = None
     if band != None:
         item = {
                 "_id": str(band["_id"]),
@@ -201,60 +203,70 @@ def load_band_detail_data(bandid):
                     "title": band["title"],
                     "thumbnail": "/load_band_image/%s" % band["thumbnail"],
                     "thumbnail_name": band["thumbnail"],
-                    "short_description": band["short_description"] ,
-                    #"description": item["description"] ,
+                    "short_description": band["short_description"] ,                    
                     "created_by": band["created_by"] ,
                     "created_date": band["created_date"] ,
                     "is_important": band["is_important"] ,
                     "is_approve": band["is_approve"],
                     "thumbnail_detail": "/load_band_image/%s" % band["thumbnail_detail"],
                     "thumbnail_detail_name": band["thumbnail_detail"],
-                    "band_type": band["band_type"],
-                    "band_type_name": get_band_type_name(band["band_type"]),
+                    "band_category": str(band["band_category"]),
+                    "band_type_name": get_band_category_name(str(band["band_category"])),
                     "score": band["score"]
             }
     return item  
 
 def load_band_by_menu(menu):
-    list_band = []
+    list_band = []   
     # Load detail data
     if menu == 'all':
-        list_band_db = current_db.Band_detail.find({'is_approve': 'true'}, 
-                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
-                    'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1}).sort([("score",DESCENDING) , ("band_type",DESCENDING)])
+        list_band_db = current_db.Band_detail.find({'is_approve': 'true'},
+                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail':
+                    1,'short_description': 1,'created_by':
+                    1,"band_category":1,
+                    'created_date': 1,'is_important': 1, "is_approve":1,
+                    "thumbnail_detail":1,
+                    "score":1}).sort([("score",DESCENDING)])     
     else:
-        list_band_db = current_db.Band_detail.find({'is_approve': 'true', 'band_type' : menu},
-                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_type":1,
-                    'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1}).sort([("score",DESCENDING) , ("band_type",DESCENDING)])
+        list_band_db = current_db.Band_detail.find({'is_approve': 'true', 'band_category' : ObjectId(menu)},
+                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1,'short_description': 1,'created_by': 1,"band_category":1,
+                    'created_date': 1,'is_important': 1, "is_approve":1, "thumbnail_detail":1, "score":1}).sort([("score",DESCENDING)])
     for item in list_band_db:                
         sub_item = {
                         "_id": str(item["_id"]),
                         "band_name": item["band_name"],
                         "title": item["title"],
                         "thumbnail": "/load_band_image/%s" % item["thumbnail"],
-                        "short_description": item["short_description"] ,
-                        #"description": item["description"] ,
+                        "short_description": item["short_description"] ,                        
                         "created_by": item["created_by"] ,
                         "created_date": item["created_date"] ,
                         "is_important": item["is_important"] ,
                         "is_approve": item["is_approve"],
                         "thumbnail_detail": "/load_band_image/%s" % item["thumbnail_detail"],
-                        "band_type": item["band_type"],
-                        "band_type_name": get_band_type_name(item["band_type"]),
+                        "band_category": str(item["band_category"]),
+                        "band_type_name": get_band_category_name(str(item["band_category"])),
                         "score": item["score"]
                     }                                          
         list_band.append(sub_item)
     return list_band  
 
-def get_band_type_name(id):
-    band_type_list = {
-        1: "DJ & EDM",
-        2: "FULL BAND",
-        3: "ROCK",
-        4: "ACOUSTIC",
-        5: "KHÁC",
-    }
-    return band_type_list.get(int(id), "KHÁC")
+def get_band_category():
+    list_category = current_db.Band_category.find().sort([("name",ASCENDING)])
+    global list_band_category
+    list_band_category = []
+    for item in list_category:   
+        sub_item = {
+                        "_id": str(item["_id"]),
+                        "name": item["name"]
+                   }
+        list_band_category.append(sub_item)
+
+def get_band_category_name(id):
+    get_band_category()
+    for category in list_band_category:
+        if category['_id'] == id:
+            return category['name']
+    return list_band_category[0]['name']    
 
 def get_room_type_name(id):
     band_type_list = {
@@ -288,7 +300,7 @@ def load_music_room_thumbnail(room_type):
 def load_room_description(room_type):
      # Load room description data
     room = current_db.Room_description.find_one({'room_type': room_type})
-    item = None;
+    item = None
     if room != None:
         item = {
                     "_id": str(room["_id"]),
@@ -317,7 +329,7 @@ def load_music_room_description():
                         "_id": str(item["_id"]),
                         "room_type": item["room_type"],
                         "description": item["description"],
-                        "price": '{:,.0f}'.format( int(item["price"])),
+                        "price": '{:,.0f}'.format(int(item["price"])),
                         "option_1": item["option_1"],
                         "option_2": item["option_2"],
                         "option_3": item["option_3"] ,
@@ -336,7 +348,7 @@ def load_music_room_description():
 def load_room_general():
      # Load room general data
     room = current_db.Room_general_description.find_one()
-    item = None;
+    item = None
     if room != None:
         item = {
                     "_id": str(room["_id"]),
@@ -349,10 +361,23 @@ def load_room_general():
 def load_band_general():
      # Load room general data
     band = current_db.Band_general_description.find_one()
-    item = None;
+    item = None
     if band != None:
         item = {
                     "_id": str(band["_id"]),
                     "description": band["description"],                             
             }
     return item  
+
+
+def load_band_category():
+    list_band_category = []
+    #Get list banner
+    list_data = current_db.Band_category.find().sort("name", ASCENDING)
+    for item in list_data:        
+        category_item = {
+                        "_id": str(item["_id"]),
+                        "name": item["name"]                      
+                    }                            
+        list_band_category.append(category_item)
+    return list_band_category

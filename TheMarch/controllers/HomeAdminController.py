@@ -21,6 +21,7 @@ import json
 from datetime import timedelta
 from operator import itemgetter, attrgetter
 from PIL import Image
+import re
 import TheMarch.common as common
 
 bootstrap = Bootstrap(app)
@@ -531,7 +532,7 @@ def band_user():
         year=datetime.now().year)
 
 #############
-# Event controller
+# User band controller
 #############
 @app.route("/load_band_user_data", methods=['POST'])
 def load_band_user_data():
@@ -627,20 +628,22 @@ def load_band_detail_data():
 @app.route("/admin/add_band_detail", methods=['GET'])
 @login_required
 def add_band_detail():        
+    common.get_band_category()
     if current_user.role != 'admin':
         #Check number of record from current user
         list_band_db = common.current_db.Band_detail.find({"userId": ObjectId(current_user.id)})
         if list_band_db.count() > 0:
-            return render_template('Admin/error-permission.html')
-    return render_template('Admin/Bands/add-band-detail.html',        
-        year=datetime.now().year,)
+            return render_template('Admin/error-permission.html')        
+    return render_template('Admin/Bands/add-band-detail.html',
+        list_band_category = common.list_band_category,        
+        year=datetime.now().year)
 
 @app.route("/add_band_detail_db", methods=['POST'])
 @login_required
 def add_band_detail_db():  
     try:
         band_name = request.form['band_name']
-        band_type = request.form['band_type']
+        band_category = request.form['band_category']
         title = request.form['title']
         thumbnail = 'default.jpg'
         is_empty_thumbnail = request.form['is_empty_thumbnail']        
@@ -679,7 +682,7 @@ def add_band_detail_db():
         new_event = {   
                         "userId": ObjectId(current_user.id),
                         "band_name": band_name,
-                        "band_type": band_type,
+                        "band_category": ObjectId(band_category),
                         "title": title,
                         "thumbnail": thumbnail,
                         "thumbnail_detail": thumbnail_detail,
@@ -708,8 +711,10 @@ def detail_band_page(eventid):
     # Load detail data
     try:     
         item = common.load_band_detail_data(eventid)  
+        common.get_band_category()
         return render_template('Admin/Bands/edit-band-detail.html', 
-            band_detail = item,       
+            band_detail = item,
+            list_band_category = common.list_band_category,       
             year=datetime.now().year)
     except Exception, e:
         return render_template('Admin/Bands/edit-band-detail.html',
@@ -723,13 +728,13 @@ def detail_band_page(eventid):
 def load_band_detail_description():
     try:
         band_id = request.form['band_id']
-        event = common.current_db.Band_detail.find_one({"_id": ObjectId(band_id)}, {'_id': 1,'description': 1, "band_type": 1})
+        event = common.current_db.Band_detail.find_one({"_id": ObjectId(band_id)}, {'_id': 1,'description': 1, "band_category": 1})
         description = None
-        band_type = None
+        band_category = None
         if event != None:
             description = {"description": event["description"]}
-            band_type = {"band_type": event["band_type"]}
-        return simplejson.dumps({"result": 'success', 'description': description, 'band_type': band_type})
+            band_category = {"band_category": str(event["band_category"])}
+        return simplejson.dumps({"result": 'success', 'description': description, 'band_category': band_category})
     except:
         return simplejson.dumps({"result": 'error'})
 
@@ -739,7 +744,7 @@ def update_band_detail_db():
     try:
         band_id = request.form['band_id']
         band_name = request.form['band_name']
-        band_type = request.form['band_type']
+        band_category = request.form['band_category']
         title = request.form['title']
         #thumbnail image
         old_thumbnail = request.form['old_thumbnail']
@@ -792,7 +797,7 @@ def update_band_detail_db():
         if current_user.role == 'admin':
             update_event = {
                             "band_name": band_name,
-                            "band_type": band_type,
+                            "band_category": ObjectId(band_category),
                             "title": title,
                             "thumbnail": thumbnail,
                             "thumbnail_detail": thumbnail_detail,
@@ -805,7 +810,7 @@ def update_band_detail_db():
         else:
             update_event = {
                             "band_name": band_name,
-                            "band_type": band_type,
+                            "band_category": ObjectId(band_category),
                             "title": title,
                             "thumbnail": thumbnail,
                             "thumbnail_detail": thumbnail_detail,
@@ -1105,5 +1110,83 @@ def update_band_general():
         print 'error' + str(e)
         return simplejson.dumps({"result": 'error'}) 
 
+#############
+# Band Category controller
+#############
+@app.route("/admin/band_category", methods=['GET'])
+@login_required
+def band_category():
+    if current_user.role != 'admin':
+            return render_template('Admin/error-permission.html')    
+    return render_template('Admin/Category/band-category.html')
 
 
+#############
+# Band category controller
+#############
+@app.route("/load_band_category_data", methods=['POST'])
+def load_band_category_data():
+    try:
+        list_band_category = common.load_band_category()
+        return simplejson.dumps({"result": 'success', 'list_band_category': list_band_category})
+    except Exception, e:
+        return simplejson.dumps({"result": 'error'})
+
+
+#############
+# Add band category
+#############
+@app.route("/admin/add_band_category", methods=['POST'])
+@login_required
+def add_band_category():   
+    try:
+        name = request.form['name']           
+        #Check exist category
+        exist_category = common.current_db.Band_category.find({"name": re.compile(name, re.IGNORECASE)})
+        if exist_category.count() > 0:
+            return simplejson.dumps({'result': 'error', 'message':'exist'})
+        common.current_db.Band_category.insert({
+                                        "name": name,                                      
+                                        })                  
+        return simplejson.dumps({'result': 'success'})        
+    except Exception, e:
+        return simplejson.dumps({'result': 'error'})
+
+
+#############
+# Add band user
+#############
+@app.route("/admin/update_band_category", methods=['POST'])
+@login_required
+def update_band_category():   
+    try:
+        category_id = request.form['category_id']           
+        name = request.form['name']              
+        item = {"name": name}
+        #Check exist category name
+        exist_category = common.current_db.Band_category.find({"name": re.compile(name, re.IGNORECASE)})
+        if exist_category.count() > 0:
+            return simplejson.dumps({'result': 'error', 'message':'exist'})
+        common.current_db.Band_category.update({"_id": ObjectId(category_id)}, {"$set": item})       
+        return simplejson.dumps({'result': 'success'})        
+    except Exception, e:
+        return simplejson.dumps({'result': 'error'})
+
+    
+#############
+# Delete band category
+#############
+@app.route("/delete_band_category", methods=['DELETE'])
+@login_required
+def delete_band_category():   
+    category_id = request.form['category_id']
+    try:
+        #Check category is using witin band or not
+        list_band = common.current_db.Band_detail.find({"band_category": ObjectId(category_id)})  
+        if list_band.count() > 0:
+            return simplejson.dumps({'result': 'error', 'message':'exist'})  
+        #delete database
+        common.current_db.Band_category.remove({"_id": ObjectId(category_id)})
+        return simplejson.dumps({'result': 'success'})        
+    except:
+        return simplejson.dumps({'result': 'error'})

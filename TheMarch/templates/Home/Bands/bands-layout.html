@@ -77,7 +77,19 @@
                                     </div>
                                 </div>
                             </li>
+                            {% for category in list_band_category %}
                             <li>
+                                <a href="/bands_page/{{category._id}}">{{category.name}}</a>
+                                <ul class="dropdown">
+                                    {% for sub in list_band_detail %}
+                                    {% if sub.band_category == category._id %}
+                                    <li><a href="/home/home_band_detail/{{sub._id}}">{{sub.band_name}}</a></li>
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% endfor %}
+                            <!--<li>
                                 <a href="/bands_page/1">DJ & EDM</a>
                                 <ul class="dropdown">
                                     {% for sub in list_band_detail %}
@@ -126,7 +138,7 @@
                                     {% endif %}
                                     {% endfor %}
                                 </ul>
-                            </li>
+                            </li>-->
                         </ul>
                         <!--mega menu end-->
                     </div>

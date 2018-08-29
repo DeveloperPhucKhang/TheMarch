@@ -197,12 +197,14 @@ def events_page():
 @app.route("/bands_page/<string:menu>", methods=['GET'])
 #@login_required
 def bands_page(menu):
+    common.get_band_category()
     list_band_detail = common.load_band_by_menu('all')  
-    list_band_menu = common.load_band_by_menu(menu)  
+    list_band_menu = common.load_band_by_menu(menu)      
     return render_template(
         'Home/Bands/bands.html',
         list_band_detail = list_band_detail,
-        list_band_menu = list_band_menu,    
+        list_band_menu = list_band_menu, 
+        list_band_category = common.list_band_category,
         year=datetime.now().year,
     )   
 
@@ -242,15 +244,15 @@ def list_band_by_type():
     list_event = []
     try:
         band_id = request.form['band_id']
-        band_type = request.form['band_type']
-        list_band = common.current_db.Band_detail.find({'is_approve': 'true', 'band_type':band_type, "_id": { '$ne': ObjectId(band_id) } }, 
-                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1, 'band_type': 1,
+        band_category = request.form['band_category']
+        list_band = common.current_db.Band_detail.find({'is_approve': 'true', 'band_category': ObjectId(band_category), "_id": { '$ne': ObjectId(band_id) } }, 
+                    {'_id': 1,'band_name': 1,'title': 1,'thumbnail': 1, 'band_category': 1,
                     'created_date': 1, "thumbnail_detail":1}).sort("created_date", DESCENDING).limit(3)
         for item in list_band:                
             item = {
                     "_id": str(item["_id"]),
                     "band_name": item["band_name"],
-                    "band_type": item["band_type"],
+                    "band_category": str(item["band_category"]),
                     "title": item["title"],
                     "thumbnail": "/load_band_image/%s" % item["thumbnail"],
                     "created_date": item["created_date"] ,
