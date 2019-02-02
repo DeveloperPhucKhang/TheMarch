@@ -186,12 +186,47 @@ function show_error(message) {
     });
 }
 
-function upload_band_thumbnail(current_input) { 
+async function upload_band_thumbnail(current_input) { 
     var old_file_name = $(current_input).attr('thumbnail_name');
     var band_index = $(current_input).parent().parent().parent().attr('index');
+    var thumbnail = $(current_input)[0].files[0];
+    // Case thumbnail of youtube video
+    var max_width = 1140;
+    var max_height = 518;
+    switch (band_index) {
+        case "0":
+            max_width = 1140;
+            max_height = 518;
+            break;
+        case "1":
+            max_width = 554;
+            max_height = 208;
+            break;
+        case "2":
+            max_width = 262;
+            max_height = 226;
+            break;
+        case "3":
+            max_width = 262;
+            max_height = 226;
+            break;
+        case "4":
+            max_width = 262;
+            max_height = 520;
+            break;
+        case "5":
+            max_width = 262;
+            max_height = 208;
+            break;
+        case "6":
+            max_width = 262;
+            max_height = 226;
+            break;
+    }
+    thumbnail = await resizeImage(thumbnail, max_width, max_height);
     var data = new FormData();
     data.append('band_id', $(current_input).attr('band_id'));
-    data.append('file', $(current_input)[0].files[0]);
+    data.append('file', thumbnail);
     data.append('old_file_name', old_file_name);
     data.append('band_index', band_index);
     current_input_file = current_input;

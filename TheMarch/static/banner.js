@@ -238,7 +238,7 @@ function show_error(current_input) {
     });
 }
 
-function upload_banner(current_input) {    
+async function upload_banner(current_input) {    
     var old_file_name;
     if ($(current_input).attr('data-default-file')) {
         old_file_name = $(current_input).attr('data-default-file').split('/').pop();
@@ -247,8 +247,10 @@ function upload_banner(current_input) {
         old_file_name = ''
     }
     var banner_number = $(current_input).parent().parent().parent().attr('index');
+    var thumbnail = $(current_input)[0].files[0];
+    thumbnail = await resizeImage(thumbnail, 1700, 1110);
     var data = new FormData();
-    data.append('file', $(current_input)[0].files[0]);
+    data.append('file', thumbnail);
     data.append('old_file_name', old_file_name);
     data.append('banner_number', banner_number);
     current_input_file = current_input;

@@ -11,20 +11,22 @@
         window.location.href = '/admin/event';
     })
 
-    $('form').bind('submit', function (e) {
+    $('form').bind('submit', async function (e) {
         e.preventDefault();
         var event_type = $('#event_type').val();
         var title = $('#title').val();
         // thumbnail
         var thumbnail = $('#thumbnail')[0].files[0];
+        thumbnail = await resizeImage(thumbnail, 555, 370);
         var is_empty_thumbnail = true;
         var thumbnail_file = '';
-        if(thumbnail != undefined){
+        if (thumbnail != undefined) {
             thumbnail_file = thumbnail;
             is_empty_thumbnail = false
         }
         // thumbnail detail
         var thumbnail_detail = $('#thumbnail_detail')[0].files[0];
+        thumbnail_detail = await resizeImage(thumbnail_detail, 555, 370);        
         var is_empty_thumbnail_detail = true;
         var thumbnail_file_detail = '';
         if (thumbnail_detail != undefined) {
@@ -34,8 +36,8 @@
         var short_description = $('#short_description').val();
         var description = $('.summernote').code();
         //var description = $('.summernote').summernote('code');
-        var is_important =$('#is_important').is(":checked");
-        if($.trim(event_type) == '' || $.trim(title) == '' || $.trim(short_description) == ''){
+        var is_important = $('#is_important').is(":checked");
+        if ($.trim(event_type) == '' || $.trim(title) == '' || $.trim(short_description) == '') {
             return;
         }
         var data = new FormData();
@@ -68,7 +70,7 @@
                 show_error('');
             },
         });
-        
+
     });
 
 });

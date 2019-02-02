@@ -411,12 +411,20 @@ def delete_event():
         if event != None:
             #delete database
             common.current_db.Event.remove({"_id": ObjectId(event_id)})
+            #delete thumbnail
             thumbnail = event.get('thumbnail')
             if thumbnail != 'default.jpg':
                 #delete file thumbnail
                 file_path = os.path.join(app.config['ROOT_FOLDER'] + app.config['EVENT_THUMBNAIL_FOLDER'], thumbnail)    
                 if os.path.exists(file_path):
-                    os.remove(file_path)                           
+                    os.remove(file_path)
+            #delete thumbnail
+            thumbnail_detail = event.get('thumbnail_detail')
+            if thumbnail_detail != 'default.jpg':
+                #delete file thumbnail
+                file_path_detail = os.path.join(app.config['ROOT_FOLDER'] + app.config['EVENT_THUMBNAIL_FOLDER'], thumbnail_detail)    
+                if os.path.exists(file_path_detail):
+                    os.remove(file_path_detail)            
         return simplejson.dumps({'result': 'success'})        
     except:
         return simplejson.dumps({'result': 'error'})
@@ -862,7 +870,14 @@ def delete_band_detail():
                 #delete file thumbnail
                 file_path = os.path.join(app.config['ROOT_FOLDER'] + app.config['BAND_IMAGE_FOLDER'], thumbnail)    
                 if os.path.exists(file_path):
-                    os.remove(file_path)                           
+                    os.remove(file_path)   
+            #delete thumbnail
+            thumbnail_detail = band.get('thumbnail_detail')
+            if thumbnail_detail != 'default.jpg':
+                #delete file thumbnail
+                file_path_detail = os.path.join(app.config['ROOT_FOLDER'] + app.config['BAND_IMAGE_FOLDER'], thumbnail_detail)    
+                if os.path.exists(file_path_detail):
+                    os.remove(file_path_detail)           
         return simplejson.dumps({'result': 'success'})        
     except:
         return simplejson.dumps({'result': 'error'})
@@ -874,13 +889,11 @@ def delete_band_detail():
 #@login_required
 def band_detail_preview(band_id):    
     item = common.load_band_detail_data(band_id)  
-    #list_item = common.load_band_by_menu('all') 
-    return render_template(
-        'Admin/Bands/band-detail-preview.html',
+    #list_item = common.load_band_by_menu('all')
+    return render_template('Admin/Bands/band-detail-preview.html',
         band_detail_data = item,   
-        #list_band_detail = list_item, 
-        year=datetime.now().year,
-    ) 
+        #list_band_detail = list_item,
+        year=datetime.now().year,) 
 
 #############
 # Detail Event preview page
@@ -890,17 +903,13 @@ def band_detail_preview(band_id):
 def event_detail_preview(eventid):
     try:
         item = common.load_event_detail_data(eventid)  
-        return render_template(
-            'Admin/Events/event-detail-preview.html', 
+        return render_template('Admin/Events/event-detail-preview.html', 
             event_detail = item,       
-            year=datetime.now().year,
-        )
+            year=datetime.now().year,)
     except Exception, e:
-        return render_template(
-            'Home/Events/event-detail-preview.html', 
+        return render_template('Home/Events/event-detail-preview.html', 
             event_detail = {},
-            year=datetime.now().year,
-        )
+            year=datetime.now().year,)
 
 #############
 # music room view

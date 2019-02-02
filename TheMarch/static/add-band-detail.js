@@ -11,13 +11,14 @@
         window.location.href = '/admin/band_detail';
     })
 
-    $('form').bind('submit', function (e) {
+    $('form').bind('submit',async function (e) {
         e.preventDefault();
         var band_name = $('#band_name').val();
         var band_category = $('#band_category').val();
         var title = $('#title').val();
         // thumbnail
         var thumbnail = $('#thumbnail')[0].files[0];
+        thumbnail = await resizeImage(thumbnail, 720, 400);
         var is_empty_thumbnail = true;
         var thumbnail_file = '';
         if(thumbnail != undefined){
@@ -26,6 +27,7 @@
         }
         // thumbnail detail
         var thumbnail_detail = $('#thumbnail_detail')[0].files[0];
+        thumbnail_detail = await resizeImage(thumbnail_detail, 720, 400);
         var is_empty_thumbnail_detail = true;
         var thumbnail_file_detail = '';
         if (thumbnail_detail != undefined) {

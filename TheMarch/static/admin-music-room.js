@@ -160,12 +160,14 @@ function show_error(message) {
     });
 }
 
-function upload_thumbnail(current_input) {
+async function upload_thumbnail(current_input) {
     var old_file_name = $(current_input).attr('thumbnail_name');
     var band_index = $(current_input).parent().parent().parent().attr('index');
     var data = new FormData();
+    var thumbnail = $(current_input)[0].files[0];
+    thumbnail = await resizeImage(thumbnail, 555, 370);
     data.append('thumbnail_id', $(current_input).attr('thumbnail_id'));
-    data.append('file', $(current_input)[0].files[0]);
+    data.append('file', thumbnail);
     data.append('old_file_name', old_file_name);
     data.append('thumbnail_index', band_index);
     current_input_file = current_input;

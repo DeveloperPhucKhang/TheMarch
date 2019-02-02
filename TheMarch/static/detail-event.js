@@ -36,15 +36,17 @@
     });
 
     //Update event
-    $('form').bind('submit', function (e) {
+    $('form').bind('submit', async function (e) {
         e.preventDefault();
         var event_id = $('#event_id').val();
         var event_type = $('#event_type').val();
         var title = $('#title').val();
         var old_thumbnail = $('#old_thumbnail').attr('value');
         var thumbnail = $('#thumbnail')[0].files[0];
+        thumbnail = await resizeImage(thumbnail, 555, 370);
         var old_thumbnail_detail = $('#old_thumbnail_detail').attr('value');
         var thumbnail_detail = $('#thumbnail_detail')[0].files[0];
+        thumbnail_detail = await resizeImage(thumbnail_detail, 555, 370);       
         var is_empty_thumbnail = true;
         var is_empty_thumbnail_detail = true;
         var thumbnail_file = '';
