@@ -100,13 +100,15 @@
         //    return;
         //}
         //var index = $('#list_banner').find('.col-sm-3').length + 1;
-        var html = '<div class="col-sm-3" index="' + 0 + '">' +
+        var new_index = 0;
+        var new_index = parseInt(last_box.attr("index")) + 1;
+        var html = '<div class="col-sm-3" index="' + new_index + '">' +
                         '<div class="white-box">' +
                             //'<button onclick="remove_banner(this)" style="float:right" type="button" class="btn btn-warning btn-circle"><i class="fa fa-times"></i> </button>' +
                             '<h3 class="box-title">Mẫu banner</h3>' +
                             '<label>Kích thước: 1700x1110</label>' +
-                            '<label style="display:none" for="' + 0 + '_banner"></label>' +
-                            '<input type="file" id="' + 0 + '_banner" class="dropify"' +
+                            '<label style="display:none" for="' + new_index + '_banner"></label>' +
+                                '<input type="file" id="' + new_index + '_banner" class="dropify"' +
                                     'data-height="300"' +
                                     'data-default-file=""' +
                                     'data-max-file-size="2M"' +
